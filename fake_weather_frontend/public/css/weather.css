@@ -1,0 +1,11 @@
+/* Body */
+body {
+    background-color: hsl(240, 100%, 15%);
+
+    color: hsl(220, 100%, 60%);
+}
+
+/* Centered text */
+.centered {
+    text-align: center;
+}
