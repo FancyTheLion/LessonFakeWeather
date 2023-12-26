@@ -31,3 +31,4 @@
 /home/fancy/Projects/Lessons/LessonFakeWeather/FakeWeatherBackend/FakeWeatherBackend/obj/Debug/net7.0/FakeWeatherBackend.pdb
 /home/fancy/Projects/Lessons/LessonFakeWeather/FakeWeatherBackend/FakeWeatherBackend/obj/Debug/net7.0/FakeWeatherBackend.genruntimeconfig.cache
 /home/fancy/Projects/Lessons/LessonFakeWeather/FakeWeatherBackend/FakeWeatherBackend/obj/Debug/net7.0/ref/FakeWeatherBackend.dll
+/home/fancy/Projects/Lessons/LessonFakeWeather/FakeWeatherBackend/FakeWeatherBackend/obj/Debug/net7.0/FakeWeatherBackend.sourcelink.json

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0e75MaTvMbKvovrXBlGM503JHj8ul6Kbd9WOHnE2W3X0PlPnUfVryP2TYLDUcSIhZDRnNFiustmXcFWIWBLb+w==",
+  "dgSpecHash": "WSwCpwznCyr36/UJBL2RLdqbO9ROi0JPdhiqRY4ewnqc4wJfp1BTJRfVP0lwFfgH0AqB/45JtDoKTr+LDdgk1A==",
   "success": true,
   "projectFilePath": "/home/fancy/Projects/Lessons/LessonFakeWeather/FakeWeatherBackend/FakeWeatherBackend/FakeWeatherBackend.csproj",
   "expectedPackageFiles": [
@@ -10,7 +10,8 @@
     "/home/fancy/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "/home/fancy/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "/home/fancy/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
-    "/home/fancy/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+    "/home/fancy/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
+    "/home/fancy/.nuget/packages/microsoft.netcore.app.host.linux-x64/7.0.14/microsoft.netcore.app.host.linux-x64.7.0.14.nupkg.sha512"
   ],
   "logs": []
 }

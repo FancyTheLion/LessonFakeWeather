@@ -1,3 +1,6 @@
+using FakeWeatherBackend.Services.Abstract;
+using FakeWeatherBackend.Services.Implementations;
+
 namespace FakeWeatherBackend;
 
 public class Program
@@ -6,8 +9,11 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        // DI
+        builder.Services.AddScoped<IFakeWeatherService, FakeWeatherService>();
+        
         // Add services to the container.
-
+        
         builder.Services.AddControllers();
         
         #region CORS
