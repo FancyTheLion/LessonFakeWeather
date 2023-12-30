@@ -12,7 +12,7 @@ public class Program
         // DI
         builder.Services.AddScoped<IFakeWeatherService, FakeWeatherService>();
         
-        // Add services to the container.
+        // Add services to the container. 
         
         builder.Services.AddControllers();
         

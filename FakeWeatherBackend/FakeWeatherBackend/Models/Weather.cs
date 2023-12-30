@@ -5,6 +5,11 @@ namespace FakeWeatherBackend.Models;
 public class Weather
 {
     /// <summary>
+    /// Weather ID
+    /// </summary>
+    public Guid Id { get; private set; }
+
+    /// <summary>
     /// Weather time
     /// </summary>
     public DateTime Timestamp { get; private set; }
@@ -16,10 +21,12 @@ public class Weather
     
     public Weather
     (
+        Guid id,
         DateTime timestamp,
         double temperature
     )
     {
+        Id = id;
         Timestamp = timestamp;
         Temperature = temperature;
     }
@@ -28,6 +35,7 @@ public class Weather
     {
         return new WeatherDto
             (
+                Id,
                 Timestamp, 
                 Temperature
             );

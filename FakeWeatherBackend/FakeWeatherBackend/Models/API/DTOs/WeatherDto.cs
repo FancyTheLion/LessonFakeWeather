@@ -8,6 +8,12 @@ namespace FakeWeatherBackend.Models.API.DTOs;
 public class WeatherDto
 {
     /// <summary>
+    /// Weather ID
+    /// </summary>
+    [JsonPropertyName("id")]
+    public Guid Id { get; private set; }
+
+    /// <summary>
     /// Weather time
     /// </summary>
     [JsonPropertyName("timestamp")]
@@ -21,10 +27,12 @@ public class WeatherDto
 
     public WeatherDto
     (
+        Guid id,
         DateTime timestamp,
         double temperature
     )
     {
+        Id = id;
         Timestamp = timestamp;
         Temperature = temperature;
     }
