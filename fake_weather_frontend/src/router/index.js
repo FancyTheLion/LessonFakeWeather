@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import CurrentWeatherView from "@/views/CurrentWeatherView.vue";
+import HomeView from "@/views/HomeView.vue";
 
 const routes = [
-  // Main page with current weather
+  // Main page
   {
     path: '/',
-    name: 'currentWeather',
-    component: CurrentWeatherView
+    name: 'homePage',
+    component: HomeView
   }
 ]
 
