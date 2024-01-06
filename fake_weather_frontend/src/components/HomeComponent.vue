@@ -7,6 +7,8 @@ import moment from "moment";
   const lastWeatherTime = ref(0)
   const lastWeatherTemperature = ref(0)
 
+  const lastWeathersReferences = ref([])
+
   // OnMounted hook
   onMounted(async () =>
   {
@@ -26,8 +28,6 @@ import moment from "moment";
       method: 'GET'
     })).json()
 
-    console.log(lastWeatherResponse)
-
     lastWeatherTime.value = moment(lastWeatherResponse
         .weather
         .timestamp).format('HH:mm:ss DD.MM.YYYY')
@@ -35,15 +35,35 @@ import moment from "moment";
     lastWeatherTemperature.value = lastWeatherResponse
         .weather
         .temperature
+
+    const lastWeathersReferencesResponse = await (await fetch(apiBaseUrl + "/api/WeatherReferences", {
+      method: 'GET'
+    })).json()
+
+    lastWeathersReferences.value = lastWeathersReferencesResponse.weatherReferences
   }
 
 </script>
 
 <template>
-  <h1 class="centered">Привет, погода!</h1>
-  <h2 class="centered">Самая свежая (из известных) погода:</h2>
-  <p class="centered">Время: {{ lastWeatherTime }}</p>
-  <p class="centered">Температура: {{ lastWeatherTemperature }}</p>
 
+  <h1 class="centered">Привет, погода!</h1>
+
+  <!-- Last weather -->
+  <div class="centered">
+    <h2>Самая свежая (из известных) погода:</h2>
+    <div>Время: {{ lastWeatherTime }}</div>
+    <div>Температура: {{ lastWeatherTemperature }}</div>
+  </div>
+
+  <!-- Weathers list -->
+  <div class="centered">
+    <h2>Список погод:</h2>
+
+    <div v-for="weatherReference in lastWeathersReferences" :key="weatherReference.weatherId">
+      Ссылка: {{ weatherReference }}
+    </div>
+
+  </div>
 
 </template>
