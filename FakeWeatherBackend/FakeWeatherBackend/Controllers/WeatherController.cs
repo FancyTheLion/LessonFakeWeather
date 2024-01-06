@@ -19,17 +19,7 @@ public class WeatherController : ControllerBase
     {
         _fakeWeatherService = fakeWeatherService;
     }
-
-    /// <summary>
-    /// Method to get current weather
-    /// </summary>
-    [HttpGet]
-    [Route("api/Weather/Current")]
-    public async Task<ActionResult<CurrentWeatherResponse>> GetCurrentWeather()
-    {
-        return Ok(new CurrentWeatherResponse((await _fakeWeatherService.GetCurrentWeatherAsync()).ToDto()));
-    }
-
+    
     /// <summary>
     /// Get weather references list
     /// </summary>
@@ -43,7 +33,7 @@ public class WeatherController : ControllerBase
             new WeatherReferencesListResponse
             (
                 (await _fakeWeatherService.GetLastWeatherReferencesAsync())
-                .Select(wr => wr.ToDto())
+                .Select(wr => wr.ToDto()) 
                 .ToList()
             )
         );

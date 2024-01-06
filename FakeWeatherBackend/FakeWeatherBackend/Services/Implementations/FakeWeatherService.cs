@@ -81,21 +81,6 @@ public class FakeWeatherService : IFakeWeatherService
         }
     };
     
-    /// <summary>
-    /// Random Generation(Temperature)
-    /// </summary>
-    private readonly Random _randomGenerator = new Random();
-    
-    public async Task<Weather> GetCurrentWeatherAsync()
-    {
-        return new Weather
-        (
-            Guid.NewGuid(),
-            DateTime.UtcNow,
-            _randomGenerator.Next(-71, 61)
-        );
-    }
-
     public async Task<IReadOnlyCollection<WeatherReference>> GetLastWeatherReferencesAsync()
     {
         return _weathers
