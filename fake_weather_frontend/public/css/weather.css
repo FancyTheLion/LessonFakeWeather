@@ -38,3 +38,9 @@ body {
 .weather-list-element:nth-child(even) {
     background: hsl(240, 100%, 25%);
 }
+
+/* Cloudiness icon */
+.cloudiness-icon {
+    width: 3rem;
+    height: 3rem;
+}
