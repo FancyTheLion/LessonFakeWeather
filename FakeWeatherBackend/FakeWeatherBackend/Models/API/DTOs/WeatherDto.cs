@@ -24,16 +24,30 @@ public class WeatherDto
     /// </summary>
     [JsonPropertyName("temperature")]
     public double Temperature { get; private set; }
+    
+    /// <summary>
+    /// Clouds cover
+    /// </summary>
+    [JsonPropertyName("cloudiness")]
+    public double Cloudiness { get; private set; }
 
     public WeatherDto
     (
         Guid id,
         DateTime timestamp,
-        double temperature
+        double temperature,
+        double cloudiness
     )
     {
         Id = id;
         Timestamp = timestamp;
         Temperature = temperature;
+
+        if (cloudiness < 0.0 || cloudiness > 100.0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(cloudiness), cloudiness, "Cloudiness have to be in [0; 100] range!");
+        }
+
+        Cloudiness = cloudiness;
     }
 }
