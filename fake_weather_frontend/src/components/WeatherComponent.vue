@@ -49,7 +49,7 @@ import CloudinessComponent from "@/components/CloudinessComponent.vue";
 
   <div
       v-if="!isLoading"
-      class="weather-list-element">
+      class="weather-list-element-even weather-list-element-odd">
 
     Время: {{ weatherTime }}, Температура: {{ weatherTemperature }}
 

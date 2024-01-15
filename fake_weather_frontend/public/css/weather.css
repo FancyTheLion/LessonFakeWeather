@@ -1,8 +1,8 @@
 /* Body */
 body {
-    background-color: hsl(240, 100%, 15%);
+    background-color: hsl(217, 100%, 62%);
 
-    color: hsl(220, 100%, 60%);
+    color: hsl(233, 100%, 93%);
 }
 
 /* Centered text */
@@ -18,7 +18,7 @@ body {
 
 /* List with weather*/
 .weather-list {
-    border: 0.1rem solid hsl(220, 100%, 60%);
+    border: 0.3rem solid hsl(0, 100%, 30%);
     border-radius: 1rem;
     width: max-content;
 /*    padding-top: 0.5rem;
@@ -35,12 +35,46 @@ body {
     padding-right: 1rem;
 }
 
-.weather-list-element:nth-child(even) {
+.weather-list-element-even:nth-child(even) {
     background: hsl(240, 100%, 25%);
+}
+
+.weather-list-element-odd:nth-child(odd) {
+    background: hsl(240, 100%, 40%);
 }
 
 /* Cloudiness icon */
 .cloudiness-icon {
     width: 3rem;
     height: 3rem;
+}
+
+.underline-text{
+    text-decoration-line: underline;
+    text-decoration-color: orange;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.details-summary {
+    padding: 4px;
+    width: 200px;
+    background-color: hsl(0, 100%, 41%);
+    border: none;
+    box-shadow: 1px 1px 2px #bbbbbb;
+    cursor: pointer;
+}
+
+.details-window {
+    width: 210px;
+    background-color: hsl(25, 100%, 45%);
+    padding: 4px;
+    margin: 0;
+    box-shadow: 1px 1px 2px #bbbbbb;
 }
