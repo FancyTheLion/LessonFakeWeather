@@ -13,6 +13,8 @@ import LoadingSymbol from "@/components/LoadingSymbol.vue";
 
   const lastWeathersReferences = ref([])
 
+  const isShowDetailedWeather = ref(false)
+
   // OnMounted hook
   onMounted(async () =>
   {
@@ -34,7 +36,7 @@ import LoadingSymbol from "@/components/LoadingSymbol.vue";
 
     lastWeatherTime.value = moment(lastWeatherResponse
         .weather
-        .timestamp).format('DD.MM.YYYY HH:mm:ss')
+        .timestamp).format('DD.MM.YYYY HH:mm')
 
     lastWeatherTemperature.value = lastWeatherResponse
         .weather
@@ -49,6 +51,16 @@ import LoadingSymbol from "@/components/LoadingSymbol.vue";
     isLoading.value = false
   }
 
+  async function ShowDetailedWeather()
+  {
+    isShowDetailedWeather.value = true
+  }
+
+  async function HideDetailedWeather()
+  {
+    isShowDetailedWeather.value = false
+  }
+
 </script>
 
 <template>
@@ -56,25 +68,57 @@ import LoadingSymbol from "@/components/LoadingSymbol.vue";
   <LoadingSymbol v-if="isLoading"/>
 
   <div v-if="!isLoading">
-    <h1 class="centered">Привет, погода!</h1>
+    <h1 class="left underline-text" >Погода от Тигона</h1>
 
-    <!-- Last weather -->
-    <div class="centered">
-      <h2>Самая свежая (из известных) погода:</h2>
-      <div>Время: {{ lastWeatherTime }}</div>
-      <div>Температура: {{ lastWeatherTemperature }}</div>
-    </div>
+    <div class="flex-container">
 
-    <!-- Weathers list -->
-    <div class="centered">
-      <h2>Список погод:</h2>
+      <!-- Last weather -->
+      <div class="full-width-flex-element">
+        <div
+            v-if="!isShowDetailedWeather"
+            @click="async () => await ShowDetailedWeather()"
+            class="details-summary">
+          Показать свежую погоду
+        </div>
 
-      <div class="weather-list">
-        <WeatherComponent
-            v-for="weatherReference in lastWeathersReferences" :key="weatherReference.weatherId"
-            :weatherId="weatherReference.weatherId">
+        <div v-if="isShowDetailedWeather">
+          <div
+              @click="async () => await HideDetailedWeather()"
+              class="details-summary">
+            Скрыть свежую погоду
+          </div>
 
-        </WeatherComponent>
+           <div>
+             <div class="details-window">
+               <div>Время на: {{ lastWeatherTime }}</div>
+               <div>Температура: {{ lastWeatherTemperature }}</div>
+             </div>
+           </div>
+        </div>
+      </div>
+
+      <!-- Weathers list -->
+      <div class="full-width-flex-element">
+  
+        <h2 class="centered">Список погод:</h2>
+
+        <div class="flex-container">
+
+          <div class="weather-list">
+
+            <WeatherComponent
+                v-for="weatherReference in lastWeathersReferences" :key="weatherReference.weatherId"
+                :weatherId="weatherReference.weatherId">
+            </WeatherComponent>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Ride part -->
+      <div class="full-width-flex-element">
       </div>
 
     </div>
@@ -82,3 +126,15 @@ import LoadingSymbol from "@/components/LoadingSymbol.vue";
   </div>
 
 </template>
+
+
+
+
+
+
+
+
+
+
+
+

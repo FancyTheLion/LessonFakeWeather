@@ -36,6 +36,6 @@ import {defineProps, ref} from "vue";
     <img class="cloudiness-icon" :src="iconAddress" alt="Cloudiness icon" />
   </div>
 
-  <div>Облачность: {{ props.cloudiness }}</div>
+  <div>Облачность: {{ props.cloudiness }}%</div>
 </template>
 

@@ -35,10 +35,12 @@ body {
     padding-right: 1rem;
 }
 
+<!-- Even numbered weather list items -->
 .weather-list-element-even:nth-child(even) {
     background: hsl(240, 100%, 25%);
 }
 
+<!-- Odd weather list items -->
 .weather-list-element-odd:nth-child(odd) {
     background: hsl(240, 100%, 40%);
 }
@@ -49,19 +51,35 @@ body {
     height: 3rem;
 }
 
+<!-- Page title\brand -->
 .underline-text{
     text-decoration-line: underline;
     text-decoration-color: orange;
 }
 
+<!-- Flex container, entire page except header -->
 .flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+<!-- Flex container last weather -->
+.flex-container-last-weather {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+<!-- Flex container right part -->
+.flex-container-right-part {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-
-
+<!-- Fresh weather button header -->
 .details-summary {
     padding: 4px;
     width: 200px;
@@ -69,12 +87,20 @@ body {
     border: none;
     box-shadow: 1px 1px 2px #bbbbbb;
     cursor: pointer;
+    text-align: left;
 }
 
+<!-- The window opened -->
 .details-window {
     width: 210px;
     background-color: hsl(25, 100%, 45%);
     padding: 4px;
     margin: 0;
     box-shadow: 1px 1px 2px #bbbbbb;
+    text-align: left;
+}
+
+<!-- Customizing each element in a common flex container -->
+.full-width-flex-element {
+    flex: 100%;
 }
