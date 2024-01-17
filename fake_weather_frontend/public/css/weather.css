@@ -1,106 +1,94 @@
+/*Colors*/
+/*Dimensions*/
 /* Body */
 body {
-    background-color: hsl(217, 100%, 62%);
-
-    color: hsl(233, 100%, 93%);
+  background-color: hsl(217, 100%, 62%);
+  color: hsl(233, 100%, 93%);
 }
-
 /* Centered text */
 .centered {
-    text-align: center;
+  text-align: center;
 }
-
 /* Loading symbol image */
 .loading-symbol-image {
-    width: 1rem;
-    height: 1rem;
+  width: 1rem;
+  height: 1rem;
 }
-
 /* List with weather*/
 .weather-list {
-    border: 0.3rem solid hsl(0, 100%, 30%);
-    border-radius: 1rem;
-    width: max-content;
-/*    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;*/
+  border: 0.3rem solid hsl(0, 100%, 30%);
+  border-radius: 1rem;
+  width: max-content;
+  /*    padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      padding-left: 1rem;
+      padding-right: 1rem;*/
 }
-
 /* Weather list element */
 .weather-list-element {
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-left: 1rem;
-    padding-right: 1rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
-
-<!-- Even numbered weather list items -->
+/*Even numbered weather list items */
 .weather-list-element-even:nth-child(even) {
-    background: hsl(240, 100%, 25%);
+  background: hsl(240, 100%, 25%);
 }
-
-<!-- Odd weather list items -->
+/* Odd weather list items */
 .weather-list-element-odd:nth-child(odd) {
-    background: hsl(240, 100%, 40%);
+  background: hsl(240, 100%, 40%);
 }
-
 /* Cloudiness icon */
 .cloudiness-icon {
-    width: 3rem;
-    height: 3rem;
+  width: 3rem;
+  height: 3rem;
 }
-
-<!-- Page title\brand -->
-.underline-text{
-    text-decoration-line: underline;
-    text-decoration-color: orange;
+/* Page title\brand */
+.underline-text {
+  text-decoration-line: underline;
+  text-decoration-color: orange;
 }
-
-<!-- Flex container, entire page except header -->
+/* Flex container, entire page except header */
 .flex-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
 }
-
-<!-- Flex container last weather -->
+/* Flex container last weather */
 .flex-container-last-weather {
-    display: flex;
-    justify-content: left;
-    align-items: center;
+  display: flex;
+  justify-content: left;
+  align-items: center;
 }
-
-<!-- Flex container right part -->
+/* Flex container right part */
 .flex-container-right-part {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-<!-- Fresh weather button header -->
+/* Fresh weather button header */
 .details-summary {
-    padding: 4px;
-    width: 200px;
-    background-color: hsl(0, 100%, 41%);
-    border: none;
-    box-shadow: 1px 1px 2px #bbbbbb;
-    cursor: pointer;
-    text-align: left;
+  padding: 4px;
+  width: 200px;
+  background-color: hsl(0, 100%, 41%);
+  border: none;
+  box-shadow: 1px 1px 2px hsl(0, 0%, 100%);
+  cursor: pointer;
+  text-align: left;
 }
-
-<!-- The window opened -->
+/* The window opened */
 .details-window {
-    width: 210px;
-    background-color: hsl(25, 100%, 45%);
-    padding: 4px;
-    margin: 0;
-    box-shadow: 1px 1px 2px #bbbbbb;
-    text-align: left;
+  width: 210px;
+  background-color: hsl(25, 100%, 45%);
+  padding: 4px;
+  margin: 0;
+  box-shadow: 1px 1px 2px hsl(0, 0%, 100%);
+  text-align: left;
 }
-
-<!-- Customizing each element in a common flex container -->
+/* Customizing each element in a common flex container */
 .full-width-flex-element {
-    flex: 100%;
+  flex: 100%;
 }
+/*# sourceMappingURL=weather.css.map */

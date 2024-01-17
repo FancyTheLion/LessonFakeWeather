@@ -99,7 +99,7 @@ import LoadingSymbol from "@/components/LoadingSymbol.vue";
 
       <!-- Weathers list -->
       <div class="full-width-flex-element">
-  
+
         <h2 class="centered">Список погод:</h2>
 
         <div class="flex-container">

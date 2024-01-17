@@ -1,0 +1,139 @@
+/*Colors*/
+@page-background-color: hsl(217, 100%, 62%);
+@page-body-text-color: hsl(233, 100%, 93%);
+@table-border-color: hsl(0, 100%, 30%);
+@even-numbered-weather-list-items: hsl(240, 100%, 25%);
+@odd-numbered-weather-list-items: hsl(240, 100%, 40%);
+@dropdown-small-window-background-color: hsl(0, 100%, 41%);
+@dropdown-text-color: hsl(0, 100%, 100%);
+@background-color-opened-window: hsl(25, 100%, 45%);
+@text-color-opened-window: hsl(0, 100%, 100%);
+
+/*Dimensions*/
+@width-loading-symbol-image: 1rem;
+@height-loading-symbol-image: 1rem;
+@border-List-with-weather: 0.3rem;
+@border-radius-List-with-weather: 1rem;
+@Weather-list-padding-left: 1rem;
+@Weather-list-padding-right: 1rem;
+@cloudiness-icon-width: 3rem;
+@cloudiness-icon-height: 3rem;
+@Fresh-weather-button-padding: 4px;
+@Fresh-weather-button-width: 200px;
+@Fresh-weather-button-box-shadow: 1px;
+@Fresh-weather-button-box-shadow-length: 2px;
+@window-opened-width: 210px;
+@window-opened-padding: 4px;
+@window-opened-margin: 0;
+@window-opened-box-shadow: 1px;
+@window-opened-box-shadow-length: 2px;
+
+
+
+
+/* Body */
+body {
+  background-color: @page-background-color;
+
+  color: @page-body-text-color;
+}
+
+/* Centered text */
+.centered {
+  text-align: center;
+}
+
+/* Loading symbol image */
+.loading-symbol-image {
+  width: @width-loading-symbol-image;
+  height: @height-loading-symbol-image;
+}
+
+/* List with weather*/
+.weather-list {
+  border: @border-List-with-weather solid @table-border-color;
+  border-radius: @border-radius-List-with-weather;
+  width: max-content;
+  /*    padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      padding-left: 1rem;
+      padding-right: 1rem;*/
+}
+
+/* Weather list element */
+.weather-list-element {
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: @Weather-list-padding-left;
+  padding-right: @Weather-list-padding-right;
+}
+
+/*Even numbered weather list items */
+.weather-list-element-even:nth-child(even) {
+  background: @even-numbered-weather-list-items;
+}
+
+/* Odd weather list items */
+.weather-list-element-odd:nth-child(odd) {
+  background: @odd-numbered-weather-list-items;
+}
+
+/* Cloudiness icon */
+.cloudiness-icon {
+  width: @cloudiness-icon-width;
+  height: @cloudiness-icon-height;
+}
+
+/* Page title\brand */
+.underline-text{
+  text-decoration-line: underline;
+  text-decoration-color: orange;
+}
+
+/* Flex container, entire page except header */
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+/* Flex container last weather */
+.flex-container-last-weather {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+/* Flex container right part */
+.flex-container-right-part {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Fresh weather button header */
+.details-summary {
+  padding: @Fresh-weather-button-padding;
+  width: @Fresh-weather-button-width;
+  background-color: @dropdown-small-window-background-color;
+  border: none;
+  box-shadow: @Fresh-weather-button-box-shadow @Fresh-weather-button-box-shadow @Fresh-weather-button-box-shadow-length @dropdown-text-color;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* The window opened */
+.details-window {
+  width: @window-opened-width;
+  background-color: @background-color-opened-window;
+  padding: @window-opened-padding;
+  margin: @window-opened-margin;
+  box-shadow: @window-opened-box-shadow @window-opened-box-shadow @window-opened-box-shadow-length @text-color-opened-window;
+  text-align: left;
+}
+
+/* Customizing each element in a common flex container */
+.full-width-flex-element {
+  flex: 100%;
+}
