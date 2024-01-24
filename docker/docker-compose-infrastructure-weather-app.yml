@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+
+  # PostgreSQL
+  weather-app-postgresql:
+    image: weather-app-postgres
+    container_name: weather-app-postgresql
+    restart: always
+
+    ports:
+      - 127.0.0.1:5433:5432 # Do not need it in Prod
+
+    environment:
+      # DB Admin:
+      # User: postgres
+      # Password: EaZvxGF5m7UKewDOtJcXqPhYDFmQCs
+      POSTGRES_PASSWORD: EaZvxGF5m7UKewDOtJcXqPhYDFmQCs
+
+    volumes:
+      - weather_app_postgresql_data:/var/lib/postgresql/data
+
+    networks:
+      - weather-app-net
+
+  # Adminer
+  weather-app-adminer:
+    image: adminer
+    container_name: weather-app-adminer
+    restart: always
+
+    ports:
+      - 127.0.0.1:9082:8080
+
+    networks:
+      - weather-app-net
+
+volumes:
+
+  # Weather app postgresql database storage
+  weather_app_postgresql_data:
+
+networks:
+  weather-app-net:
+    driver: bridge
+    external: true

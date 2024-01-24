@@ -1,0 +1,4 @@
+﻿FROM postgres
+ENV POSTGRES_PASSWORD EaZvxGF5m7UKewDOtJcXqPhYDFmQCs
+ENV POSTGRES_DB weatherapp
+COPY ./db-init-scripts/setup_db.sql /docker-entrypoint-initdb.d/

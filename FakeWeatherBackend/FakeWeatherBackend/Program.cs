@@ -1,5 +1,7 @@
+using FakeWeatherBackend.DAO;
 using FakeWeatherBackend.Services.Abstract;
 using FakeWeatherBackend.Services.Implementations;
+using Microsoft.EntityFrameworkCore;
 
 namespace FakeWeatherBackend;
 
@@ -12,7 +14,22 @@ public class Program
         // DI
         builder.Services.AddScoped<IFakeWeatherService, FakeWeatherService>();
         
-        // Add services to the container. 
+        #region DB Contexts
+
+        // Main
+        builder.Services.AddDbContext<MainDbContext>
+        (
+            options
+                =>
+                options.UseNpgsql
+                (
+                    builder.Configuration.GetConnectionString("MainConnection"),
+                    o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)
+                ),
+            ServiceLifetime.Transient
+        );
+
+        #endregion
         
         builder.Services.AddControllers();
         
