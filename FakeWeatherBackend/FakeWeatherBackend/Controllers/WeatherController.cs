@@ -50,7 +50,7 @@ public class WeatherController : ControllerBase
         (
             new WeatherResponse
             (
-                (await _fakeWeatherService.GetWeatherById(id)).ToDto()
+                (await _fakeWeatherService.GetWeatherByIdAsync(id)).ToDto()
             )
         );
     }

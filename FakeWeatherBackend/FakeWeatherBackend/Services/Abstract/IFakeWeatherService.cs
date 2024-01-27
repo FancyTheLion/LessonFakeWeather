@@ -12,7 +12,7 @@ public interface IFakeWeatherService
     /// <summary>
     /// Return weather by ID
     /// </summary>
-    Task<Weather> GetWeatherById(Guid id);
+    Task<Weather> GetWeatherByIdAsync(Guid id);
 
     /// <summary>
     /// Return link to the latest weather
