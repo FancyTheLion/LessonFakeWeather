@@ -31,11 +31,6 @@ public class WeatherService : IWeatherService
 
     public async Task<Weather> GetWeatherByIdAsync(Guid id)
     {
-        await AddWeatherAsync(new Weather(new Guid("734E6941-6EE6-40EC-BBC3-E2EBC3734265"),
-            DateTime.UtcNow,
-            25,
-            47));
-        
         return _weatherMapper.Map(await _weatherDao.GetWeatherByIdAsync(id));
     }
 

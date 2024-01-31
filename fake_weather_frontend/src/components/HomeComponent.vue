@@ -3,6 +3,7 @@ import {onMounted, ref} from "vue";
 import moment from "moment";
 import WeatherComponent from "@/components/WeatherComponent.vue";
 import LoadingSymbol from "@/components/LoadingSymbol.vue";
+import AddWeatherComponent from "@/components/AddWeatherComponent.vue";
 
   const apiBaseUrl = process.env.VUE_APP_API_URL
 
@@ -117,11 +118,13 @@ import LoadingSymbol from "@/components/LoadingSymbol.vue";
 
       </div>
 
-      <!-- Ride part -->
+      <!-- Right part -->
       <div class="full-width-flex-element">
       </div>
 
     </div>
+
+    <AddWeatherComponent />
 
   </div>
 
