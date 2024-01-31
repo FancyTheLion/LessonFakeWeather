@@ -47,11 +47,11 @@ public class Weather
     public WeatherDto ToDto()
     {
         return new WeatherDto
-            (
-                Id,
-                Timestamp, 
-                Temperature,
-                Cloudiness
-            );
+        (
+            Id,
+            Timestamp, 
+            Temperature,
+            Cloudiness
+        );
     }
 }

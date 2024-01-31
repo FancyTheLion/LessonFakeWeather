@@ -90,7 +90,7 @@ import LoadingSymbol from "@/components/LoadingSymbol.vue";
 
            <div>
              <div class="details-window">
-               <div>Время на: {{ lastWeatherTime }}</div>
+               <div>Время: {{ lastWeatherTime }}</div>
                <div>Температура: {{ lastWeatherTemperature }}</div>
              </div>
            </div>

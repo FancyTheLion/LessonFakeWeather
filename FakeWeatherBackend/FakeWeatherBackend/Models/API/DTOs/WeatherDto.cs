@@ -11,25 +11,25 @@ public class WeatherDto
     /// Weather ID
     /// </summary>
     [JsonPropertyName("id")]
-    public Guid Id { get; private set; }
+    public Guid Id { get; set; }
 
     /// <summary>
     /// Weather time
     /// </summary>
     [JsonPropertyName("timestamp")]
-    public DateTime Timestamp { get; private set; }
+    public DateTime Timestamp { get; set; }
 
     /// <summary>
     /// Temperature
     /// </summary>
     [JsonPropertyName("temperature")]
-    public double Temperature { get; private set; }
+    public double Temperature { get; set; }
     
     /// <summary>
     /// Clouds cover
     /// </summary>
     [JsonPropertyName("cloudiness")]
-    public double Cloudiness { get; private set; }
+    public double Cloudiness { get; set; }
 
     public WeatherDto
     (
@@ -49,5 +49,16 @@ public class WeatherDto
         }
 
         Cloudiness = cloudiness;
+    }
+
+    public Weather ToModel()
+    {
+        return new Weather
+        (
+            Id,
+            Timestamp,
+            Temperature,
+            Cloudiness
+        );
     }
 }

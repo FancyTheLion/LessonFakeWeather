@@ -2,8 +2,10 @@ using FakeWeatherBackend.Models;
 
 namespace FakeWeatherBackend.Services.Abstract;
 
-public interface IFakeWeatherService
+public interface IWeatherService
 {
+    #region Get
+    
     /// <summary>
     /// Get last weather references
     /// </summary>
@@ -18,4 +20,15 @@ public interface IFakeWeatherService
     /// Return link to the latest weather
     /// </summary>
     Task<WeatherReference> GetLastWeatherReferenceAsync();
+    
+    #endregion
+
+    #region Create / Update
+
+    /// <summary>
+    /// Add weather
+    /// </summary>
+    Task<Weather> AddWeatherAsync(Weather weatherToAdd);
+
+    #endregion
 }

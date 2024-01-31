@@ -1,5 +1,6 @@
 using FakeWeatherBackend.Models;
 using FakeWeatherBackend.Models.API.DTOs;
+using FakeWeatherBackend.Models.API.Requests;
 using FakeWeatherBackend.Models.API.Responses;
 using FakeWeatherBackend.Services.Abstract;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -13,11 +14,11 @@ namespace FakeWeatherBackend.Controllers;
 [ApiController]
 public class WeatherController : ControllerBase
 {
-    private readonly IFakeWeatherService _fakeWeatherService;
+    private readonly IWeatherService _weatherService;
 
-    public WeatherController(IFakeWeatherService fakeWeatherService)
+    public WeatherController(IWeatherService weatherService)
     {
-        _fakeWeatherService = fakeWeatherService;
+        _weatherService = weatherService;
     }
     
     /// <summary>
@@ -32,7 +33,7 @@ public class WeatherController : ControllerBase
         (
             new WeatherReferencesListResponse
             (
-                (await _fakeWeatherService.GetLastWeatherReferencesAsync())
+                (await _weatherService.GetLastWeatherReferencesAsync())
                 .Select(wr => wr.ToDto()) 
                 .ToList()
             )
@@ -50,7 +51,7 @@ public class WeatherController : ControllerBase
         (
             new WeatherResponse
             (
-                (await _fakeWeatherService.GetWeatherByIdAsync(id)).ToDto()
+                (await _weatherService.GetWeatherByIdAsync(id)).ToDto()
             )
         );
     }
@@ -66,9 +67,22 @@ public class WeatherController : ControllerBase
         (
             new SingleWeatherReferenceResponse
             (
-                (await _fakeWeatherService.GetLastWeatherReferenceAsync()).ToDto()
+                (await _weatherService.GetLastWeatherReferenceAsync()).ToDto()
             )
         );
     }
 
+    /// <summary>
+    /// Add new weather to backend
+    /// </summary>
+    [HttpPost]
+    [Route("api/Weather/Add")]
+    public async Task<ActionResult<WeatherAddedResponse>> AddWeatherAsync([FromBody]AddWeatherRequest weatherToAdd)
+    {
+        return Ok
+        (
+            new WeatherAddedResponse((await _weatherService.AddWeatherAsync(weatherToAdd.WeatherToAdd.ToModel())).ToDto())
+        );
+    }
+    
 }

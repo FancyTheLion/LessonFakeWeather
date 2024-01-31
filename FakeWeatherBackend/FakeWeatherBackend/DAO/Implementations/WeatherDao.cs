@@ -38,4 +38,17 @@ public class WeatherDao : IWeatherDao
             .OrderBy(t => t.Timestamp)
             .ToListAsync();
     }
+
+    public async Task<WeatherDbo> AddWeatherAsync(WeatherDbo weatherToInsert)
+    {
+        _ = weatherToInsert ?? throw new ArgumentNullException(nameof(weatherToInsert), "Weather can't be null!");
+
+        await _dbContext
+            .Weathers
+            .AddAsync(weatherToInsert);
+            
+        await _dbContext.SaveChangesAsync();
+
+        return weatherToInsert;
+    }
 }

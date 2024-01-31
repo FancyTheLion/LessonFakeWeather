@@ -21,4 +21,9 @@ public interface IWeatherDao
     /// Get ordered weathers
     /// </summary>
     Task<IReadOnlyCollection<WeatherDbo>> GetWeathersOrderedByTimestampAsync();
+
+    /// <summary>
+    /// Add new weather to the database
+    /// </summary>
+    Task<WeatherDbo> AddWeatherAsync(WeatherDbo weatherToInsert);
 }
