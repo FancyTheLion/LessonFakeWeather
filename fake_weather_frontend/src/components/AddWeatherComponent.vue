@@ -6,7 +6,7 @@
 
   // Form data
   const addWeatherData = reactive({
-    dateTime: 0,
+    dateTime: new Date(),
     temperature: 0,
     cloudiness: 0
   })
@@ -17,7 +17,7 @@
       method: 'POST',
       body: JSON.stringify({
         "weatherToAdd": {
-          "timestamp": addWeatherData.dateTime,
+          "timestamp": new Date(addWeatherData.dateTime).toISOString(),
           "temperature": addWeatherData.temperature,
           "cloudiness": addWeatherData.cloudiness
         }
@@ -34,8 +34,6 @@
 </script>
 
 <template>
-  Тут будет добавление новой погоды в базу:
-
   <!-- Date and time -->
   <div>
     <div>

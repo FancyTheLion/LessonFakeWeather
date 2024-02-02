@@ -1,7 +1,7 @@
 /*Colors*/
 @page-background-color: hsl(217, 100%, 62%);
 @page-body-text-color: hsl(233, 100%, 93%);
-@table-border-color: hsl(0, 100%, 30%);
+@table-border-color: hsl(117, 100%, 60%);
 @even-numbered-weather-list-items: hsl(240, 100%, 25%);
 @odd-numbered-weather-list-items: hsl(240, 100%, 40%);
 @dropdown-small-window-background-color: hsl(0, 100%, 41%);
@@ -12,22 +12,22 @@
 /*Dimensions*/
 @width-loading-symbol-image: 1rem;
 @height-loading-symbol-image: 1rem;
-@border-List-with-weather: 0.5rem;
+@border-List-with-weather: 0.3rem;
 @border-radius-List-with-weather: 0.2rem;
 @Weather-list-padding-left: 1rem;
 @Weather-list-padding-right: 1rem;
 @cloudiness-icon-width: 3rem;
 @cloudiness-icon-height: 3rem;
-@Fresh-weather-button-padding: 4px;
-@Fresh-weather-button-width: 200px;
-@Fresh-weather-button-box-shadow: 1px;
-@Fresh-weather-button-box-shadow-length: 2px;
-@window-opened-width: 210px;
-@window-opened-padding: 4px;
+@Fresh-weather-button-padding: 0.3rem;
+@Fresh-weather-button-width: 10rem;
+@Fresh-weather-button-box-shadow: 0.1rem;
+@Fresh-weather-button-box-shadow-length: 0.1rem;
+@window-opened-width: 14rem;
+@window-opened-padding: 0.3rem;
 @window-opened-margin: 0;
-@window-opened-box-shadow: 1px;
-@window-opened-box-shadow-length: 2px;
-
+@window-opened-box-shadow: 0.1rem;
+@window-opened-box-shadow-length: 0.1rem;
+@table-edge-offset: 0.5rem;
 
 
 
@@ -71,11 +71,19 @@ body {
 /*Even numbered weather list items */
 .weather-list-element-even:nth-child(even) {
   background: @even-numbered-weather-list-items;
+  padding-top: @table-edge-offset;
+  padding-right: @table-edge-offset;
+  padding-bottom: @table-edge-offset;
+  padding-left: @table-edge-offset;
 }
 
 /* Odd weather list items */
 .weather-list-element-odd:nth-child(odd) {
   background: @odd-numbered-weather-list-items;
+  padding-top: @table-edge-offset;
+  padding-right: @table-edge-offset;
+  padding-bottom: @table-edge-offset;
+  padding-left: @table-edge-offset;
 }
 
 /* Cloudiness icon */

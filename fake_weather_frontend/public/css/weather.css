@@ -16,7 +16,7 @@ body {
 }
 /* List with weather*/
 .weather-list {
-  border: 0.5rem solid hsl(0, 100%, 30%);
+  border: 0.3rem solid hsl(117, 100%, 60%);
   border-radius: 0.2rem;
   width: max-content;
   /*    padding-top: 0.5rem;
@@ -34,10 +34,18 @@ body {
 /*Even numbered weather list items */
 .weather-list-element-even:nth-child(even) {
   background: hsl(240, 100%, 25%);
+  padding-top: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
 }
 /* Odd weather list items */
 .weather-list-element-odd:nth-child(odd) {
   background: hsl(240, 100%, 40%);
+  padding-top: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
 }
 /* Cloudiness icon */
 .cloudiness-icon {
@@ -70,21 +78,21 @@ body {
 }
 /* Fresh weather button header */
 .details-summary {
-  padding: 4px;
-  width: 200px;
+  padding: 0.3rem;
+  width: 10rem;
   background-color: hsl(0, 100%, 41%);
   border: none;
-  box-shadow: 1px 1px 2px hsl(0, 0%, 100%);
+  box-shadow: 0.1rem 0.1rem 0.1rem hsl(0, 0%, 100%);
   cursor: pointer;
   text-align: left;
 }
 /* The window opened */
 .details-window {
-  width: 210px;
+  width: 14rem;
   background-color: hsl(25, 100%, 45%);
-  padding: 4px;
+  padding: 0.3rem;
   margin: 0;
-  box-shadow: 1px 1px 2px hsl(0, 0%, 100%);
+  box-shadow: 0.1rem 0.1rem 0.1rem hsl(0, 0%, 100%);
   text-align: left;
 }
 /* Customizing each element in a common flex container */
