@@ -43,11 +43,7 @@ import AddWeatherComponent from "@/components/AddWeatherComponent.vue";
         .weather
         .temperature
 
-    const lastWeathersReferencesResponse = await (await fetch(apiBaseUrl + "/api/WeatherReferences", {
-      method: 'GET'
-    })).json()
-
-    lastWeathersReferences.value = lastWeathersReferencesResponse.weatherReferences
+    await LoadLastWeatherReferences()
 
     isLoading.value = false
   }
@@ -62,6 +58,19 @@ import AddWeatherComponent from "@/components/AddWeatherComponent.vue";
     isShowDetailedWeather.value = false
   }
 
+  async function OnWeatherAdded()
+  {
+    await LoadLastWeatherReferences()
+  }
+
+  async function LoadLastWeatherReferences()
+  {
+    const lastWeathersReferencesResponse = await (await fetch(apiBaseUrl + "/api/WeatherReferences", {
+      method: "GET"
+    })).json()
+
+    lastWeathersReferences.value = lastWeathersReferencesResponse.weatherReferences
+  }
 </script>
 
 <template>
@@ -119,12 +128,15 @@ import AddWeatherComponent from "@/components/AddWeatherComponent.vue";
       </div>
 
       <!-- Right part -->
-      <div class="full-width-flex-element">
+      <div class="full-width-flex-element centered">
+        <AddWeatherComponent
+            @weatherAdded="async() => await OnWeatherAdded()"
+        />
       </div>
 
     </div>
 
-    <AddWeatherComponent />
+
 
   </div>
 

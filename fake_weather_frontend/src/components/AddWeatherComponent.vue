@@ -1,6 +1,6 @@
 <script setup>
 
-  import {reactive} from "vue";
+  import {reactive, defineEmits} from "vue";
 
   const apiBaseUrl = process.env.VUE_APP_API_URL
 
@@ -11,10 +11,12 @@
     cloudiness: 0
   })
 
+  const emit = defineEmits(["weatherAdded"])
+
   async function SendWeatherToBackend()
   {
     const response = await fetch(apiBaseUrl + "/api/Weather/Add", {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify({
         "weatherToAdd": {
           "timestamp": new Date(addWeatherData.dateTime).toISOString(),
@@ -22,12 +24,16 @@
           "cloudiness": addWeatherData.cloudiness
         }
       }),
-      headers: { 'Content-Type': 'application/json' }
+      headers: { "Content-Type": "application/json" }
     })
 
     if (response.status === 200)
     {
-      alert("Погода добавлена!")
+      emit("weatherAdded")
+    }
+    else
+    {
+      alert("Ошибка добавления погоды")
     }
   }
 
