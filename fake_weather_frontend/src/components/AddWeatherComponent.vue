@@ -1,6 +1,8 @@
 <script setup>
 
-  import {reactive, defineEmits} from "vue";
+import {reactive, defineEmits, onMounted} from "vue";
+import {maxValue, minValue, required} from "@vuelidate/validators";
+  import useVuelidate from "@vuelidate/core";
 
   const apiBaseUrl = process.env.VUE_APP_API_URL
 
@@ -11,7 +13,49 @@
     cloudiness: 0
   })
 
+  // Validation rules
+  const addWeatherFormRules = {
+
+    // Date and time
+    dateTime: {
+      $autoDirty: true,
+      required
+    },
+
+    // Temperature
+    temperature: {
+      $autoDirty: true,
+      required,
+      minValueValue: minValue(-50),
+      maxValueValue: maxValue(50)
+    },
+
+    // Cloudiness
+    cloudiness: {
+      $autoDirty: true,
+      required,
+      minValueValue: minValue(0),
+      maxValueValue: maxValue(100)
+    }
+  }
+
+  const addWeatherFormValidator = useVuelidate(addWeatherFormRules, addWeatherData)
+
   const emit = defineEmits(["weatherAdded"])
+
+  // OnMounted hook
+  onMounted(async () =>
+  {
+    await OnLoad();
+  })
+
+  // Called when component is loaded
+  async function OnLoad()
+  {
+    addWeatherData.dateTime = null
+
+    await addWeatherFormValidator.value.$validate()
+  }
 
   async function SendWeatherToBackend()
   {
@@ -29,12 +73,23 @@
 
     if (response.status === 200)
     {
-      emit("weatherAdded")
+      await OnWeatherAdded()
     }
     else
     {
       alert("Ошибка добавления погоды")
     }
+  }
+
+  // This method gets called when the new weather is added successfully
+  async function OnWeatherAdded()
+  {
+    // Clearing the form
+    addWeatherData.dateTime = null
+    addWeatherData.temperature = 0
+    addWeatherData.cloudiness = 0
+
+    emit("weatherAdded")
   }
 
 </script>
@@ -48,6 +103,7 @@
 
     <input
         type="datetime-local"
+        :class="(addWeatherFormValidator.dateTime.$error)?'form-field-with-error':'form-field-without-error'"
         v-model="addWeatherData.dateTime"
     />
 
@@ -61,6 +117,7 @@
 
     <input
         type="number"
+        :class="(addWeatherFormValidator.temperature.$error)?'form-field-with-error':'form-field-without-error'"
         v-model="addWeatherData.temperature"
     />
   </div>
@@ -73,6 +130,7 @@
 
     <input
         type="number"
+        :class="(addWeatherFormValidator.cloudiness.$error)?'form-field-with-error':'form-field-without-error'"
         v-model="addWeatherData.cloudiness"
     />
   </div>
@@ -80,6 +138,7 @@
   <!-- Add button -->
   <button
     type="button"
+    :disabled="addWeatherFormValidator.$errors.length > 0"
     @click="async() => await SendWeatherToBackend()">
     Добавить погоду
   </button>

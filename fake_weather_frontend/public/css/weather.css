@@ -99,4 +99,12 @@ body {
 .full-width-flex-element {
   flex: 100%;
 }
+/* Form field with error */
+.form-field-with-error {
+  border: red 0.2rem solid;
+}
+/* Form field without error */
+.form-field-without-error {
+  border: transparent 0.2rem solid;
+}
 /*# sourceMappingURL=weather.css.map */
