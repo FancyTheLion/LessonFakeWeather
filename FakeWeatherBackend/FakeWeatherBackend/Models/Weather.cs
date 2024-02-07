@@ -23,13 +23,31 @@ public class Weather
     /// Clouds cover
     /// </summary>
     public double Cloudiness { get; private set; }
-    
+
+    /// <summary>
+    /// Water vapor content in the air
+    /// </summary>
+    public double Humidity { get; private set; }
+
+    /// <summary>
+    /// Air pressure
+    /// </summary>
+    public double Pressure { get; private set;  }
+
+    /// <summary>
+    /// Various weather phenomena
+    /// </summary>
+    public string Precipitation { get; private set; }
+
     public Weather
     (
         Guid id,
         DateTime timestamp,
         double temperature,
-        double cloudiness
+        double cloudiness,
+        double humidity,
+        double pressure,
+        string precipitation
     )
     {
         Id = id;
@@ -42,6 +60,9 @@ public class Weather
         }
 
         Cloudiness = cloudiness;
+        Humidity = humidity;
+        Pressure = pressure;
+        Precipitation = precipitation;
     }
 
     public WeatherDto ToDto()
@@ -51,7 +72,10 @@ public class Weather
             Id,
             Timestamp, 
             Temperature,
-            Cloudiness
+            Cloudiness,
+            Humidity,
+            Pressure,
+            Precipitation
         );
     }
 }

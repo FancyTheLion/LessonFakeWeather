@@ -27,4 +27,20 @@ public class WeatherDbo
     /// Clouds cover
     /// </summary>
     public double Cloudiness { get; set; }
+    
+    /// <summary>
+    /// Water vapor content in the air
+    /// </summary>
+    public double Humidity { get; set; }
+
+    /// <summary>
+    /// Air pressure
+    /// </summary>
+    public double Pressure { get; set;  }
+
+    /// <summary>
+    /// Various weather phenomena
+    /// </summary>
+    public string Precipitation { get; set; }
+
 }

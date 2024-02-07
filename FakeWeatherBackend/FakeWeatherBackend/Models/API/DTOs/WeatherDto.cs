@@ -30,13 +30,35 @@ public class WeatherDto
     /// </summary>
     [JsonPropertyName("cloudiness")]
     public double Cloudiness { get; set; }
+    
+    /// <summary>
+    /// Water vapor content in the air
+    /// </summary>
+    [JsonPropertyName("humidity")]
+    public double Humidity { get; set; }
+
+    /// <summary>
+    /// Air pressure
+    /// </summary>
+    [JsonPropertyName("pressure")]
+    public double Pressure { get; set;  }
+
+    /// <summary>
+    /// Various weather phenomena
+    /// </summary>
+    [JsonPropertyName("precipitation")]
+    public string Precipitation { get; set; }
+
 
     public WeatherDto
     (
         Guid id,
         DateTime timestamp,
         double temperature,
-        double cloudiness
+        double cloudiness,
+        double humidity,
+        double pressure,
+        string precipitation
     )
     {
         Id = id;
@@ -49,6 +71,9 @@ public class WeatherDto
         }
 
         Cloudiness = cloudiness;
+        Humidity = humidity;
+        Pressure = pressure;
+        Precipitation = precipitation;
     }
 
     public Weather ToModel()
@@ -58,7 +83,10 @@ public class WeatherDto
             Id,
             Timestamp,
             Temperature,
-            Cloudiness
+            Cloudiness,
+            Humidity,
+            Pressure,
+            Precipitation
         );
     }
 }

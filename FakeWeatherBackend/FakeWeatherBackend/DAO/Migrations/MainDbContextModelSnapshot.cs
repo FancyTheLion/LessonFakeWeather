@@ -31,6 +31,16 @@ namespace FakeWeatherBackend.DAO.Migrations
                     b.Property<double>("Cloudiness")
                         .HasColumnType("double precision");
 
+                    b.Property<double>("Humidity")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Precipitation")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<double>("Pressure")
+                        .HasColumnType("double precision");
+
                     b.Property<double>("Temperature")
                         .HasColumnType("double precision");
 
