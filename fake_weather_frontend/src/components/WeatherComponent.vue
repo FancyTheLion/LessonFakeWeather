@@ -15,6 +15,8 @@ import CloudinessComponent from "@/components/CloudinessComponent.vue";
   const weatherTime = ref(0)
   const weatherTemperature = ref(0)
   const weatherCloudiness = ref(0)
+  const weatherHumidity = ref(0)
+  const weatherPressure = ref(0)
 
   onMounted(async () =>
   {
@@ -39,6 +41,14 @@ import CloudinessComponent from "@/components/CloudinessComponent.vue";
         .weather
         .cloudiness
 
+    weatherHumidity.value = weatherResponse
+        .weather
+        .humidity
+
+    weatherPressure.value = weatherResponse
+        .weather
+        .pressure
+
     isLoading.value = false
   }
 
@@ -51,7 +61,7 @@ import CloudinessComponent from "@/components/CloudinessComponent.vue";
       v-if="!isLoading"
       class="weather-list-element-even weather-list-element-odd">
 
-    Время: {{ weatherTime }}, Температура: {{ weatherTemperature }}
+    Время: {{ weatherTime }}, Температура: {{ weatherTemperature }}, Влажность: {{ weatherHumidity }}, Давление: {{ weatherPressure }}
 
     <CloudinessComponent :cloudiness="weatherCloudiness" />
   </div>
