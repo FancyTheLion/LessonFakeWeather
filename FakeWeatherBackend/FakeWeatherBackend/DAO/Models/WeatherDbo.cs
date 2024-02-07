@@ -37,10 +37,4 @@ public class WeatherDbo
     /// Air pressure
     /// </summary>
     public double Pressure { get; set;  }
-
-    /// <summary>
-    /// Various weather phenomena
-    /// </summary>
-    public string Precipitation { get; set; }
-
 }

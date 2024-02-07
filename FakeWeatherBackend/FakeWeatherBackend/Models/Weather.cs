@@ -34,11 +34,6 @@ public class Weather
     /// </summary>
     public double Pressure { get; private set;  }
 
-    /// <summary>
-    /// Various weather phenomena
-    /// </summary>
-    public string Precipitation { get; private set; }
-
     public Weather
     (
         Guid id,
@@ -46,8 +41,7 @@ public class Weather
         double temperature,
         double cloudiness,
         double humidity,
-        double pressure,
-        string precipitation
+        double pressure
     )
     {
         Id = id;
@@ -62,7 +56,6 @@ public class Weather
         Cloudiness = cloudiness;
         Humidity = humidity;
         Pressure = pressure;
-        Precipitation = precipitation;
     }
 
     public WeatherDto ToDto()
@@ -74,8 +67,7 @@ public class Weather
             Temperature,
             Cloudiness,
             Humidity,
-            Pressure,
-            Precipitation
+            Pressure
         );
     }
 }

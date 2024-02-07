@@ -13,7 +13,7 @@ public class WeatherMapper : IWeatherMapper
             return null;
         }
         
-        return new Weather(weather.Id, weather.Timestamp, weather.Temperature, weather.Cloudiness, weather.Humidity, weather.Pressure, weather.Precipitation);
+        return new Weather(weather.Id, weather.Timestamp, weather.Temperature, weather.Cloudiness, weather.Humidity, weather.Pressure);
     }
 
     public IList<Weather> Map(IReadOnlyCollection<WeatherDbo> weathers)
@@ -43,7 +43,6 @@ public class WeatherMapper : IWeatherMapper
             Cloudiness = weather.Cloudiness,
             Humidity = weather.Humidity,
             Pressure = weather.Pressure,
-            Precipitation = weather.Precipitation
         };
     }
 

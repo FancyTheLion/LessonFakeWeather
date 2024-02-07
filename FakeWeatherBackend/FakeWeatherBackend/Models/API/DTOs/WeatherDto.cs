@@ -43,13 +43,6 @@ public class WeatherDto
     [JsonPropertyName("pressure")]
     public double Pressure { get; set;  }
 
-    /// <summary>
-    /// Various weather phenomena
-    /// </summary>
-    [JsonPropertyName("precipitation")]
-    public string Precipitation { get; set; }
-
-
     public WeatherDto
     (
         Guid id,
@@ -57,8 +50,7 @@ public class WeatherDto
         double temperature,
         double cloudiness,
         double humidity,
-        double pressure,
-        string precipitation
+        double pressure
     )
     {
         Id = id;
@@ -73,7 +65,6 @@ public class WeatherDto
         Cloudiness = cloudiness;
         Humidity = humidity;
         Pressure = pressure;
-        Precipitation = precipitation;
     }
 
     public Weather ToModel()
@@ -85,8 +76,7 @@ public class WeatherDto
             Temperature,
             Cloudiness,
             Humidity,
-            Pressure,
-            Precipitation
+            Pressure
         );
     }
 }
