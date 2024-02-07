@@ -79,4 +79,10 @@ public class WeatherDto
             Pressure
         );
     }
+    
+    
+    
+    
+    
+    
 }
