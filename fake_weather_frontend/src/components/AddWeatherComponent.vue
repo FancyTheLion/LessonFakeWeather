@@ -181,7 +181,6 @@ import {maxValue, minValue, required} from "@vuelidate/validators";
     />
   </div>
 
-
   <!-- Add button -->
   <button
     type="button"
