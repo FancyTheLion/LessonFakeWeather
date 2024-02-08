@@ -11,6 +11,8 @@ import AddWeatherComponent from "@/components/AddWeatherComponent.vue";
 
   const lastWeatherTime = ref(0)
   const lastWeatherTemperature = ref(0)
+  const lastWeatherHumidity = ref(0)
+  const lastWeatherPressure = ref(0)
 
   const lastWeathersReferences = ref([])
 
@@ -42,6 +44,14 @@ import AddWeatherComponent from "@/components/AddWeatherComponent.vue";
     lastWeatherTemperature.value = lastWeatherResponse
         .weather
         .temperature
+
+    lastWeatherHumidity.value = lastWeatherResponse
+        .weather
+        .humidity
+
+    lastWeatherPressure.value = lastWeatherResponse
+        .weather
+        .pressure
 
     await LoadLastWeatherReferences()
 
@@ -102,6 +112,8 @@ import AddWeatherComponent from "@/components/AddWeatherComponent.vue";
              <div class="details-window">
                <div>Время: {{ lastWeatherTime }}</div>
                <div>Температура: {{ lastWeatherTemperature }}</div>
+               <div>Влажность: {{ lastWeatherHumidity }}</div>
+               <div>Давление: {{ lastWeatherPressure }}</div>
              </div>
            </div>
         </div>

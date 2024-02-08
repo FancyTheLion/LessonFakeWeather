@@ -1,4 +1,5 @@
 using FakeWeatherBackend.Models;
+using FakeWeatherBackend.Models.API.DTOs;
 
 namespace FakeWeatherBackend.Services.Abstract;
 
@@ -29,6 +30,11 @@ public interface IWeatherService
     /// Add weather
     /// </summary>
     Task<Weather> AddWeatherAsync(Weather weatherToAdd);
+
+    /// <summary>
+    /// Check weather for validity
+    /// </summary>
+    bool ValidateWeather(WeatherDto weather);
 
     #endregion
 }

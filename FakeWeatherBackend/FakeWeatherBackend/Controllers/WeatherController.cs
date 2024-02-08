@@ -79,6 +79,11 @@ public class WeatherController : ControllerBase
     [Route("api/Weather/Add")]
     public async Task<ActionResult<WeatherAddedResponse>> AddWeatherAsync([FromBody]AddWeatherRequest weatherToAdd)
     {
+        if (!_weatherService.ValidateWeather(weatherToAdd.WeatherToAdd))
+        {
+            return BadRequest("Weather is not valid!");
+        }
+        
         return Ok
         (
             new WeatherAddedResponse((await _weatherService.AddWeatherAsync(weatherToAdd.WeatherToAdd.ToModel())).ToDto())

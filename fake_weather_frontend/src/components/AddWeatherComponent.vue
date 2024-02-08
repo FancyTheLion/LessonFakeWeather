@@ -10,7 +10,9 @@ import {maxValue, minValue, required} from "@vuelidate/validators";
   const addWeatherData = reactive({
     dateTime: new Date(),
     temperature: 0,
-    cloudiness: 0
+    cloudiness: 0,
+    humidity: 0,
+    pressure: 0
   })
 
   // Validation rules
@@ -36,6 +38,22 @@ import {maxValue, minValue, required} from "@vuelidate/validators";
       required,
       minValueValue: minValue(0),
       maxValueValue: maxValue(100)
+    },
+
+    // Humidity
+    humidity: {
+      $autoDirty: true,
+      required,
+      minValueValue: minValue(0),
+      maxValueValue: maxValue(100)
+    },
+
+    // Pressure
+    pressure: {
+      $autoDirty: true,
+      required,
+      minValueValue: minValue(700),
+      maxValueValue: maxValue(800)
     }
   }
 
@@ -65,7 +83,9 @@ import {maxValue, minValue, required} from "@vuelidate/validators";
         "weatherToAdd": {
           "timestamp": new Date(addWeatherData.dateTime).toISOString(),
           "temperature": addWeatherData.temperature,
-          "cloudiness": addWeatherData.cloudiness
+          "cloudiness": addWeatherData.cloudiness,
+          "humidity": addWeatherData.humidity,
+          "pressure": addWeatherData.pressure
         }
       }),
       headers: { "Content-Type": "application/json" }
@@ -88,6 +108,8 @@ import {maxValue, minValue, required} from "@vuelidate/validators";
     addWeatherData.dateTime = null
     addWeatherData.temperature = 0
     addWeatherData.cloudiness = 0
+    addWeatherData.humidity = 0
+    addWeatherData.pressure = 0
 
     emit("weatherAdded")
   }
@@ -134,6 +156,31 @@ import {maxValue, minValue, required} from "@vuelidate/validators";
         v-model="addWeatherData.cloudiness"
     />
   </div>
+
+  <div>
+    <div>
+      Введите влажность (в процентах):
+    </div>
+
+    <input
+        type="number"
+        :class="(addWeatherFormValidator.humidity.$error)?'form-field-with-error':'form-field-without-error'"
+        v-model="addWeatherData.humidity"
+    />
+  </div>
+
+  <div>
+    <div>
+      Введите атмосферное давление (в мм ртутного столба):
+    </div>
+
+    <input
+        type="number"
+        :class="(addWeatherFormValidator.pressure.$error)?'form-field-with-error':'form-field-without-error'"
+        v-model="addWeatherData.pressure"
+    />
+  </div>
+
 
   <!-- Add button -->
   <button
