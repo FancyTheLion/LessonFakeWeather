@@ -10,25 +10,16 @@
 @text-color-opened-window: hsl(0, 100%, 100%);
 
 /*Dimensions*/
-@width-loading-symbol-image: 1rem;
-@height-loading-symbol-image: 1rem;
-@border-List-with-weather: 0.3rem;
-@border-radius-List-with-weather: 0.2rem;
-@Weather-list-padding-left: 1rem;
-@Weather-list-padding-right: 1rem;
-@cloudiness-icon-width: 3rem;
-@cloudiness-icon-height: 3rem;
-@Fresh-weather-button-padding: 0.3rem;
+@normal-indentation: 1rem;
+@reduced-indentation: 0.3rem;
+@almost-minimal-indentation: 0.2rem;
+@increased-indentation: 3rem;
 @Fresh-weather-button-width: 10rem;
-@Fresh-weather-button-box-shadow: 0.1rem;
+@smallest-indentation: 0.1rem;
 @Fresh-weather-button-box-shadow-length: 0.1rem;
 @window-opened-width: 14rem;
-@window-opened-padding: 0.3rem;
 @window-opened-margin: 0;
-@window-opened-box-shadow: 0.1rem;
-@window-opened-box-shadow-length: 0.1rem;
 @table-edge-offset: 0.5rem;
-
 
 
 /* Body */
@@ -45,14 +36,14 @@ body {
 
 /* Loading symbol image */
 .loading-symbol-image {
-  width: @width-loading-symbol-image;
-  height: @height-loading-symbol-image;
+  width: @normal-indentation;
+  height: @normal-indentation;
 }
 
 /* List with weather*/
 .weather-list {
-  border: @border-List-with-weather solid @table-border-color;
-  border-radius: @border-radius-List-with-weather;
+  border: @reduced-indentation solid @table-border-color;
+  border-radius: @almost-minimal-indentation;
   width: max-content;
   /*    padding-top: 0.5rem;
       padding-bottom: 0.5rem;
@@ -64,8 +55,8 @@ body {
 .weather-list-element {
   padding-top: 0;
   padding-bottom: 0;
-  padding-left: @Weather-list-padding-left;
-  padding-right: @Weather-list-padding-right;
+  padding-left: @normal-indentation;
+  padding-right: @normal-indentation;
 }
 
 /*Even numbered weather list items */
@@ -88,8 +79,8 @@ body {
 
 /* Cloudiness icon */
 .cloudiness-icon {
-  width: @cloudiness-icon-width;
-  height: @cloudiness-icon-height;
+  width: @increased-indentation;
+  height: @increased-indentation;
 }
 
 /* Page title\brand */
@@ -122,11 +113,11 @@ body {
 
 /* Fresh weather button header */
 .details-summary {
-  padding: @Fresh-weather-button-padding;
+  padding: @reduced-indentation;
   width: @Fresh-weather-button-width;
   background-color: @dropdown-small-window-background-color;
   border: none;
-  box-shadow: @Fresh-weather-button-box-shadow @Fresh-weather-button-box-shadow @Fresh-weather-button-box-shadow-length @dropdown-text-color;
+  box-shadow: @smallest-indentation @smallest-indentation @Fresh-weather-button-box-shadow-length @dropdown-text-color;
   cursor: pointer;
   text-align: left;
 }
@@ -135,9 +126,9 @@ body {
 .details-window {
   width: @window-opened-width;
   background-color: @background-color-opened-window;
-  padding: @window-opened-padding;
+  padding: @reduced-indentation;
   margin: @window-opened-margin;
-  box-shadow: @window-opened-box-shadow @window-opened-box-shadow @window-opened-box-shadow-length @text-color-opened-window;
+  box-shadow: @smallest-indentation @smallest-indentation @smallest-indentation @text-color-opened-window;
   text-align: left;
 }
 
@@ -148,10 +139,10 @@ body {
 
 /* Form field with error */
 .form-field-with-error {
-  border: red 0.2rem solid;
+  border: red @almost-minimal-indentation solid;
 }
 
 /* Form field without error */
 .form-field-without-error {
-  border: transparent 0.2rem solid;
+  border: transparent @almost-minimal-indentation solid;
 }
