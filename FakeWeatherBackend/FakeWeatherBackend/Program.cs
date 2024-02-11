@@ -3,6 +3,7 @@ using FakeWeatherBackend.DAO.Abstract;
 using FakeWeatherBackend.DAO.Implementations;
 using FakeWeatherBackend.Mappers.Abstract;
 using FakeWeatherBackend.Mappers.Implementations;
+using FakeWeatherBackend.Models.Settings;
 using FakeWeatherBackend.Services.Abstract;
 using FakeWeatherBackend.Services.Implementations;
 using Microsoft.EntityFrameworkCore;
@@ -16,17 +17,27 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // DI
-        #region Scoped
-        
-            builder.Services.AddScoped<IWeatherService, WeatherService>();
+        #region DI
+            #region Scoped
+            
+                builder.Services.AddScoped<IWeatherService, WeatherService>();
 
-            builder.Services.AddScoped<IWeatherDao, WeatherDao>();
+                builder.Services.AddScoped<IWeatherDao, WeatherDao>();
+                
+            #endregion
+            
+            #region Singletons
+            
+                builder.Services.AddSingleton<IWeatherMapper, WeatherMapper>();
+                
+            #endregion
+            
         #endregion
         
-        #region Singletons
-        
-            builder.Services.AddSingleton<IWeatherMapper, WeatherMapper>();
-            
+        #region Settings
+
+        builder.Services.Configure<WeatherValidationSettings>(builder.Configuration.GetSection(nameof(WeatherValidationSettings)));
+
         #endregion
         
         #region DB Contexts

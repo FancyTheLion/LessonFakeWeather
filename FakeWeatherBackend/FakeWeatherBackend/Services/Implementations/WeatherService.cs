@@ -3,7 +3,9 @@ using FakeWeatherBackend.DAO.Models;
 using FakeWeatherBackend.Mappers.Abstract;
 using FakeWeatherBackend.Models;
 using FakeWeatherBackend.Models.API.DTOs;
+using FakeWeatherBackend.Models.Settings;
 using FakeWeatherBackend.Services.Abstract;
+using Microsoft.Extensions.Options;
 
 namespace FakeWeatherBackend.Services.Implementations;
 
@@ -12,14 +14,18 @@ public class WeatherService : IWeatherService
     private readonly IWeatherDao _weatherDao;
     private readonly IWeatherMapper _weatherMapper;
 
+    private readonly WeatherValidationSettings _weatherValidationSettings;
+
     public WeatherService
     (
         IWeatherDao weatherDao,
-        IWeatherMapper weatherMapper
-    )
+        IWeatherMapper weatherMapper,
+        IOptions<WeatherValidationSettings> weatherValidationSettingsRef)
     {
         _weatherDao = weatherDao;
         _weatherMapper = weatherMapper;
+
+        _weatherValidationSettings = weatherValidationSettingsRef.Value;
     }
     
     public async Task<IReadOnlyCollection<WeatherReference>> GetLastWeatherReferencesAsync()
@@ -55,22 +61,42 @@ public class WeatherService : IWeatherService
 
     public bool ValidateWeather(WeatherDto weather)
     {
-        if (weather.Temperature < -90.0 || weather.Temperature > 60.0)
+        if
+        (
+            weather.Temperature < _weatherValidationSettings.LowestPossibleTemperature
+            ||
+            weather.Temperature > _weatherValidationSettings.HightestPossibleTemperature
+        )
         {
             return false;
         }
             
-        if (weather.Cloudiness < 0.0 || weather.Cloudiness > 100.0)
+        if
+        (
+            weather.Cloudiness < _weatherValidationSettings.LowestPossibleCloudiness
+            ||
+            weather.Cloudiness > _weatherValidationSettings.HightestPossibleCloudiness
+        )
         {
             return false;
         }
             
-        if (weather.Humidity < 0.0 || weather.Humidity > 100.0)
+        if
+        (
+            weather.Humidity < _weatherValidationSettings.LowestPossibleHumidity
+            ||
+            weather.Humidity > _weatherValidationSettings.HightestPossibleHumidity
+        )
         {
             return false;
         }
             
-        if (weather.Pressure < 700.0 || weather.Pressure > 800.0)
+        if
+        (
+            weather.Pressure < _weatherValidationSettings.LowestPossiblePressure
+            ||
+            weather.Pressure > _weatherValidationSettings.HightestPossiblePressure
+        )
         {
             return false;
         }
