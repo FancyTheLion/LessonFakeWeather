@@ -1,3 +1,5 @@
+using FakeWeatherBackend.Models.API.DTOs.Settings;
+
 namespace FakeWeatherBackend.Models.Settings;
 
 /// <summary>
@@ -60,4 +62,22 @@ public class WeatherValidationSettings
     public double HightestPossiblePressure { get; set; }
     
     #endregion
+
+    /// <summary>
+    /// Model to DTO
+    /// </summary>
+    public WeatherValidationSettingsDto ToDto()
+    {
+        return new WeatherValidationSettingsDto
+        (
+            LowestPossibleTemperature,
+            HightestPossibleTemperature,
+            LowestPossibleCloudiness,
+            HightestPossibleCloudiness,
+            LowestPossibleHumidity,
+            HightestPossibleHumidity,
+            LowestPossiblePressure,
+            HightestPossiblePressure
+        );
+    }
 }

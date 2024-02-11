@@ -2,6 +2,7 @@ using FakeWeatherBackend.Models;
 using FakeWeatherBackend.Models.API.DTOs;
 using FakeWeatherBackend.Models.API.Requests;
 using FakeWeatherBackend.Models.API.Responses;
+using FakeWeatherBackend.Models.API.Responses.Settings;
 using FakeWeatherBackend.Services.Abstract;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -89,5 +90,18 @@ public class WeatherController : ControllerBase
             new WeatherAddedResponse((await _weatherService.AddWeatherAsync(weatherToAdd.WeatherToAdd.ToModel())).ToDto())
         );
     }
-    
+
+    /// <summary>
+    /// Get weather validation settings
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet]
+    [Route("api/Weather/ValidationSettings")]
+    public async Task<ActionResult<WeatherValidationSettingsResponse>> GetWeatherValidationSettingsAsync()
+    {
+        return Ok
+        (
+            new WeatherValidationSettingsResponse((await _weatherService.GetWeatherValidationSettingsAsync()).ToDto())
+        );
+    }
 }

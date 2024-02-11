@@ -47,12 +47,6 @@ public class Weather
         Id = id;
         Timestamp = timestamp;
         Temperature = temperature;
-        
-        if (cloudiness < 0.0 || cloudiness > 100.0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(cloudiness), cloudiness, "Cloudiness have to be in [0; 100] range!");
-        }
-
         Cloudiness = cloudiness;
         Humidity = humidity;
         Pressure = pressure;

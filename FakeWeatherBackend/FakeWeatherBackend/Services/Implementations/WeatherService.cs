@@ -103,4 +103,9 @@ public class WeatherService : IWeatherService
 
         return true;
     }
+
+    public async Task<WeatherValidationSettings> GetWeatherValidationSettingsAsync()
+    {
+        return _weatherValidationSettings;
+    }
 }
