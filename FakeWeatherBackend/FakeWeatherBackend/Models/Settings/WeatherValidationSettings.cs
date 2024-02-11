@@ -17,7 +17,7 @@ public class WeatherValidationSettings
     /// <summary>
     /// Highest acceptable temperature
     /// </summary>
-    public double HightestPossibleTemperature { get; set; }
+    public double HighestPossibleTemperature { get; set; }
 
     #endregion
     
@@ -31,7 +31,7 @@ public class WeatherValidationSettings
     /// <summary>
     /// Highest acceptable cloudiness
     /// </summary>
-    public double HightestPossibleCloudiness { get; set; }
+    public double HighestPossibleCloudiness { get; set; }
     
     #endregion
     
@@ -45,7 +45,7 @@ public class WeatherValidationSettings
     /// <summary>
     /// Highest acceptable humidity
     /// </summary>
-    public double HightestPossibleHumidity { get; set; }
+    public double HighestPossibleHumidity { get; set; }
     
     #endregion
     
@@ -59,7 +59,7 @@ public class WeatherValidationSettings
     /// <summary>
     /// Highest acceptable pressure
     /// </summary>
-    public double HightestPossiblePressure { get; set; }
+    public double HighestPossiblePressure { get; set; }
     
     #endregion
 
@@ -71,13 +71,13 @@ public class WeatherValidationSettings
         return new WeatherValidationSettingsDto
         (
             LowestPossibleTemperature,
-            HightestPossibleTemperature,
+            HighestPossibleTemperature,
             LowestPossibleCloudiness,
-            HightestPossibleCloudiness,
+            HighestPossibleCloudiness,
             LowestPossibleHumidity,
-            HightestPossibleHumidity,
+            HighestPossibleHumidity,
             LowestPossiblePressure,
-            HightestPossiblePressure
+            HighestPossiblePressure
         );
     }
 }

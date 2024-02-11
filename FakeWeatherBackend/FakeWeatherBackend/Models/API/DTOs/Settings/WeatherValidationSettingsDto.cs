@@ -18,8 +18,8 @@ public class WeatherValidationSettingsDto
     /// <summary>
     /// Highest acceptable temperature
     /// </summary>
-    [JsonPropertyName("hightestPossibleTemperature")]
-    public double HightestPossibleTemperature { get; private set; }
+    [JsonPropertyName("highestPossibleTemperature")]
+    public double HighestPossibleTemperature { get; private set; }
 
     #endregion
     
@@ -34,8 +34,8 @@ public class WeatherValidationSettingsDto
     /// <summary>
     /// Highest acceptable cloudiness
     /// </summary>
-    [JsonPropertyName("hightestPossibleCloudiness")]
-    public double HightestPossibleCloudiness { get; private set; }
+    [JsonPropertyName("highestPossibleCloudiness")]
+    public double HighestPossibleCloudiness { get; private set; }
     
     #endregion
     
@@ -50,8 +50,8 @@ public class WeatherValidationSettingsDto
     /// <summary>
     /// Highest acceptable humidity
     /// </summary>
-    [JsonPropertyName("hightestPossibleHumidity")]
-    public double HightestPossibleHumidity { get; private set; }
+    [JsonPropertyName("highestPossibleHumidity")]
+    public double HighestPossibleHumidity { get; private set; }
     
     #endregion
     
@@ -66,30 +66,30 @@ public class WeatherValidationSettingsDto
     /// <summary>
     /// Highest acceptable pressure
     /// </summary>
-    [JsonPropertyName("hightestPossiblePressure")]
-    public double HightestPossiblePressure { get; private set; }
+    [JsonPropertyName("highestPossiblePressure")]
+    public double HighestPossiblePressure { get; private set; }
     
     #endregion
 
     public WeatherValidationSettingsDto
     (
         double lowestPossibleTemperature,
-        double hightestPossibleTemperature,
+        double highestPossibleTemperature,
         double lowestPossibleCloudiness,
-        double hightestPossibleCloudiness,
+        double highestPossibleCloudiness,
         double lowestPossibleHumidity,
-        double hightestPossibleHumidity,
+        double highestPossibleHumidity,
         double lowestPossiblePressure,
-        double hightestPossiblePressure
+        double highestPossiblePressure
     )
     {
         LowestPossibleTemperature = lowestPossibleTemperature;
-        HightestPossibleTemperature = hightestPossibleTemperature;
+        HighestPossibleTemperature = highestPossibleTemperature;
         LowestPossibleCloudiness = lowestPossibleCloudiness;
-        HightestPossibleCloudiness = hightestPossibleCloudiness;
+        HighestPossibleCloudiness = highestPossibleCloudiness;
         LowestPossibleHumidity = lowestPossibleHumidity;
-        HightestPossibleHumidity = hightestPossibleHumidity;
+        HighestPossibleHumidity = highestPossibleHumidity;
         LowestPossiblePressure = lowestPossiblePressure;
-        HightestPossiblePressure = hightestPossiblePressure;
+        HighestPossiblePressure = highestPossiblePressure;
     }
 }

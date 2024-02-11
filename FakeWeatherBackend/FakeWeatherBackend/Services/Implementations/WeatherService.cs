@@ -65,7 +65,7 @@ public class WeatherService : IWeatherService
         (
             weather.Temperature < _weatherValidationSettings.LowestPossibleTemperature
             ||
-            weather.Temperature > _weatherValidationSettings.HightestPossibleTemperature
+            weather.Temperature > _weatherValidationSettings.HighestPossibleTemperature
         )
         {
             return false;
@@ -75,7 +75,7 @@ public class WeatherService : IWeatherService
         (
             weather.Cloudiness < _weatherValidationSettings.LowestPossibleCloudiness
             ||
-            weather.Cloudiness > _weatherValidationSettings.HightestPossibleCloudiness
+            weather.Cloudiness > _weatherValidationSettings.HighestPossibleCloudiness
         )
         {
             return false;
@@ -85,7 +85,7 @@ public class WeatherService : IWeatherService
         (
             weather.Humidity < _weatherValidationSettings.LowestPossibleHumidity
             ||
-            weather.Humidity > _weatherValidationSettings.HightestPossibleHumidity
+            weather.Humidity > _weatherValidationSettings.HighestPossibleHumidity
         )
         {
             return false;
@@ -95,7 +95,7 @@ public class WeatherService : IWeatherService
         (
             weather.Pressure < _weatherValidationSettings.LowestPossiblePressure
             ||
-            weather.Pressure > _weatherValidationSettings.HightestPossiblePressure
+            weather.Pressure > _weatherValidationSettings.HighestPossiblePressure
         )
         {
             return false;
