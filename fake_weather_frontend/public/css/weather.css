@@ -9,6 +9,9 @@ body {
 .centered {
   text-align: center;
 }
+.left {
+  text-align: left;
+}
 /* Loading symbol image */
 .loading-symbol-image {
   width: 1rem;

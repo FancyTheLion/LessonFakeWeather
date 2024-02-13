@@ -1,10 +1,12 @@
 <script setup>
 
-import {reactive, defineEmits, onMounted} from "vue";
-import {maxValue, minValue, required} from "@vuelidate/validators";
+  import {reactive, defineEmits, onMounted, ref} from "vue";
+  import {helpers, required} from "@vuelidate/validators";
   import useVuelidate from "@vuelidate/core";
 
   const apiBaseUrl = process.env.VUE_APP_API_URL
+
+  const weatherValidationSettings = ref(null)
 
   // Form data
   const addWeatherData = reactive({
@@ -28,32 +30,28 @@ import {maxValue, minValue, required} from "@vuelidate/validators";
     temperature: {
       $autoDirty: true,
       required,
-      minValueValue: minValue(-50),
-      maxValueValue: maxValue(50)
+      isTemperatureValid: helpers.withAsync(IsTemperatureValid)
     },
 
     // Cloudiness
     cloudiness: {
       $autoDirty: true,
       required,
-      minValueValue: minValue(0),
-      maxValueValue: maxValue(100)
+      isCloudinessValid: helpers.withAsync(IsCloudinessValid)
     },
 
     // Humidity
     humidity: {
       $autoDirty: true,
       required,
-      minValueValue: minValue(0),
-      maxValueValue: maxValue(100)
+      isHumidityValid: helpers.withAsync(IsHumidityValid)
     },
 
     // Pressure
     pressure: {
       $autoDirty: true,
       required,
-      minValueValue: minValue(700),
-      maxValueValue: maxValue(800)
+      isPressureValid: helpers.withAsync(IsPressureValid)
     }
   }
 
@@ -72,8 +70,77 @@ import {maxValue, minValue, required} from "@vuelidate/validators";
   {
     addWeatherData.dateTime = null
 
+    // Loading weather validation settings
+    weatherValidationSettings.value = (await (await fetch(apiBaseUrl + "/api/Weather/ValidationSettings", {
+      method: 'GET'
+    })).json()).weatherValidationSettings
+
     await addWeatherFormValidator.value.$validate()
   }
+
+  // Method to validate temperature
+  async function IsTemperatureValid(temperature)
+  {
+    if (temperature < weatherValidationSettings.value.lowestPossibleTemperature)
+    {
+      return false;
+    }
+
+    if (temperature > weatherValidationSettings.value.highestPossibleTemperature)
+    {
+      return false;
+    }
+
+    return true;
+  }
+
+  // Method to validate cloudiness
+  async function IsCloudinessValid(cloudiness)
+  {
+    if (cloudiness < weatherValidationSettings.value.lowestPossibleCloudiness)
+    {
+      return false;
+    }
+
+    if (cloudiness > weatherValidationSettings.value.highestPossibleCloudiness)
+    {
+      return false;
+    }
+
+    return true;
+  }
+
+  // Method to validate humidity
+  async function IsHumidityValid(humidity)
+  {
+    if (humidity < weatherValidationSettings.value.lowestPossibleHumidity)
+    {
+      return false;
+    }
+
+    if (humidity > weatherValidationSettings.value.highestPossibleHumidity)
+    {
+      return false;
+    }
+
+    return true;
+  }
+
+// Method to validate pressure
+async function IsPressureValid(pressure)
+{
+  if (pressure < weatherValidationSettings.value.lowestPossiblePressure)
+  {
+    return false;
+  }
+
+  if (pressure > weatherValidationSettings.value.highestPossiblePressure)
+  {
+    return false;
+  }
+
+  return true;
+}
 
   async function SendWeatherToBackend()
   {
@@ -142,12 +209,13 @@ import {maxValue, minValue, required} from "@vuelidate/validators";
         :class="(addWeatherFormValidator.temperature.$error)?'form-field-with-error':'form-field-without-error'"
         v-model="addWeatherData.temperature"
     />
+    °C
   </div>
 
   <!-- Cloudiness -->
   <div>
     <div>
-      Введите облачность (в процентах):
+      Введите облачность:
     </div>
 
     <input
@@ -155,11 +223,12 @@ import {maxValue, minValue, required} from "@vuelidate/validators";
         :class="(addWeatherFormValidator.cloudiness.$error)?'form-field-with-error':'form-field-without-error'"
         v-model="addWeatherData.cloudiness"
     />
+    %
   </div>
 
   <div>
     <div>
-      Введите влажность (в процентах):
+      Введите влажность:
     </div>
 
     <input
@@ -167,11 +236,12 @@ import {maxValue, minValue, required} from "@vuelidate/validators";
         :class="(addWeatherFormValidator.humidity.$error)?'form-field-with-error':'form-field-without-error'"
         v-model="addWeatherData.humidity"
     />
+    %
   </div>
 
   <div>
     <div>
-      Введите атмосферное давление (в мм ртутного столба):
+      Введите атмосферное давление:
     </div>
 
     <input
@@ -179,6 +249,7 @@ import {maxValue, minValue, required} from "@vuelidate/validators";
         :class="(addWeatherFormValidator.pressure.$error)?'form-field-with-error':'form-field-without-error'"
         v-model="addWeatherData.pressure"
     />
+    мм
   </div>
 
   <!-- Add button -->
