@@ -13,6 +13,11 @@ public class MainDbContext : DbContext
     /// </summary>
     public DbSet<WeatherDbo> Weathers { get; set; }
     
+    /// <summary>
+    /// Files
+    /// </summary>
+    public DbSet<FileDbo> Files { get; set; }
+    
     public MainDbContext(DbContextOptions<MainDbContext> options) : base(options)
     {
 
