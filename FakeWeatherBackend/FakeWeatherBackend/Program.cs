@@ -21,6 +21,7 @@ public class Program
             #region Scoped
             
                 builder.Services.AddScoped<IWeatherService, WeatherService>();
+                builder.Services.AddScoped<IFilesService, FilesService>();
 
                 builder.Services.AddScoped<IWeatherDao, WeatherDao>();
                 
