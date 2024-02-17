@@ -148,8 +148,6 @@ import AddWeatherComponent from "@/components/AddWeatherComponent.vue";
 
     </div>
 
-
-
   </div>
 
 </template>
