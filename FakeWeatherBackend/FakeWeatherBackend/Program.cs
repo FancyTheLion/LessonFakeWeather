@@ -24,6 +24,7 @@ public class Program
                 builder.Services.AddScoped<IFilesService, FilesService>();
 
                 builder.Services.AddScoped<IWeatherDao, WeatherDao>();
+                builder.Services.AddScoped<IFilesDao, FilesDao>();
                 
             #endregion
             
