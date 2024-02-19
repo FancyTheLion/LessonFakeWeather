@@ -9,4 +9,9 @@ public interface IFilesService
     /// Upload file
     /// </summary>
     Task<Models.Files.FileInfo> UploadFileAsync(IFormFile file);
+    
+    /// <summary>
+    /// Get file (for download). If fileId is incorrect - throws an exception
+    /// </summary>
+    Task<Models.Files.File> GetFileAsync(Guid fileId);
 }

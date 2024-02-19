@@ -1,5 +1,6 @@
 using FakeWeatherBackend.DAO.Abstract;
 using FakeWeatherBackend.DAO.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FakeWeatherBackend.DAO.Implementations;
 
@@ -28,5 +29,12 @@ public class FilesDao : IFilesDao
         await _dbContext.SaveChangesAsync();
 
         return file;
+    }
+
+    public async Task<FileDbo> GetFileAsync(Guid fileId)
+    {
+        return await _dbContext
+            .Files
+            .SingleAsync(f => f.Id == fileId);
     }
 }

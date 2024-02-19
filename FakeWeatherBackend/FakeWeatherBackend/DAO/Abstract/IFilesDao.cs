@@ -15,4 +15,13 @@ public interface IFilesDao
     Task<FileDbo> SaveFileAsync(FileDbo file);
     
     #endregion
+    
+    #region Get
+    
+    /// <summary>
+    /// Get file by ID
+    /// </summary>
+    Task<FileDbo> GetFileAsync(Guid fileId);
+    
+    #endregion
 }

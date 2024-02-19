@@ -3,6 +3,7 @@ using FakeWeatherBackend.DAO.Models;
 using FakeWeatherBackend.Helpers;
 using FakeWeatherBackend.Models.API.DTOs.Files;
 using FakeWeatherBackend.Services.Abstract;
+using File = FakeWeatherBackend.Models.Files.File;
 using FileInfo = FakeWeatherBackend.Models.Files.FileInfo;
 
 namespace FakeWeatherBackend.Services.Implementations;
@@ -40,5 +41,20 @@ public class FilesService : IFilesService
         var savedFile = await _filesDao.SaveFileAsync(fileDbo);
 
         return new FileInfo(savedFile.Id, savedFile.Name);
+    }
+
+    public async Task<File> GetFileAsync(Guid fileId)
+    {
+        var fileFromDb = await _filesDao.GetFileAsync(fileId);
+
+        return new File()
+        {
+            Id = fileFromDb.Id,
+            Content = fileFromDb.Content,
+            Name = fileFromDb.Name,
+            Type = fileFromDb.Type,
+            LastModifiedTime = fileFromDb.LastModifiedTime,
+            Hash = fileFromDb.Hash
+        };
     }
 }
