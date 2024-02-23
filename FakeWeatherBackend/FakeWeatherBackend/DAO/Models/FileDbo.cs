@@ -37,4 +37,9 @@ public class FileDbo
     /// Last modification time
     /// </summary>
     public DateTime LastModifiedTime { get; set; }
+
+    /// <summary>
+    /// This file acts as a photo for the next weathers
+    /// </summary>
+    public IList<WeatherDbo> PhotosForWeathers { get; set; }
 }

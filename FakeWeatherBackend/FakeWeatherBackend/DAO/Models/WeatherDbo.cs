@@ -37,4 +37,9 @@ public class WeatherDbo
     /// Air pressure
     /// </summary>
     public double Pressure { get; set;  }
+
+    /// <summary>
+    /// Weather photo
+    /// </summary>
+    public FileDbo Photo { get; set; }
 }

@@ -22,4 +22,14 @@ public class MainDbContext : DbContext
     {
 
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        
+        // Weather have one photo
+        modelBuilder
+            .Entity<WeatherDbo>()
+            .HasOne(weather => weather.Photo);
+    }
 }
