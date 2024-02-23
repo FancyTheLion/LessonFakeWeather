@@ -191,87 +191,92 @@ async function IsPressureValid(pressure)
 <template>
   <LoadingSymbol v-if="isLoading" />
 
-  <div v-if="!isLoading" class="left">
+  <div v-if="!isLoading">
+    <div class="add-weather left">
 
-    <!-- Date and time -->
-    <div>
+      <!-- Date and time -->
       <div>
-        Введите дату и время измерения погоды:
+        <div class="centered form-input-caption">
+          Введите дату и время измерения погоды:
+        </div>
+
+        <input
+            type="datetime-local"
+            :class="(addWeatherFormValidator.dateTime.$error)?'form-field-with-error':'form-field-without-error'"
+            v-model="addWeatherData.dateTime"
+        />
+
       </div>
 
-      <input
-          type="datetime-local"
-          :class="(addWeatherFormValidator.dateTime.$error)?'form-field-with-error':'form-field-without-error'"
-          v-model="addWeatherData.dateTime"
-      />
-
-    </div>
-
-    <!-- Temperature -->
-    <div>
+      <!-- Temperature -->
       <div>
-        Введите температуру:
+        <div class="centered form-input-caption">
+          Введите температуру:
+        </div>
+
+        <input
+            type="number"
+            :class="(addWeatherFormValidator.temperature.$error)?'form-field-with-error':'form-field-without-error'"
+            v-model="addWeatherData.temperature"
+        />
+
+        [{{ weatherValidationSettings.lowestPossibleTemperature }}; {{weatherValidationSettings.highestPossibleTemperature}}]
       </div>
 
-      <input
-          type="number"
-          :class="(addWeatherFormValidator.temperature.$error)?'form-field-with-error':'form-field-without-error'"
-          v-model="addWeatherData.temperature"
-      />
-
-      [{{ weatherValidationSettings.lowestPossibleTemperature }}; {{weatherValidationSettings.highestPossibleTemperature}}]
-    </div>
-
-    <!-- Cloudiness -->
-    <div>
+      <!-- Cloudiness -->
       <div>
-        Введите облачность:
+        <div class="centered form-input-caption">
+          Введите облачность:
+        </div>
+
+        <input
+            type="number"
+            :class="(addWeatherFormValidator.cloudiness.$error)?'form-field-with-error':'form-field-without-error'"
+            v-model="addWeatherData.cloudiness"
+        />
+
+        [{{ weatherValidationSettings.lowestPossibleCloudiness }}; {{weatherValidationSettings.highestPossibleCloudiness}}]
       </div>
 
-      <input
-          type="number"
-          :class="(addWeatherFormValidator.cloudiness.$error)?'form-field-with-error':'form-field-without-error'"
-          v-model="addWeatherData.cloudiness"
-      />
-
-      [{{ weatherValidationSettings.lowestPossibleCloudiness }}; {{weatherValidationSettings.highestPossibleCloudiness}}]
-    </div>
-
-    <div>
       <div>
-        Введите влажность:
+        <div class="centered form-input-caption">
+          Введите влажность:
+        </div>
+
+        <input
+            type="number"
+            :class="(addWeatherFormValidator.humidity.$error)?'form-field-with-error':'form-field-without-error'"
+            v-model="addWeatherData.humidity"
+        />
+
+        [{{ weatherValidationSettings.lowestPossibleHumidity }}; {{weatherValidationSettings.highestPossibleHumidity}}]
       </div>
 
-      <input
-          type="number"
-          :class="(addWeatherFormValidator.humidity.$error)?'form-field-with-error':'form-field-without-error'"
-          v-model="addWeatherData.humidity"
-      />
-
-      [{{ weatherValidationSettings.lowestPossibleHumidity }}; {{weatherValidationSettings.highestPossibleHumidity}}]
-    </div>
-
-    <div>
       <div>
-        Введите атмосферное давление:
+        <div class="centered form-input-caption">
+          Введите атмосферное давление:
+        </div>
+
+        <input
+            type="number"
+            :class="(addWeatherFormValidator.pressure.$error)?'form-field-with-error':'form-field-without-error'"
+            v-model="addWeatherData.pressure"
+        />
+
+        [{{ weatherValidationSettings.lowestPossiblePressure }}; {{weatherValidationSettings.highestPossiblePressure}}]
       </div>
 
-      <input
-          type="number"
-          :class="(addWeatherFormValidator.pressure.$error)?'form-field-with-error':'form-field-without-error'"
-          v-model="addWeatherData.pressure"
-      />
+      <!-- Add button -->
+      <div>
+        <button
+            type="button"
+            :disabled="addWeatherFormValidator.$errors.length > 0"
+            @click="async() => await SendWeatherToBackend()">
+          Добавить погоду
+        </button>
+      </div>
 
-      [{{ weatherValidationSettings.lowestPossiblePressure }}; {{weatherValidationSettings.highestPossiblePressure}}]
     </div>
-
-    <!-- Add button -->
-    <button
-        type="button"
-        :disabled="addWeatherFormValidator.$errors.length > 0"
-        @click="async() => await SendWeatherToBackend()">
-      Добавить погоду
-    </button>
 
   </div>
 

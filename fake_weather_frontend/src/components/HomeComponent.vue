@@ -141,9 +141,13 @@ import AddWeatherComponent from "@/components/AddWeatherComponent.vue";
 
       <!-- Right part -->
       <div class="full-width-flex-element centered">
-        <AddWeatherComponent
-            @weatherAdded="async() => await OnWeatherAdded()"
-        />
+
+        <div class="add-weather-container">
+          <AddWeatherComponent
+              @weatherAdded="async() => await OnWeatherAdded()"
+          />
+        </div>
+
       </div>
 
     </div>

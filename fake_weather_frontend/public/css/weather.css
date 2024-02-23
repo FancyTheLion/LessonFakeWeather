@@ -23,10 +23,15 @@ body {
   border-radius: 0.2rem;
   width: max-content;
 }
+/* Add weather area*/
 .add-weather {
   border: 0.3rem double hsl(117, 100%, 60%);
   border-radius: 0.3rem;
   width: max-content;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 /* Weather list element */
 .weather-list-element {
@@ -111,7 +116,12 @@ body {
 .form-field-without-error {
   border: transparent 0.2rem solid;
 }
-.edge-of-weather-adding-table {
-  padding: 0.3rem;
+/* Caption for input field */
+.form-input-caption {
+  padding-bottom: 0.2rem;
+}
+/* Add weather component resides here*/
+.add-weather-container {
+  margin-left: 1rem;
 }
 /*# sourceMappingURL=weather.css.map */

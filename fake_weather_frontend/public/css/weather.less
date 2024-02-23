@@ -51,10 +51,17 @@ body {
   width: max-content;
 }
 
+/* Add weather area*/
 .add-weather {
   border: @reduced-indentation double @table-border-color;
   border-radius: @reduced-indentation;
   width: max-content;
+
+  padding: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 /* Weather list element */
@@ -153,6 +160,12 @@ body {
   border: transparent @almost-minimal-indentation solid;
 }
 
-.edge-of-weather-adding-table {
-  padding: @reduced-indentation;
+/* Caption for input field */
+.form-input-caption {
+  padding-bottom: 0.2rem;
+}
+
+/* Add weather component resides here*/
+.add-weather-container {
+  margin-left: 1rem;
 }
