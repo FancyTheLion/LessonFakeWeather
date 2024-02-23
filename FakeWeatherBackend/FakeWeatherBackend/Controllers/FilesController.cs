@@ -30,6 +30,16 @@ public class FilesController : ControllerBase
     [Consumes("multipart/form-data")]
     public async Task<ActionResult<FileUploadedResponse>> UploadAsync(IFormFile file)
     {
+        if (!await _filesService.IsFileImageAsync(file))
+        {
+            return BadRequest("Only images are allowed!");
+        }
+
+        if (!await _filesService.IsFileSizeCorrectAsync(file))
+        {
+            return BadRequest("File too big!");
+        }
+        
         try
         {
             return Ok

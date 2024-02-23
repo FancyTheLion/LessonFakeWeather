@@ -14,4 +14,18 @@ public interface IFilesService
     /// Get file (for download). If fileId is incorrect - throws an exception
     /// </summary>
     Task<Models.Files.File> GetFileAsync(Guid fileId);
+    
+    #region Validation
+
+    /// <summary>
+    /// Is given file image or not?
+    /// </summary>
+    Task<bool> IsFileImageAsync(IFormFile file);
+
+    /// <summary>
+    /// Is given file size is allowed to upload?
+    /// </summary>
+    Task<bool> IsFileSizeCorrectAsync(IFormFile file);
+
+    #endregion
 }

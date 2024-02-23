@@ -10,6 +10,23 @@ namespace FakeWeatherBackend.Services.Implementations;
 
 public class FilesService : IFilesService
 {
+    /// <summary>
+    /// Maximal allowed file size
+    /// </summary>
+    private const int MaxAllowedFileSize = 10 * 1024 * 1024;
+    
+    /// <summary>
+    /// Allowed images MIME types
+    /// </summary>
+    private readonly IReadOnlyCollection<string> _allowedImagesTypes = new List<string>()
+    {
+        "image/jpeg", // JPEG
+        "image/png", // PNG
+        "image/gif", // GIF
+        "image/webp" // WEBP
+    };
+    
+    
     private readonly IFilesDao _filesDao;
 
     public FilesService
@@ -56,5 +73,26 @@ public class FilesService : IFilesService
             LastModifiedTime = fileFromDb.LastModifiedTime,
             Hash = fileFromDb.Hash
         };
+    }
+
+    public async Task<bool> IsFileImageAsync(IFormFile file)
+    {
+        // TODO: Check file content, not a type!
+        if (_allowedImagesTypes.Contains(file.ContentType))
+        {
+            return true;
+        }
+        
+        return false;
+    }
+
+    public async Task<bool> IsFileSizeCorrectAsync(IFormFile file)
+    {
+        if (file.Length > MaxAllowedFileSize)
+        {
+            return false;
+        }
+
+        return true;
     }
 }
