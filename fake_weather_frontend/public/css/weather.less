@@ -21,6 +21,12 @@
 @window-opened-margin: 0;
 @table-edge-offset: 0.5rem;
 
+/* Images */
+@weather-photo-max-width: 10rem;
+@weather-photo-border-radiuses: 1rem;
+@weather-photo-border-color: hsl(240, 100%, 83%);
+@weather-photo-border-width: 0.2rem;
+
 
 /* Body */
 body {
@@ -162,10 +168,18 @@ body {
 
 /* Caption for input field */
 .form-input-caption {
-  padding-bottom: 0.2rem;
+  padding-bottom: @almost-minimal-indentation;
 }
 
 /* Add weather component resides here*/
 .add-weather-container {
-  margin-left: 1rem;
+  margin-left: @normal-indentation;
+}
+
+/* Weather photo preview */
+.weather-photo-preview {
+  width: @weather-photo-max-width;
+
+  border: solid @weather-photo-border-width @weather-photo-border-color;
+  border-radius: @weather-photo-border-radiuses;
 }

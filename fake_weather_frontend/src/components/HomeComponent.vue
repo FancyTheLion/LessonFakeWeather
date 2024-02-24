@@ -1,9 +1,11 @@
 <script setup>
-import {onMounted, ref} from "vue";
-import moment from "moment";
-import WeatherComponent from "@/components/WeatherComponent.vue";
-import LoadingSymbol from "@/components/LoadingSymbol.vue";
-import AddWeatherComponent from "@/components/AddWeatherComponent.vue";
+  import {onMounted, ref} from "vue";
+  import moment from "moment";
+  import WeatherComponent from "@/components/WeatherComponent.vue";
+  import LoadingSymbol from "@/components/LoadingSymbol.vue";
+  import AddWeatherComponent from "@/components/AddWeatherComponent.vue";
+  import CloudinessComponent from "@/components/CloudinessComponent.vue";
+  import WeatherPhotoComponent from "@/components/WeatherPhotoComponent.vue";
 
   const apiBaseUrl = process.env.VUE_APP_API_URL
 
@@ -13,6 +15,8 @@ import AddWeatherComponent from "@/components/AddWeatherComponent.vue";
   const lastWeatherTemperature = ref(0)
   const lastWeatherHumidity = ref(0)
   const lastWeatherPressure = ref(0)
+  const lastWeatherCloudiness = ref(0)
+  const lastWeatherPhotoId = ref("")
 
   const lastWeathersReferences = ref([])
 
@@ -52,6 +56,14 @@ import AddWeatherComponent from "@/components/AddWeatherComponent.vue";
     lastWeatherPressure.value = lastWeatherResponse
         .weather
         .pressure
+
+    lastWeatherCloudiness.value = lastWeatherResponse
+        .weather
+        .cloudiness
+
+    lastWeatherPhotoId.value = lastWeatherResponse
+        .weather
+        .photoId
 
     await LoadLastWeatherReferences()
 
@@ -114,6 +126,10 @@ import AddWeatherComponent from "@/components/AddWeatherComponent.vue";
                <div>Температура: {{ lastWeatherTemperature }}</div>
                <div>Влажность: {{ lastWeatherHumidity }}</div>
                <div>Давление: {{ lastWeatherPressure }}</div>
+
+               <CloudinessComponent :cloudiness="lastWeatherCloudiness" />
+
+               <WeatherPhotoComponent :photoId="lastWeatherPhotoId" />
              </div>
            </div>
         </div>

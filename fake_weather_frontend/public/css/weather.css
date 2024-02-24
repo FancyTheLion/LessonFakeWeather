@@ -1,5 +1,6 @@
 /*Colors*/
 /*Dimensions*/
+/* Images */
 /* Body */
 body {
   background-color: hsl(217, 100%, 62%);
@@ -123,5 +124,11 @@ body {
 /* Add weather component resides here*/
 .add-weather-container {
   margin-left: 1rem;
+}
+/* Weather photo preview */
+.weather-photo-preview {
+  width: 10rem;
+  border: solid 0.2rem hsl(240, 100%, 83%);
+  border-radius: 1rem;
 }
 /*# sourceMappingURL=weather.css.map */
