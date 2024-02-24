@@ -20,6 +20,9 @@ public class WeatherDao : IWeatherDao
     {
         return await _dbContext
             .Weathers
+            
+            .Include(w => w.Photo)
+                
             .OrderBy(w => w.Timestamp)
             .LastAsync();
     }
@@ -28,6 +31,9 @@ public class WeatherDao : IWeatherDao
     {
         return await _dbContext
             .Weathers
+                
+            .Include(w => w.Photo)    
+                
             .SingleAsync(w => w.Id == id);
     }
 
@@ -35,6 +41,9 @@ public class WeatherDao : IWeatherDao
     {
         return await _dbContext
             .Weathers
+                
+            .Include(w => w.Photo)    
+                
             .OrderBy(t => t.Timestamp)
             .ToListAsync();
     }
@@ -43,6 +52,8 @@ public class WeatherDao : IWeatherDao
     {
         _ = weatherToInsert ?? throw new ArgumentNullException(nameof(weatherToInsert), "Weather can't be null!");
 
+        weatherToInsert.Photo = await _dbContext.Files.SingleAsync(f => f.Id == weatherToInsert.Photo.Id);
+        
         await _dbContext
             .Weathers
             .AddAsync(weatherToInsert);

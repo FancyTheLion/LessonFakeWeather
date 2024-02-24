@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using File = FakeWeatherBackend.Models.Files.File;
 
 namespace FakeWeatherBackend.Models.API.DTOs;
 
@@ -42,6 +43,12 @@ public class WeatherDto
     /// </summary>
     [JsonPropertyName("pressure")]
     public double Pressure { get; set;  }
+    
+    /// <summary>
+    /// Photo ID
+    /// </summary>
+    [JsonPropertyName("photoId")]
+    public Guid PhotoId { get; set; }
 
     public WeatherDto
     (
@@ -50,15 +57,18 @@ public class WeatherDto
         double temperature,
         double cloudiness,
         double humidity,
-        double pressure
+        double pressure,
+        Guid photoId 
     )
     {
+        
         Id = id;
         Timestamp = timestamp;
         Temperature = temperature;
         Cloudiness = cloudiness;
         Humidity = humidity;
         Pressure = pressure;
+        PhotoId = photoId;
     }
 
     public Weather ToModel()
@@ -70,7 +80,8 @@ public class WeatherDto
             Temperature,
             Cloudiness,
             Humidity,
-            Pressure
+            Pressure,
+            new File() { Id = PhotoId }
         );
     }
 }

@@ -1,5 +1,8 @@
 using FakeWeatherBackend.Models.API.DTOs;
 
+// We assume that File is FakeWeatherBackend.Models.Files.File 
+using File = FakeWeatherBackend.Models.Files.File;
+
 namespace FakeWeatherBackend.Models;
 
 public class Weather
@@ -34,6 +37,11 @@ public class Weather
     /// </summary>
     public double Pressure { get; private set;  }
 
+    /// <summary>
+    /// Weather photo
+    /// </summary>
+    public File Photo { get; private set; }
+
     public Weather
     (
         Guid id,
@@ -41,7 +49,8 @@ public class Weather
         double temperature,
         double cloudiness,
         double humidity,
-        double pressure
+        double pressure,
+        File photo
     )
     {
         Id = id;
@@ -50,6 +59,7 @@ public class Weather
         Cloudiness = cloudiness;
         Humidity = humidity;
         Pressure = pressure;
+        Photo = photo ?? throw new ArgumentNullException(nameof(photo), "Photo mustn't be null!");
     }
 
     public WeatherDto ToDto()
@@ -61,7 +71,8 @@ public class Weather
             Temperature,
             Cloudiness,
             Humidity,
-            Pressure
+            Pressure,
+            Photo.Id
         );
     }
 }

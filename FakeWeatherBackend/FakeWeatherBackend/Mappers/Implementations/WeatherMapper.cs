@@ -1,6 +1,7 @@
 using FakeWeatherBackend.DAO.Models;
 using FakeWeatherBackend.Mappers.Abstract;
 using FakeWeatherBackend.Models;
+using File = FakeWeatherBackend.Models.Files.File;
 
 namespace FakeWeatherBackend.Mappers.Implementations;
 
@@ -13,7 +14,24 @@ public class WeatherMapper : IWeatherMapper
             return null;
         }
         
-        return new Weather(weather.Id, weather.Timestamp, weather.Temperature, weather.Cloudiness, weather.Humidity, weather.Pressure);
+        return new Weather
+        (
+            weather.Id,
+            weather.Timestamp,
+            weather.Temperature,
+            weather.Cloudiness,
+            weather.Humidity,
+            weather.Pressure,
+            new File()
+            {
+                Id = weather.Photo.Id,
+                Content = weather.Photo.Content,
+                Name = weather.Photo.Name,
+                Type = weather.Photo.Type,
+                LastModifiedTime = weather.Photo.LastModifiedTime,
+                Hash = weather.Photo.Hash
+            }
+        );
     }
 
     public IList<Weather> Map(IReadOnlyCollection<WeatherDbo> weathers)
@@ -43,6 +61,16 @@ public class WeatherMapper : IWeatherMapper
             Cloudiness = weather.Cloudiness,
             Humidity = weather.Humidity,
             Pressure = weather.Pressure,
+            Photo = new FileDbo()
+            {
+                Id = weather.Photo.Id,
+                Content = weather.Photo.Content,
+                Name = weather.Photo.Name,
+                Type = weather.Photo.Type,
+                LastModifiedTime = weather.Photo.LastModifiedTime,
+                Hash = weather.Photo.Hash,
+                PhotosForWeathers = new List<WeatherDbo>()
+            }
         };
     }
 
