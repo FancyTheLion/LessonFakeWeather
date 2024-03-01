@@ -1,3 +1,4 @@
+using FakeWeatherBackend.Mappers.Abstract;
 using FakeWeatherBackend.Models.API.DTOs;
 
 // We assume that File is FakeWeatherBackend.Models.Files.File 
@@ -41,7 +42,7 @@ public class Weather
     /// Weather photo
     /// </summary>
     public File Photo { get; private set; }
-
+    
     public Weather
     (
         Guid id,

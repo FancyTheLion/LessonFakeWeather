@@ -15,8 +15,8 @@ body {
 }
 /* Loading symbol image */
 .loading-symbol-image {
-  width: 1rem;
-  height: 1rem;
+  width: 0.4rem;
+  height: 0.4rem;
 }
 /* List with weather*/
 .weather-list {
@@ -38,8 +38,8 @@ body {
 .weather-list-element {
   padding-top: 0;
   padding-bottom: 0;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
 }
 /*Even numbered weather list items */
 .weather-list-element-even:nth-child(even) {
@@ -92,7 +92,7 @@ body {
   width: 10rem;
   background-color: hsl(0, 100%, 41%);
   border: none;
-  box-shadow: 0.1rem 0.1rem 0.1rem hsl(0, 0%, 100%);
+  box-shadow: 0.1rem 0.1rem 0.1rem hsl(233, 100%, 93%);
   cursor: pointer;
   text-align: left;
 }
@@ -102,7 +102,7 @@ body {
   background-color: hsl(25, 100%, 45%);
   padding: 0.3rem;
   margin: 0;
-  box-shadow: 0.1rem 0.1rem 0.1rem hsl(0, 0%, 100%);
+  box-shadow: 0.1rem 0.1rem 0.1rem hsl(233, 100%, 93%);
   text-align: left;
 }
 /* Customizing each element in a common flex container */
@@ -123,7 +123,7 @@ body {
 }
 /* Add weather component resides here*/
 .add-weather-container {
-  margin-left: 1rem;
+  margin-left: 0.4rem;
 }
 /* Weather photo preview */
 .weather-photo-preview {

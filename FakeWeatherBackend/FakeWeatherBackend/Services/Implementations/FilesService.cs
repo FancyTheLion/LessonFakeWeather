@@ -1,7 +1,9 @@
 using FakeWeatherBackend.DAO.Abstract;
 using FakeWeatherBackend.DAO.Models;
 using FakeWeatherBackend.Helpers;
+using FakeWeatherBackend.Mappers.Abstract;
 using FakeWeatherBackend.Models.API.DTOs.Files;
+using FakeWeatherBackend.Models.Files;
 using FakeWeatherBackend.Services.Abstract;
 using File = FakeWeatherBackend.Models.Files.File;
 using FileInfo = FakeWeatherBackend.Models.Files.FileInfo;
@@ -23,18 +25,21 @@ public class FilesService : IFilesService
         "image/jpeg", // JPEG
         "image/png", // PNG
         "image/gif", // GIF
-        "image/webp" // WEBP
+        "image/webp" // WEBP    
     };
     
-    
     private readonly IFilesDao _filesDao;
+    
+    private readonly IFilesMapper _filesMapper;
 
     public FilesService
     (
-        IFilesDao filesDao
+        IFilesDao filesDao,
+        IFilesMapper filesMapper
     )
     {
         _filesDao = filesDao;
+        _filesMapper = filesMapper;
     }
     
     public async Task<Models.Files.FileInfo> UploadFileAsync(IFormFile file)
@@ -59,20 +64,12 @@ public class FilesService : IFilesService
 
         return new FileInfo(savedFile.Id, savedFile.Name);
     }
-
+    
     public async Task<File> GetFileAsync(Guid fileId)
     {
         var fileFromDb = await _filesDao.GetFileAsync(fileId);
 
-        return new File()
-        {
-            Id = fileFromDb.Id,
-            Content = fileFromDb.Content,
-            Name = fileFromDb.Name,
-            Type = fileFromDb.Type,
-            LastModifiedTime = fileFromDb.LastModifiedTime,
-            Hash = fileFromDb.Hash
-        };
+        return _filesMapper.Map(fileFromDb);
     }
 
     public async Task<bool> IsFileImageAsync(IFormFile file)

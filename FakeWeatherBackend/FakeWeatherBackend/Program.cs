@@ -31,6 +31,7 @@ public class Program
             #region Singletons
             
                 builder.Services.AddSingleton<IWeatherMapper, WeatherMapper>();
+                builder.Services.AddSingleton<IFilesMapper, FilesMapper>();
                 
             #endregion
             

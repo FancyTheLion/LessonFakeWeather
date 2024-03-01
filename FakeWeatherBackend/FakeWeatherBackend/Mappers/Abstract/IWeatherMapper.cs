@@ -11,7 +11,7 @@ public interface IWeatherMapper
     Weather Map(WeatherDbo weather);
     
     /// <summary>
-    /// Multiple weathers DBOs to list of models
+    /// Multiple weathers DBOs to list of models(Not used but needed)
     /// </summary>
     IList<Weather> Map(IReadOnlyCollection<WeatherDbo> weathers);
     
@@ -21,7 +21,7 @@ public interface IWeatherMapper
     WeatherDbo Map(Weather weather);
 
     /// <summary>
-    /// Multiple weather models to list of DBOs
+    /// Multiple weather models to list of DBOs(Not used but needed)
     /// </summary>
     IList<WeatherDbo> Map(IReadOnlyCollection<Weather> weathers);
 }

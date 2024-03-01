@@ -7,6 +7,16 @@ namespace FakeWeatherBackend.Mappers.Implementations;
 
 public class WeatherMapper : IWeatherMapper
 {
+    private readonly IFilesMapper _filesMapper;
+
+    public WeatherMapper
+    (
+        IFilesMapper filesMapper
+    )
+    {
+        _filesMapper = filesMapper;
+    }
+    
     public Weather Map(WeatherDbo weather)
     {
         if (weather == null)
@@ -22,15 +32,7 @@ public class WeatherMapper : IWeatherMapper
             weather.Cloudiness,
             weather.Humidity,
             weather.Pressure,
-            new File()
-            {
-                Id = weather.Photo.Id,
-                Content = weather.Photo.Content,
-                Name = weather.Photo.Name,
-                Type = weather.Photo.Type,
-                LastModifiedTime = weather.Photo.LastModifiedTime,
-                Hash = weather.Photo.Hash
-            }
+            _filesMapper.Map(weather.Photo)
         );
     }
 
@@ -61,16 +63,7 @@ public class WeatherMapper : IWeatherMapper
             Cloudiness = weather.Cloudiness,
             Humidity = weather.Humidity,
             Pressure = weather.Pressure,
-            Photo = new FileDbo()
-            {
-                Id = weather.Photo.Id,
-                Content = weather.Photo.Content,
-                Name = weather.Photo.Name,
-                Type = weather.Photo.Type,
-                LastModifiedTime = weather.Photo.LastModifiedTime,
-                Hash = weather.Photo.Hash,
-                PhotosForWeathers = new List<WeatherDbo>()
-            }
+            Photo = _filesMapper.Map(weather.Photo)
         };
     }
 

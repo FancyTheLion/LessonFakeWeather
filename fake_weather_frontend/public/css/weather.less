@@ -1,38 +1,36 @@
 /*Colors*/
-@page-background-color: hsl(217, 100%, 62%);
-@page-body-text-color: hsl(233, 100%, 93%);
-@table-border-color: hsl(117, 100%, 60%);
-@even-numbered-weather-list-items: hsl(240, 100%, 25%);
-@odd-numbered-weather-list-items: hsl(240, 100%, 40%);
-@dropdown-small-window-background-color: hsl(0, 100%, 41%);
-@dropdown-text-color: hsl(0, 100%, 100%);
-@background-color-opened-window: hsl(25, 100%, 45%);
-@text-color-opened-window: hsl(0, 100%, 100%);
+@page-background-color-1: hsl(217, 100%, 62%);
+@light-color-for-text: hsl(233, 100%, 93%);
+@weather-photo-border-color: hsl(240, 100%, 83%);
+@light-green-frame: hsl(117, 100%, 60%);
+@dark-blue-background: hsl(240, 100%, 25%);
+@light-blue-background: hsl(240, 100%, 40%);
+@light-red-background: hsl(0, 100%, 41%);
+@light-orange-background: hsl(25, 100%, 45%);
 
 /*Dimensions*/
-@normal-indentation: 1rem;
-@reduced-indentation: 0.3rem;
+@lack-of-something: 0;
+@smallest-indentation: 0.1rem;
 @almost-minimal-indentation: 0.2rem;
+@reduced-indentation: 0.3rem;
+@normal-indentation: 0.4rem;
+@table-edge-offset: 0.5rem;
 @increased-indentation: 3rem;
 @Fresh-weather-button-width: 10rem;
-@smallest-indentation: 0.1rem;
-@Fresh-weather-button-box-shadow-length: 0.1rem;
 @window-opened-width: 14rem;
-@window-opened-margin: 0;
-@table-edge-offset: 0.5rem;
+
 
 /* Images */
 @weather-photo-max-width: 10rem;
 @weather-photo-border-radiuses: 1rem;
-@weather-photo-border-color: hsl(240, 100%, 83%);
 @weather-photo-border-width: 0.2rem;
 
 
 /* Body */
 body {
-  background-color: @page-background-color;
+  background-color: @page-background-color-1;
 
-  color: @page-body-text-color;
+  color: @light-color-for-text;
 }
 
 /* Centered text */
@@ -52,35 +50,35 @@ body {
 
 /* List with weather*/
 .weather-list {
-  border: @reduced-indentation solid @table-border-color;
+  border: @reduced-indentation solid @light-green-frame;
   border-radius: @almost-minimal-indentation;
   width: max-content;
 }
 
 /* Add weather area*/
 .add-weather {
-  border: @reduced-indentation double @table-border-color;
+  border: @reduced-indentation double @light-green-frame;
   border-radius: @reduced-indentation;
   width: max-content;
 
-  padding: 0.5rem;
+  padding: @table-edge-offset;
 
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: @table-edge-offset;
 }
 
 /* Weather list element */
 .weather-list-element {
-  padding-top: 0;
-  padding-bottom: 0;
+  padding-top: @lack-of-something;
+  padding-bottom: @lack-of-something;
   padding-left: @normal-indentation;
   padding-right: @normal-indentation;
 }
 
 /*Even numbered weather list items */
 .weather-list-element-even:nth-child(even) {
-  background: @even-numbered-weather-list-items;
+  background: @dark-blue-background;
   padding-top: @table-edge-offset;
   padding-right: @table-edge-offset;
   padding-bottom: @table-edge-offset;
@@ -89,7 +87,7 @@ body {
 
 /* Odd weather list items */
 .weather-list-element-odd:nth-child(odd) {
-  background: @odd-numbered-weather-list-items;
+  background: @light-blue-background;
   padding-top: @table-edge-offset;
   padding-right: @table-edge-offset;
   padding-bottom: @table-edge-offset;
@@ -134,9 +132,9 @@ body {
 .details-summary {
   padding: @reduced-indentation;
   width: @Fresh-weather-button-width;
-  background-color: @dropdown-small-window-background-color;
+  background-color: @light-red-background;
   border: none;
-  box-shadow: @smallest-indentation @smallest-indentation @Fresh-weather-button-box-shadow-length @dropdown-text-color;
+  box-shadow: @smallest-indentation @smallest-indentation @smallest-indentation @light-color-for-text;
   cursor: pointer;
   text-align: left;
 }
@@ -144,10 +142,10 @@ body {
 /* The window opened */
 .details-window {
   width: @window-opened-width;
-  background-color: @background-color-opened-window;
+  background-color: @light-orange-background;
   padding: @reduced-indentation;
-  margin: @window-opened-margin;
-  box-shadow: @smallest-indentation @smallest-indentation @smallest-indentation @text-color-opened-window;
+  margin: @lack-of-something;
+  box-shadow: @smallest-indentation @smallest-indentation @smallest-indentation @light-color-for-text;
   text-align: left;
 }
 
