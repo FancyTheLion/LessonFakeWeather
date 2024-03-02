@@ -60,6 +60,8 @@
 
   const addWeatherFormValidator = useVuelidate(addWeatherFormRules, addWeatherData)
 
+  const weatherPhotoUploadInput = ref(null)
+
   const emit = defineEmits(["weatherAdded"])
 
   // OnMounted hook
@@ -149,6 +151,33 @@ async function IsPressureValid(pressure)
 
   async function SendWeatherToBackend()
   {
+    // Upload photo
+    if (weatherPhotoUploadInput.value.files.length !== 1)
+    {
+      alert("Пожалуйста загрузите ровно один файл!")
+      return
+    }
+
+    const fileToUpload = weatherPhotoUploadInput.value.files[0]
+
+    let uploadFormData = new FormData();
+    uploadFormData.append("file", fileToUpload);
+
+    const fileUploadResponse = await fetch(apiBaseUrl + "/api/Files/Upload", {
+      method: 'POST',
+      body: uploadFormData,
+      headers: {}
+    })
+
+    if (fileUploadResponse.status !== 200)
+    {
+      alert("Ошибка загрузки фото погоды!")
+      return
+    }
+
+    const uploadedFileId = (await fileUploadResponse.json()).fileInfo.id
+
+    // Sending the weather
     const response = await fetch(apiBaseUrl + "/api/Weather/Add", {
       method: "POST",
       body: JSON.stringify({
@@ -157,7 +186,8 @@ async function IsPressureValid(pressure)
           "temperature": addWeatherData.temperature,
           "cloudiness": addWeatherData.cloudiness,
           "humidity": addWeatherData.humidity,
-          "pressure": addWeatherData.pressure
+          "pressure": addWeatherData.pressure,
+          "photoId": uploadedFileId
         }
       }),
       headers: { "Content-Type": "application/json" }
@@ -264,6 +294,17 @@ async function IsPressureValid(pressure)
         />
 
         [{{ weatherValidationSettings.lowestPossiblePressure }}; {{weatherValidationSettings.highestPossiblePressure}}]
+      </div>
+
+      <div>
+        <div class="centered form-input-caption">
+          Загрузите фото погоды:
+        </div>
+
+        <input
+            ref="weatherPhotoUploadInput"
+            type="file"
+            accept="image/png, image/jpeg, image/gif, image/webp" />
       </div>
 
       <!-- Add button -->
