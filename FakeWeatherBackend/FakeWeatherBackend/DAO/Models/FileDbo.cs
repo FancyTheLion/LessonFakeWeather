@@ -42,4 +42,9 @@ public class FileDbo
     /// This file acts as a photo for the next weathers
     /// </summary>
     public IList<WeatherDbo> PhotosForWeathers { get; set; }
+
+    /// <summary>
+    /// This file acts as a photo preview for the next weathers
+    /// </summary>
+    public IList<WeatherDbo> PhotosPreviewsForWeathers { get; set; }
 }

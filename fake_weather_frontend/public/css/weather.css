@@ -93,6 +93,7 @@ body {
   background-color: hsl(0, 100%, 41%);
   border: none;
   box-shadow: 0.1rem 0.1rem 0.1rem hsl(233, 100%, 93%);
+  border-radius: 0.2rem;
   cursor: pointer;
   text-align: left;
 }
@@ -104,6 +105,7 @@ body {
   margin: 0;
   box-shadow: 0.1rem 0.1rem 0.1rem hsl(233, 100%, 93%);
   text-align: left;
+  border-radius: 0.2rem;
 }
 /* Customizing each element in a common flex container */
 .full-width-flex-element {

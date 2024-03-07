@@ -44,6 +44,11 @@ public class WeatherService : IWeatherService
     public async Task<WeatherReference> GetLastWeatherReferenceAsync()
     {
         var lastWeather = await _weatherDao.GetLastWeatherAsync();
+
+        if (lastWeather == null)
+        {
+            return null;
+        }
         
         return new WeatherReference(lastWeather.Timestamp, lastWeather.Id);
     }

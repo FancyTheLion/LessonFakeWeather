@@ -24,7 +24,7 @@ public class WeatherDao : IWeatherDao
             .Include(w => w.Photo)
                 
             .OrderBy(w => w.Timestamp)
-            .LastAsync();
+            .LastOrDefaultAsync();
     }
 
     public async Task<WeatherDbo> GetWeatherByIdAsync(Guid id)

@@ -42,4 +42,9 @@ public class WeatherDbo
     /// Weather photo
     /// </summary>
     public FileDbo Photo { get; set; }
+
+    /// <summary>
+    /// Weather photo preview
+    /// </summary>
+    public FileDbo PhotoPreview { get; set; }
 }

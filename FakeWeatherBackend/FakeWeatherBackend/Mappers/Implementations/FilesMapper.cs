@@ -52,7 +52,7 @@ public class FilesMapper : IFilesMapper
             Type = file.Type,
             LastModifiedTime = file.LastModifiedTime,
             Hash = file.Hash,
-            PhotosForWeathers = new List<WeatherDbo>()
+            PhotosForWeathers = new List<WeatherDbo>() //It is not specified for what weather conditions this file is registered
         };
     }
 
