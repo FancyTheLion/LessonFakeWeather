@@ -22,6 +22,7 @@ public class Program
             
                 builder.Services.AddScoped<IWeatherService, WeatherService>();
                 builder.Services.AddScoped<IFilesService, FilesService>();
+                builder.Services.AddScoped<IResizeService, ResizeService>();
 
                 builder.Services.AddScoped<IWeatherDao, WeatherDao>();
                 builder.Services.AddScoped<IFilesDao, FilesDao>();

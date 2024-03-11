@@ -52,10 +52,15 @@ public class FilesService : IFilesService
             fileStream.Read(content, 0, (int)file.Length);
         }
 
+        return await UploadFileAsync(file.FileName, file.ContentType, content);
+    }
+
+    public async Task<FileInfo> UploadFileAsync(string name, string type, byte[] content)
+    {
         var fileDbo = new FileDbo()
         {
-            Name = file.FileName,
-            Type = file.ContentType,
+            Name = name,
+            Type = type,
             Content = content,
             Hash = SHA512Helper.CalculateSHA512(content)
         };
@@ -64,7 +69,7 @@ public class FilesService : IFilesService
 
         return new FileInfo(savedFile.Id, savedFile.Name);
     }
-    
+
     public async Task<File> GetFileAsync(Guid fileId)
     {
         var fileFromDb = await _filesDao.GetFileAsync(fileId);

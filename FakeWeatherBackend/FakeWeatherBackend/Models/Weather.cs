@@ -43,6 +43,11 @@ public class Weather
     /// </summary>
     public File Photo { get; private set; }
     
+    /// <summary>
+    /// Weather photo preview
+    /// </summary>
+    public File PhotoPreview { get; private set; }
+    
     public Weather
     (
         Guid id,
@@ -51,7 +56,8 @@ public class Weather
         double cloudiness,
         double humidity,
         double pressure,
-        File photo
+        File photo,
+        File photoPreview
     )
     {
         Id = id;
@@ -61,6 +67,7 @@ public class Weather
         Humidity = humidity;
         Pressure = pressure;
         Photo = photo ?? throw new ArgumentNullException(nameof(photo), "Photo mustn't be null!");
+        PhotoPreview = photoPreview ?? throw new ArgumentNullException(nameof(photoPreview), "Photo preview mustn't be null!");
     }
 
     public WeatherDto ToDto()
@@ -73,7 +80,8 @@ public class Weather
             Cloudiness,
             Humidity,
             Pressure,
-            Photo.Id
+            Photo.Id,
+            PhotoPreview.Id
         );
     }
 }

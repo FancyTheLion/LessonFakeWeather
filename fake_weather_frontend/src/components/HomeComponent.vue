@@ -11,6 +11,8 @@
 
   const isLoading = ref(true)
 
+  const isNoWeathers = ref(false)
+
   const lastWeatherTime = ref(0)
   const lastWeatherTemperature = ref(0)
   const lastWeatherHumidity = ref(0)
@@ -34,6 +36,14 @@
     const lastWeatherReferenceResponse = await (await fetch(apiBaseUrl + "/api/WeatherReference/Last", {
       method: 'GET'
     })).json()
+
+    if (lastWeatherReferenceResponse.isNoReference === true)
+    {
+      // We have no last weather (=no weathers in database)
+      isNoWeathers.value = true
+      isLoading.value = false
+      return
+    }
 
     const lastWeatherReference = lastWeatherReferenceResponse.weatherReference.weatherId
 
@@ -120,19 +130,27 @@
             Скрыть свежую погоду
           </div>
 
-           <div>
-             <div class="details-window">
-               <div>Время: {{ lastWeatherTime }}</div>
-               <div>Температура: {{ lastWeatherTemperature }}</div>
-               <div>Влажность: {{ lastWeatherHumidity }}</div>
-               <div>Давление: {{ lastWeatherPressure }}</div>
+          <div class="details-window">
 
-               <CloudinessComponent :cloudiness="lastWeatherCloudiness" />
+            <div v-if="isNoWeathers">
+              Нет последней погоды!
+            </div>
 
-               <WeatherPhotoComponent :photoId="lastWeatherPhotoId" />
-             </div>
-           </div>
+            <div v-if="!isNoWeathers">
+              <div>Время: {{ lastWeatherTime }}</div>
+              <div>Температура: {{ lastWeatherTemperature }}</div>
+              <div>Влажность: {{ lastWeatherHumidity }}</div>
+              <div>Давление: {{ lastWeatherPressure }}</div>
+
+              <CloudinessComponent :cloudiness="lastWeatherCloudiness" />
+
+              <WeatherPhotoComponent :photoId="lastWeatherPhotoId" />
+            </div>
+
+          </div>
+
         </div>
+
       </div>
 
       <!-- Weathers list -->
@@ -144,10 +162,16 @@
 
           <div class="weather-list">
 
-            <WeatherComponent
-                v-for="weatherReference in lastWeathersReferences" :key="weatherReference.weatherId"
-                :weatherId="weatherReference.weatherId">
-            </WeatherComponent>
+            <div v-if="isNoWeathers">
+              Ни одна погода ещё не была загружена на сайт!
+            </div>
+
+            <div v-if="!isNoWeathers">
+              <WeatherComponent
+                  v-for="weatherReference in lastWeathersReferences" :key="weatherReference.weatherId"
+                  :weatherId="weatherReference.weatherId">
+              </WeatherComponent>
+            </div>
 
           </div>
 

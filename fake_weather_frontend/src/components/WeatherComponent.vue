@@ -18,7 +18,7 @@ import WeatherPhotoComponent from "@/components/WeatherPhotoComponent.vue";
   const weatherCloudiness = ref(0)
   const weatherHumidity = ref(0)
   const weatherPressure = ref(0)
-  const weatherPhotoId = ref("")
+  const weatherPhotoPreviewId = ref("")
 
   onMounted(async () =>
   {
@@ -51,9 +51,9 @@ import WeatherPhotoComponent from "@/components/WeatherPhotoComponent.vue";
         .weather
         .pressure
 
-    weatherPhotoId.value = weatherResponse
+    weatherPhotoPreviewId.value = weatherResponse
         .weather
-        .photoId
+        .photoPreviewId
 
     isLoading.value = false
   }
@@ -71,7 +71,7 @@ import WeatherPhotoComponent from "@/components/WeatherPhotoComponent.vue";
 
     <CloudinessComponent :cloudiness="weatherCloudiness" />
 
-    <WeatherPhotoComponent :photoId="weatherPhotoId" />
+    <WeatherPhotoComponent :photoId="weatherPhotoPreviewId" />
   </div>
 </template>
 
