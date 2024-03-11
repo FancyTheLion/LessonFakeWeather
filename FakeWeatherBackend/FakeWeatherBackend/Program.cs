@@ -41,6 +41,7 @@ public class Program
         #region Settings
 
         builder.Services.Configure<WeatherValidationSettings>(builder.Configuration.GetSection(nameof(WeatherValidationSettings)));
+        builder.Services.Configure<PhotoSizeSettings>(builder.Configuration.GetSection(nameof(PhotoSizeSettings)));
 
         #endregion
         
