@@ -133,4 +133,39 @@ body {
   border: solid 0.2rem hsl(240, 100%, 83%);
   border-radius: 1rem;
 }
+/* Popups begin here */
+/* Popup lower layer */
+.popup-lower-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background: hsla(0, 0%, 10%, 0.8);
+}
+/* Popup upper layer */
+.popup-upper-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2000;
+}
+/* Popup image section */
+.popup-main-image-section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow-y: auto;
+}
+/* Popup image */
+.popup-image {
+  border-radius: 1rem;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+/* Popups end here */
 /*# sourceMappingURL=weather.css.map */

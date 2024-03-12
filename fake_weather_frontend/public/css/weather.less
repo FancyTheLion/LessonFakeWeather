@@ -7,6 +7,7 @@
 @light-blue-background: hsl(240, 100%, 40%);
 @light-red-background: hsl(0, 100%, 41%);
 @light-orange-background: hsl(25, 100%, 45%);
+@popup-lower-background-color: hsla(0, 0%, 10%, 0.8);
 
 /*Dimensions*/
 @lack-of-something: 0;
@@ -183,3 +184,44 @@ body {
   border: solid @weather-photo-border-width @weather-photo-border-color;
   border-radius: @weather-photo-border-radiuses;
 }
+
+/* Popups begin here */
+
+/* Popup lower layer */
+.popup-lower-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background: @popup-lower-background-color;
+}
+
+/* Popup upper layer */
+.popup-upper-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2000;
+}
+
+/* Popup image section */
+.popup-main-image-section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow-y: auto;
+}
+
+/* Popup image */
+.popup-image {
+  border-radius: @weather-photo-border-radiuses;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+/* Popups end here */
