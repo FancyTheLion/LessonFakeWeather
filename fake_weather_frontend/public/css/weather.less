@@ -185,6 +185,10 @@ body {
   border-radius: @weather-photo-border-radiuses;
 }
 
+.cursor {
+  cursor: pointer;
+}
+
 /* Popups begin here */
 
 /* Popup lower layer */
@@ -222,6 +226,21 @@ body {
   border-radius: @weather-photo-border-radiuses;
   max-width: 90vw;
   max-height: 90vh;
+}
+
+/* Full size image popup close button */
+.popup-close-button {
+  background: transparent;
+  border: 0 none @light-color-for-text;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+}
+
+/* Full size image popup close button image */
+.popup-close-button-image {
+  width: 2rem;
+  height: 2rem;
 }
 
 /* Popups end here */

@@ -133,6 +133,9 @@ body {
   border: solid 0.2rem hsl(240, 100%, 83%);
   border-radius: 1rem;
 }
+.cursor {
+  cursor: pointer;
+}
 /* Popups begin here */
 /* Popup lower layer */
 .popup-lower-layer {
@@ -166,6 +169,19 @@ body {
   border-radius: 1rem;
   max-width: 90vw;
   max-height: 90vh;
+}
+/* Full size image popup close button */
+.popup-close-button {
+  background: transparent;
+  border: 0 none hsl(233, 100%, 93%);
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+}
+/* Full size image popup close button image */
+.popup-close-button-image {
+  width: 2rem;
+  height: 2rem;
 }
 /* Popups end here */
 /*# sourceMappingURL=weather.css.map */
