@@ -49,6 +49,12 @@ public class WeatherDto
     /// </summary>
     [JsonPropertyName("photoId")]
     public Guid PhotoId { get; set; }
+    
+    /// <summary>
+    /// Photo preview ID
+    /// </summary>
+    [JsonPropertyName("photoPreviewId")]
+    public Guid PhotoPreviewId { get; set; }
 
     public WeatherDto
     (
@@ -58,7 +64,8 @@ public class WeatherDto
         double cloudiness,
         double humidity,
         double pressure,
-        Guid photoId 
+        Guid photoId,
+        Guid photoPreviewId
     )
     {
         
@@ -69,6 +76,7 @@ public class WeatherDto
         Humidity = humidity;
         Pressure = pressure;
         PhotoId = photoId;
+        PhotoPreviewId = photoPreviewId;
     }
 
     public Weather ToModel()
@@ -81,7 +89,8 @@ public class WeatherDto
             Cloudiness,
             Humidity,
             Pressure,
-            new File() { Id = PhotoId }
+            new File() { Id = PhotoId },
+            new File() { Id = Guid.Empty } // Nonexistent preview
         );
     }
 }

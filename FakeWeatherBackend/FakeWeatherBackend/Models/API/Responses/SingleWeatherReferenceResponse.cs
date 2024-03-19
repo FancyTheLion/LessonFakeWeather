@@ -15,11 +15,15 @@ public class SingleWeatherReferenceResponse
     [JsonPropertyName("weatherReference")]
     public WeatherReferenceDto WeatherReference { get; private set; }
 
+    [JsonPropertyName("isNoReference")]
+    public bool IsNoReference { get; private set; }
+
     public SingleWeatherReferenceResponse
     (
         WeatherReferenceDto weatherReference
     )
     {
-        WeatherReference = weatherReference ?? throw new ArgumentNullException(nameof(weatherReference), "Weather reference mustn't be null!");
+        IsNoReference = weatherReference == null;
+        WeatherReference = weatherReference;
     }
 }

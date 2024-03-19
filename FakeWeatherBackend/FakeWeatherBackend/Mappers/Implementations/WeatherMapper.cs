@@ -32,7 +32,8 @@ public class WeatherMapper : IWeatherMapper
             weather.Cloudiness,
             weather.Humidity,
             weather.Pressure,
-            _filesMapper.Map(weather.Photo)
+            _filesMapper.Map(weather.Photo),
+            _filesMapper.Map(weather.PhotoPreview)
         );
     }
 
@@ -63,7 +64,8 @@ public class WeatherMapper : IWeatherMapper
             Cloudiness = weather.Cloudiness,
             Humidity = weather.Humidity,
             Pressure = weather.Pressure,
-            Photo = _filesMapper.Map(weather.Photo)
+            Photo = _filesMapper.Map(weather.Photo),
+            PhotoPreview = _filesMapper.Map(weather.PhotoPreview)
         };
     }
 

@@ -64,13 +64,14 @@ public class WeatherController : ControllerBase
     [Route("api/WeatherReference/Last")]
     public async Task<ActionResult<SingleWeatherReferenceResponse>> GetLastWeatherReference()
     {
-        return Ok
-        (
-            new SingleWeatherReferenceResponse
-            (
-                (await _weatherService.GetLastWeatherReferenceAsync()).ToDto()
-            )
-        );
+        var weatherReference = await _weatherService.GetLastWeatherReferenceAsync();
+
+        if (weatherReference == null)
+        {
+            return Ok(new SingleWeatherReferenceResponse(null));            
+        }
+        
+        return Ok(new SingleWeatherReferenceResponse(weatherReference.ToDto()));
     }
 
     /// <summary>

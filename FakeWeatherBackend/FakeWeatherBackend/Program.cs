@@ -22,6 +22,7 @@ public class Program
             
                 builder.Services.AddScoped<IWeatherService, WeatherService>();
                 builder.Services.AddScoped<IFilesService, FilesService>();
+                builder.Services.AddScoped<IResizeService, ResizeService>();
 
                 builder.Services.AddScoped<IWeatherDao, WeatherDao>();
                 builder.Services.AddScoped<IFilesDao, FilesDao>();
@@ -40,6 +41,7 @@ public class Program
         #region Settings
 
         builder.Services.Configure<WeatherValidationSettings>(builder.Configuration.GetSection(nameof(WeatherValidationSettings)));
+        builder.Services.Configure<PhotoSizeSettings>(builder.Configuration.GetSection(nameof(PhotoSizeSettings)));
 
         #endregion
         

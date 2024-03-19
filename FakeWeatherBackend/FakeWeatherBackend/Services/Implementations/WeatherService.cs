@@ -13,6 +13,8 @@ public class WeatherService : IWeatherService
 {
     private readonly IWeatherDao _weatherDao;
     private readonly IWeatherMapper _weatherMapper;
+    private readonly IFilesService _filesService;
+    private readonly IResizeService _resizeService;
 
     private readonly WeatherValidationSettings _weatherValidationSettings;
 
@@ -20,12 +22,16 @@ public class WeatherService : IWeatherService
     (
         IWeatherDao weatherDao,
         IWeatherMapper weatherMapper,
-        IOptions<WeatherValidationSettings> weatherValidationSettingsRef)
+        IOptions<WeatherValidationSettings> weatherValidationSettingsRef,
+        IFilesService filesService, 
+        IResizeService resizeService
+    )
     {
         _weatherDao = weatherDao;
         _weatherMapper = weatherMapper;
-
         _weatherValidationSettings = weatherValidationSettingsRef.Value;
+        _filesService = filesService;
+        _resizeService = resizeService;
     }
     
     public async Task<IReadOnlyCollection<WeatherReference>> GetLastWeatherReferencesAsync()
@@ -44,6 +50,11 @@ public class WeatherService : IWeatherService
     public async Task<WeatherReference> GetLastWeatherReferenceAsync()
     {
         var lastWeather = await _weatherDao.GetLastWeatherAsync();
+
+        if (lastWeather == null)
+        {
+            return null;
+        }
         
         return new WeatherReference(lastWeather.Timestamp, lastWeather.Id);
     }
@@ -52,6 +63,23 @@ public class WeatherService : IWeatherService
     {
         _ = weatherToAdd ?? throw new ArgumentNullException(nameof(weatherToAdd), "Weather mustn't be null!");
 
+        // Getting weather photo
+        var weatherPhoto = await _filesService.GetFileAsync(weatherToAdd.Photo.Id);
+
+        // Resized photo
+        var resizedPhotoName = Path.GetFileNameWithoutExtension(weatherPhoto.Name)
+                               + "_preview"
+                               + Path.GetExtension(weatherPhoto.Name);
+        
+        var weatherPhotoPreview = await _filesService.UploadFileAsync
+        (
+            resizedPhotoName,
+            weatherPhoto.Type,
+            await _resizeService.ResizeImageAsync(weatherPhoto.Content, weatherPhoto.Type)
+        );
+
+        weatherToAdd.PhotoPreview.Id = weatherPhotoPreview.Id;
+        
         var weatherDbo = _weatherMapper.Map(weatherToAdd);
 
         weatherDbo.Id = Guid.Empty;

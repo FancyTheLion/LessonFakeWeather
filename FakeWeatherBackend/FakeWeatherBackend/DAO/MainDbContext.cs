@@ -30,6 +30,13 @@ public class MainDbContext : DbContext
         // Weather have one photo
         modelBuilder
             .Entity<WeatherDbo>()
-            .HasOne(weather => weather.Photo);
+            .HasOne(weather => weather.Photo)
+            .WithMany(file => file.PhotosForWeathers);
+
+        // Weather have one photo preview
+        modelBuilder
+            .Entity<WeatherDbo>()
+            .HasOne(weather => weather.PhotoPreview)
+            .WithMany(file => file.PhotosPreviewsForWeathers);
     }
 }
