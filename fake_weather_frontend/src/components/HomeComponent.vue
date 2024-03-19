@@ -19,6 +19,7 @@
   const lastWeatherPressure = ref(0)
   const lastWeatherCloudiness = ref(0)
   const lastWeatherPhotoPreviewId = ref("")
+  const lastWeatherPhotoId = ref("")
 
   const lastWeathersReferences = ref([])
 
@@ -74,6 +75,10 @@
     lastWeatherPhotoPreviewId.value = lastWeatherResponse
         .weather
         .photoPreviewId
+
+    lastWeatherPhotoId.value = lastWeatherResponse
+        .weather
+        .photoId
 
     await LoadLastWeatherReferences()
 
@@ -145,7 +150,9 @@
 
               <CloudinessComponent :cloudiness="lastWeatherCloudiness" />
 
-              <WeatherPhotoComponent :photoId="lastWeatherPhotoPreviewId" />
+              <WeatherPhotoComponent
+                  :photoPreviewId="lastWeatherPhotoPreviewId"
+                  :fullSizePhotoId="lastWeatherPhotoId" />
             </div>
 
           </div>

@@ -1,5 +1,5 @@
 <script setup>
-import {defineProps, ref} from "vue";
+  import {defineProps, ref} from "vue";
 
   const isVisible = ref(false)
 
@@ -41,22 +41,21 @@ async function DoNothing()
 
     <!-- Popup lower layer -->
     <div class="popup-lower-layer">
+
     </div>
 
     <!-- Popup upper layer -->
     <div class="popup-upper-layer"
          @click="async() => await HideFullSizePhoto()">
 
-      <div class="popup-main-image-section" @click.stop="DoNothing">
-          <button
+      <div class="popup-main-image-section" @click.stop="async () => await DoNothing()">
+
+          <img
               class="popup-close-button"
-              @click="async() => await HideFullSizePhoto()">
+              src="/images/close.webp"
+              alt="Закрыть полноразмерное фото"
+              @click="async() => await HideFullSizePhoto()" />
 
-            <div class="cursor">
-              <img class="popup-close-button-image" src="/images/close.webp" alt="Закрыть полноразмерное фото" />
-            </div>
-
-          </button>
           <img
             class="popup-image"
             :src="apiBaseUrl + '/api/Files/Download/' + props.fullSizePhotoId"
