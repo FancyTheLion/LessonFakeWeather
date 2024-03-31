@@ -4,6 +4,7 @@ namespace FakeWeatherBackend.Helpers;
 
 /// <summary>
 /// Helper to work with SHA512 hashes
+/// TODO: Remove me, test
 /// </summary>
 public static class SHA512Helper
 {
