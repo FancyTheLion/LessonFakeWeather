@@ -7,5 +7,4 @@ namespace FakeWeatherBackend.DAO.Models.Authentification;
 /// </summary>
 public class UserDbo : IdentityUser<Guid>
 {
-    public string Name { get; set; } 
 }

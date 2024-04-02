@@ -4,6 +4,7 @@ using FakeWeatherBackend.Models.API.Requests;
 using FakeWeatherBackend.Models.API.Responses;
 using FakeWeatherBackend.Models.API.Responses.Settings;
 using FakeWeatherBackend.Services.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,7 @@ namespace FakeWeatherBackend.Controllers;
 /// <summary>
 /// Controller to work with weather
 /// </summary>
+[Authorize]
 [ApiController]
 public class WeatherController : ControllerBase
 {
@@ -25,7 +27,7 @@ public class WeatherController : ControllerBase
     /// <summary>
     /// Get weather references list
     /// </summary>
-    /// <returns></returns>
+    [AllowAnonymous]
     [HttpGet]
     [Route("api/WeatherReferences")]
     public async Task<ActionResult<WeatherReferencesListResponse>> GetWeatherReferences()
@@ -44,6 +46,7 @@ public class WeatherController : ControllerBase
     /// <summary>
     /// Get any weather by ID
     /// </summary>
+    [AllowAnonymous]
     [HttpGet]
     [Route("api/Weather/{id}")]
     public async Task<ActionResult<WeatherResponse>> GetWeatherByIdAsync(Guid id)
@@ -60,6 +63,7 @@ public class WeatherController : ControllerBase
     /// <summary>
     /// Method that returns a reference to the latest weather
     /// </summary>
+    [AllowAnonymous]
     [HttpGet]
     [Route("api/WeatherReference/Last")]
     public async Task<ActionResult<SingleWeatherReferenceResponse>> GetLastWeatherReference()
@@ -95,7 +99,7 @@ public class WeatherController : ControllerBase
     /// <summary>
     /// Get weather validation settings
     /// </summary>
-    /// <returns></returns>
+    [AllowAnonymous]
     [HttpGet]
     [Route("api/Weather/ValidationSettings")]
     public async Task<ActionResult<WeatherValidationSettingsResponse>> GetWeatherValidationSettingsAsync()

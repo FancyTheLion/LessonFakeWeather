@@ -32,6 +32,8 @@ public class Program
 
                 builder.Services.AddScoped<IWeatherDao, WeatherDao>();
                 builder.Services.AddScoped<IFilesDao, FilesDao>();
+
+                builder.Services.AddScoped<IAccountsService, AccountsService>();
                 
             #endregion
             
@@ -48,6 +50,7 @@ public class Program
 
         builder.Services.Configure<WeatherValidationSettings>(builder.Configuration.GetSection(nameof(WeatherValidationSettings)));
         builder.Services.Configure<PhotoSizeSettings>(builder.Configuration.GetSection(nameof(PhotoSizeSettings)));
+        builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection(nameof(JwtSettings)));
 
         #endregion
         
@@ -145,7 +148,7 @@ public class Program
         (
             sc =>
             {
-                sc.SwaggerDoc("v1", new OpenApiInfo() { Title = "Arkumida API", Version = "v1" });
+                sc.SwaggerDoc("v1", new OpenApiInfo() { Title = "Weather app API", Version = "v1" });
         
                 sc.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
