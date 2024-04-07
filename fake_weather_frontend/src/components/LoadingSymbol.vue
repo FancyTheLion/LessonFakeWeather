@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="centered">
+  <div class="text-centered">
     <img class="loading-symbol-image" src="/images/loading.webp" alt="Load animation" />
   </div>
 </template>

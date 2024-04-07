@@ -7,7 +7,7 @@ body {
   color: hsl(233, 100%, 93%);
 }
 /* Centered text */
-.centered {
+.text-centered {
   text-align: center;
 }
 .left {
@@ -178,4 +178,35 @@ body {
   cursor: pointer;
 }
 /* Popups end here */
+/* Registration or login pages */
+.full-width-flex-element-register-or-login {
+  display: flex;
+  justify-content: center;
+}
+/* Add weather area*/
+.user-registration-window {
+  background: hsl(99, 90%, 35%);
+  border: 0.3rem double hsl(117, 100%, 60%);
+  border-radius: 0.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0.4rem;
+  max-width: 30rem;
+  height: min-content;
+  overflow-y: auto;
+  gap: 0.5rem;
+  display: grid;
+}
+.font-registration {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.registration-bottom-link {
+  color: hsl(233, 100%, 93%);
+  font-weight: 600;
+}
+/* Registration or login page end here */
 /*# sourceMappingURL=weather.css.map */

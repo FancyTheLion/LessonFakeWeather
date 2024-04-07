@@ -164,7 +164,7 @@
       <!-- Weathers list -->
       <div class="full-width-flex-element">
 
-        <h2 class="centered">Список погод:</h2>
+        <h2 class="text-centered">Список погод:</h2>
 
         <div class="flex-container">
 
@@ -188,7 +188,7 @@
       </div>
 
       <!-- Right part -->
-      <div class="full-width-flex-element centered">
+      <div class="full-width-flex-element text-centered">
 
         <div class="add-weather-container">
           <AddWeatherComponent

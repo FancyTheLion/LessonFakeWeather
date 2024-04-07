@@ -7,7 +7,9 @@
 @light-blue-background: hsl(240, 100%, 40%);
 @light-red-background: hsl(0, 100%, 41%);
 @light-orange-background: hsl(25, 100%, 45%);
+@yellow-background: hsl(99, 90%, 35%);
 @popup-lower-background-color: hsla(0, 0%, 10%, 0.8);
+
 
 /*Dimensions*/
 @lack-of-something: 0;
@@ -19,6 +21,7 @@
 @increased-indentation: 3rem;
 @Fresh-weather-button-width: 10rem;
 @window-opened-width: 14rem;
+@mega-indentation: 30rem;
 
 
 /* Images */
@@ -35,7 +38,7 @@ body {
 }
 
 /* Centered text */
-.centered {
+.text-centered {
   text-align: center;
 }
 
@@ -232,10 +235,46 @@ body {
 
   position: absolute;
 
-  right: 0.5rem;
-  top: 0.5rem;
+  right: @table-edge-offset;
+  top: @table-edge-offset;
 
   cursor: pointer;
 }
 
 /* Popups end here */
+
+/* Registration or login pages */
+
+.full-width-flex-element-register-or-login {
+  display: flex;
+  justify-content: center;
+}
+
+/* Add weather area*/
+.user-registration-window {
+  background: @yellow-background;
+  border: @reduced-indentation double @light-green-frame;
+  border-radius: @table-edge-offset;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  padding: @normal-indentation;
+  max-width: @mega-indentation;
+  height: min-content;
+  overflow-y: auto;
+  gap: @table-edge-offset;
+  display: grid;
+}
+
+.font-registration {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.registration-bottom-link {
+  color: @light-color-for-text;
+  font-weight: 600;
+}
+/* Registration or login page end here */

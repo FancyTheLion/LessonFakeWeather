@@ -226,7 +226,7 @@ async function IsPressureValid(pressure)
 
       <!-- Date and time -->
       <div>
-        <div class="centered form-input-caption">
+        <div class="text-centered form-input-caption">
           Введите дату и время измерения погоды:
         </div>
 
@@ -240,7 +240,7 @@ async function IsPressureValid(pressure)
 
       <!-- Temperature -->
       <div>
-        <div class="centered form-input-caption">
+        <div class="text-centered form-input-caption">
           Введите температуру:
         </div>
 
@@ -255,7 +255,7 @@ async function IsPressureValid(pressure)
 
       <!-- Cloudiness -->
       <div>
-        <div class="centered form-input-caption">
+        <div class="text-centered form-input-caption">
           Введите облачность:
         </div>
 
@@ -269,7 +269,7 @@ async function IsPressureValid(pressure)
       </div>
 
       <div>
-        <div class="centered form-input-caption">
+        <div class="text-centered form-input-caption">
           Введите влажность:
         </div>
 
@@ -283,7 +283,7 @@ async function IsPressureValid(pressure)
       </div>
 
       <div>
-        <div class="centered form-input-caption">
+        <div class="text-centered form-input-caption">
           Введите атмосферное давление:
         </div>
 
@@ -297,7 +297,7 @@ async function IsPressureValid(pressure)
       </div>
 
       <div>
-        <div class="centered form-input-caption">
+        <div class="text-centered form-input-caption">
           Загрузите фото погоды:
         </div>
 
