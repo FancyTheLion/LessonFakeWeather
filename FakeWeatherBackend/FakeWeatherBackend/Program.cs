@@ -81,7 +81,7 @@ public class Program
         builder.Services.Configure<IdentityOptions>(options =>
         {
             // Password settings
-            options.Password.RequiredLength = 8;
+            options.Password.RequiredLength = 6;
             options.Password.RequireNonAlphanumeric = false;
             options.Password.RequireDigit = false;
             options.Password.RequireUppercase = false;

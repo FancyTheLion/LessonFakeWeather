@@ -7,9 +7,10 @@
 @light-blue-background: hsl(240, 100%, 40%);
 @light-red-background: hsl(0, 100%, 41%);
 @light-orange-background: hsl(25, 100%, 45%);
-@yellow-background: hsl(99, 90%, 35%);
+@green-background: hsl(99, 90%, 35%);
 @popup-lower-background-color: hsla(0, 0%, 10%, 0.8);
 
+@alert-color: hsl(0, 100%, 40%);
 
 /*Dimensions*/
 @lack-of-something: 0;
@@ -22,6 +23,11 @@
 @Fresh-weather-button-width: 10rem;
 @window-opened-width: 14rem;
 @mega-indentation: 30rem;
+
+@thick-border-width: 0.3rem;
+
+@small-border-radius: 0.3rem;
+@normal-border-radius: 0.5rem;
 
 
 /* Images */
@@ -54,14 +60,14 @@ body {
 
 /* List with weather*/
 .weather-list {
-  border: @reduced-indentation solid @light-green-frame;
+  border: @thick-border-width solid @light-green-frame;
   border-radius: @almost-minimal-indentation;
   width: max-content;
 }
 
 /* Add weather area*/
 .add-weather {
-  border: @reduced-indentation double @light-green-frame;
+  border: @thick-border-width double @light-green-frame;
   border-radius: @reduced-indentation;
   width: max-content;
 
@@ -245,29 +251,34 @@ body {
 
 /* Registration or login pages */
 
-.full-width-flex-element-register-or-login {
+.register-form-container {
   display: flex;
   justify-content: center;
 }
 
 /* Add weather area*/
-.user-registration-window {
-  background: @yellow-background;
-  border: @reduced-indentation double @light-green-frame;
-  border-radius: @table-edge-offset;
+.register-form {
+  background: @green-background;
+
+  border: @thick-border-width double @light-green-frame;
+  border-radius: @normal-border-radius;
+
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
+
   padding: @normal-indentation;
   max-width: @mega-indentation;
+
   height: min-content;
   overflow-y: auto;
+
   gap: @table-edge-offset;
   display: grid;
 }
 
-.font-registration {
+.register-form-title {
   text-align: center;
   font-size: 1.5rem;
   font-weight: 700;
@@ -276,5 +287,14 @@ body {
 .registration-bottom-link {
   color: @light-color-for-text;
   font-weight: 600;
+}
+
+.registration-from-valid-field {
+
+}
+
+.registration-form-invalid-field {
+  border: @alert-color solid @thick-border-width;
+  border-radius: @small-border-radius;
 }
 /* Registration or login page end here */
