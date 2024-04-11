@@ -1,7 +1,7 @@
 <script setup>
 
-import {onMounted, reactive} from "vue";
-import {required} from "@vuelidate/validators";
+import {onMounted, reactive } from "vue";
+import {helpers, required} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import router from "@/router";
 
@@ -16,7 +16,8 @@ import router from "@/router";
   const registerFormRules = {
     login: {
       $autoDirty: true,
-      required
+      required,
+      isLoginFree: helpers.withAsync(IsLoginFree)
     },
 
     password: {
@@ -93,6 +94,27 @@ import router from "@/router";
     }
   }
 
+  async function IsLoginFree(login)
+  {
+    const response = await fetch(apiBaseUrl + "/api/Users/IsLoginTaken", {
+      method: "POST",
+      body: JSON.stringify({
+        "checkData": {
+          "login": login,
+        }
+      }),
+      headers: { "Content-Type": "application/json" }
+    })
+
+    if (response.status !== 200)
+    {
+      alert("Ошибка при проверке занятости логина!")
+      return false
+    }
+
+    return !(await response.json()).checkResult.isTaken
+  }
+
 </script>
 
 <template>
@@ -109,15 +131,27 @@ import router from "@/router";
         <div> <!--Я отсек для ввода инфы о логине-->
 
           <div>
-            Введите логин:
+
+            <div>
+              Введите логин:
+            </div>
+
+            <div
+                v-if="registerFormValidator.login.isLoginFree.$invalid"
+                class="registration-login-taken-message">
+              Этот логин занят
+            </div>
+
           </div>
 
-          <input
-              :class="(registerFormValidator.login.$error) ? 'registration-form-invalid-field' : 'registration-from-valid-field'"
-              type="text"
-              placeholder="Введите сюда логин"
-              v-model="registerFormData.login"
-          />
+          <div>
+            <input
+                :class="(registerFormValidator.login.$error) ? 'registration-form-invalid-field' : 'registration-from-valid-field'"
+                type="text"
+                placeholder="Введите логин"
+                v-model="registerFormData.login"
+            />
+          </div>
 
         </div>
 
@@ -130,7 +164,7 @@ import router from "@/router";
           <input
               :class="(registerFormValidator.password.$error) ? 'registration-form-invalid-field' : 'registration-from-valid-field'"
               type="password"
-              placeholder="Введите сюда пароль"
+              placeholder="Введите пароль"
               v-model="registerFormData.password" />
 
         </div>
