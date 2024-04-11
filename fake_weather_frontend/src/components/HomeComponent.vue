@@ -116,6 +116,7 @@
   <LoadingSymbol v-if="isLoading"/>
 
   <div v-if="!isLoading">
+
     <h1 class="left underline-text" >Погода от Тигона</h1>
 
     <div class="flex-container">
@@ -196,6 +197,20 @@
           />
         </div>
 
+      </div>
+
+      <div>
+        <div> <!--Вопросительная ссылка-->
+
+          <a class="registration-bottom-link" href="/login" title="Вход на сайт">Войти?</a>
+
+        </div>
+
+        <div> <!--Вопросительная ссылка-->
+
+          <a class="registration-bottom-link" href="/register" title="Вход на сайт">Зарегистрироваться?</a>
+
+        </div>
       </div>
 
     </div>

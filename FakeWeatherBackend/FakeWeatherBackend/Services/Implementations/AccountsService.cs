@@ -95,4 +95,9 @@ public class AccountsService : IAccountsService
 
         return new LoginResultDto(true, new JwtSecurityTokenHandler().WriteToken(token), token.ValidTo);
     }
+
+    public async Task<bool> IsUserExistByLoginAsync(string login)
+    {
+        return await _userManager.FindByNameAsync(login) != null;
+    }
 }

@@ -16,4 +16,9 @@ public interface IAccountsService
     /// Try to log-in user
     /// </summary>
     Task<LoginResultDto> LoginAsync(LoginDto loginData);
+    
+    /// <summary>
+    /// Is user with given login exists?
+    /// </summary>
+    Task<bool> IsUserExistByLoginAsync(string login);
 }

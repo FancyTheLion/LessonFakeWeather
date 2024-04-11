@@ -76,5 +76,28 @@ public class AccountsController : ControllerBase
         
         return Ok(new LoginResponse(result));
     }
+    
+    /// <summary>
+    /// Check if login is taken
+    /// </summary>
+    [AllowAnonymous]
+    [HttpPost]
+    [Route("api/Users/IsLoginTaken")]
+    public async Task<ActionResult<CheckIfLoginTakenResponse>> IsLoginTakenAsync([FromBody] CheckIfLoginTakenRequest request)
+    {
+        if (request == null)
+        {
+            return BadRequest();
+        }
+
+        if (request.CheckData == null)
+        {
+            return BadRequest("Check data must not be null.");
+        }
+
+        var isTaken = await _accountsService.IsUserExistByLoginAsync(request.CheckData.Login);
+
+        return Ok(new CheckIfLoginTakenResponse(new CheckIfLoginTakenResultDto(isTaken)));
+    }
 
 }
