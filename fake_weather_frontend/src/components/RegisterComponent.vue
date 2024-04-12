@@ -2,8 +2,8 @@
 
 import {onMounted, reactive } from "vue";
 import {helpers, required} from "@vuelidate/validators";
-import useVuelidate from "@vuelidate/core";
 import router from "@/router";
+import useVuelidate from "@vuelidate/core";
 
   const apiBaseUrl = process.env.VUE_APP_API_URL
 
@@ -94,6 +94,7 @@ import router from "@/router";
     }
   }
 
+// eslint-disable-next-line no-unused-vars
   async function IsLoginFree(login)
   {
     const response = await fetch(apiBaseUrl + "/api/Users/IsLoginTaken", {
@@ -200,6 +201,16 @@ import router from "@/router";
               <a class="registration-bottom-link" href="/login" title="Вход на сайт">Вы уже зарегистрированы?</a>
 
           </div>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <div> <!--Я - ссылка-->
+
+          <a class="login-bottom-link" href="//localhost:8080" title="Переход на главную странцу">Вернуться на главную? </a>
 
         </div>
 

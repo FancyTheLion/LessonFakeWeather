@@ -37,7 +37,7 @@
 
         <div> <!--Я отсек для запоминания логина-->
 
-          Запомнить меня?
+          Запомни меня..
 
           <input type="checkbox">
 
@@ -55,15 +55,25 @@
 
           <div> <!--Я - вопросительная ссылка-->
 
-            <a class="login-bottom-link" href="" title="Вход на сайт">Что то с паролем?</a>
+            <a class="login-bottom-link" href="" title="Что то случилось с паролем?">Что то с паролем?</a>
 
           </div>
 
           <div> <!--Я - вопросительная ссылка-->
 
-            <a class="login-bottom-link" href="/register" title="Вход на сайт">Зарегистрироваться?</a>
+            <a class="login-bottom-link" href="/register" title="Хотите зарегистрироваться?">Зарегистрироваться?</a>
 
           </div>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <div> <!--Я - ссылка-->
+
+          <a class="login-bottom-link" href="//localhost:8080" title="Переход на главную странцу">Вернуться на главную? </a>
 
         </div>
 

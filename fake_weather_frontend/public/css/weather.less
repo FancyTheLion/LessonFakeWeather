@@ -1,24 +1,28 @@
 /*Colors*/
-@page-background-color-1: hsl(217, 100%, 62%);
 @light-color-for-text: hsl(233, 100%, 93%);
 @weather-photo-border-color: hsl(240, 100%, 83%);
 @light-green-frame: hsl(117, 100%, 60%);
+
+@page-background-color-1: hsl(217, 100%, 62%);
 @dark-blue-background: hsl(240, 100%, 25%);
 @light-blue-background: hsl(240, 100%, 40%);
 @light-red-background: hsl(0, 100%, 41%);
 @light-orange-background: hsl(25, 100%, 45%);
 @green-background: hsl(99, 90%, 35%);
+
 @popup-lower-background-color: hsla(0, 0%, 10%, 0.8);
 
 @alert-color: hsl(0, 100%, 40%);
 
 /*Dimensions*/
-@lack-of-something: 0;
+@absence-of-indentation: 0;
 @smallest-indentation: 0.1rem;
 @almost-minimal-indentation: 0.2rem;
-@reduced-indentation: 0.3rem;
-@normal-indentation: 0.4rem;
-@table-edge-offset: 0.5rem;
+@indent-a-little-more: 0.3rem;
+@reduced-indentation: 0.4rem;
+@even-more-indentation: 0.5rem;
+@Normal-indentation-1: 1rem;
+@Normal-indentation-2: 1.5rem;
 @increased-indentation: 3rem;
 @Fresh-weather-button-width: 10rem;
 @window-opened-width: 14rem;
@@ -48,14 +52,15 @@ body {
   text-align: center;
 }
 
+/* Offset text left */
 .left {
   text-align: left;
 }
 
 /* Loading symbol image */
 .loading-symbol-image {
-  width: @normal-indentation;
-  height: @normal-indentation;
+  width: @reduced-indentation;
+  height: @reduced-indentation;
 }
 
 /* List with weather*/
@@ -68,40 +73,40 @@ body {
 /* Add weather area*/
 .add-weather {
   border: @thick-border-width double @light-green-frame;
-  border-radius: @reduced-indentation;
+  border-radius: @indent-a-little-more;
   width: max-content;
 
-  padding: @table-edge-offset;
+  padding: @even-more-indentation;
 
   display: flex;
   flex-direction: column;
-  gap: @table-edge-offset;
+  gap: @even-more-indentation;
 }
 
 /* Weather list element */
 .weather-list-element {
-  padding-top: @lack-of-something;
-  padding-bottom: @lack-of-something;
-  padding-left: @normal-indentation;
-  padding-right: @normal-indentation;
+  padding-top: @absence-of-indentation;
+  padding-bottom: @absence-of-indentation;
+  padding-left: @reduced-indentation;
+  padding-right: @reduced-indentation;
 }
 
 /*Even numbered weather list items */
 .weather-list-element-even:nth-child(even) {
   background: @dark-blue-background;
-  padding-top: @table-edge-offset;
-  padding-right: @table-edge-offset;
-  padding-bottom: @table-edge-offset;
-  padding-left: @table-edge-offset;
+  padding-top: @even-more-indentation;
+  padding-right: @even-more-indentation;
+  padding-bottom: @even-more-indentation;
+  padding-left: @even-more-indentation;
 }
 
 /* Odd weather list items */
 .weather-list-element-odd:nth-child(odd) {
   background: @light-blue-background;
-  padding-top: @table-edge-offset;
-  padding-right: @table-edge-offset;
-  padding-bottom: @table-edge-offset;
-  padding-left: @table-edge-offset;
+  padding-top: @even-more-indentation;
+  padding-right: @even-more-indentation;
+  padding-bottom: @even-more-indentation;
+  padding-left: @even-more-indentation;
 }
 
 /* Cloudiness icon */
@@ -140,7 +145,7 @@ body {
 
 /* Fresh weather button header */
 .details-summary {
-  padding: @reduced-indentation;
+  padding: @indent-a-little-more;
   width: @Fresh-weather-button-width;
   background-color: @light-red-background;
   border: none;
@@ -154,8 +159,8 @@ body {
 .details-window {
   width: @window-opened-width;
   background-color: @light-orange-background;
-  padding: @reduced-indentation;
-  margin: @lack-of-something;
+  padding: @indent-a-little-more;
+  margin: @absence-of-indentation;
   box-shadow: @smallest-indentation @smallest-indentation @smallest-indentation @light-color-for-text;
   text-align: left;
   border-radius: @almost-minimal-indentation
@@ -183,7 +188,7 @@ body {
 
 /* Add weather component resides here*/
 .add-weather-container {
-  margin-left: @normal-indentation;
+  margin-left: @reduced-indentation;
 }
 
 /* Weather photo preview */
@@ -192,6 +197,11 @@ body {
 
   border: solid @weather-photo-border-width @weather-photo-border-color;
   border-radius: @weather-photo-border-radiuses;
+}
+
+.link-on-home-page {
+  color: @light-color-for-text;
+  font-weight: 600;
 }
 
 /* Popups begin here */
@@ -237,12 +247,12 @@ body {
 .popup-close-button {
   width: 2rem;
   height: 2rem;
-  border-radius: 1rem;
+  border-radius: @Normal-indentation-1;
 
   position: absolute;
 
-  right: @table-edge-offset;
-  top: @table-edge-offset;
+  right: @even-more-indentation;
+  top: @even-more-indentation;
 
   cursor: pointer;
 }
@@ -250,13 +260,12 @@ body {
 /* Popups end here */
 
 /* Registration pages */
-
 .register-form-container {
   display: flex;
   justify-content: center;
 }
 
-/* Add weather area*/
+/* Registration form */
 .register-form {
   background: @green-background;
 
@@ -268,22 +277,24 @@ body {
   left: 50%;
   transform: translate(-50%,-50%);
 
-  padding: @normal-indentation;
+  padding: @reduced-indentation;
   max-width: @mega-indentation;
 
   height: min-content;
   overflow-y: auto;
 
-  gap: @table-edge-offset;
+  gap: @even-more-indentation;
   display: grid;
 }
 
+/* Registration Header */
 .register-form-title {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: @Normal-indentation-2;
   font-weight: 700;
 }
 
+/* Registration link */
 .registration-bottom-link {
   color: @light-color-for-text;
   font-weight: 600;
@@ -293,20 +304,22 @@ body {
 
 }
 
+/* Message in registration that something is wrong */
 .registration-form-invalid-field {
   border: @alert-color solid @thick-border-width;
   border-radius: @small-border-radius;
 }
 /* Registration page end here */
 
-/* Registration pages */
+/* Login pages */
 
+/* Container where login occurs */
 .login-form-container {
   display: flex;
   justify-content: center;
 }
 
-/* Add weather area*/
+/* Login form */
 .login-form {
   background: @green-background;
 
@@ -318,22 +331,23 @@ body {
   left: 50%;
   transform: translate(-50%,-50%);
 
-  padding: @normal-indentation;
+  padding: @reduced-indentation;
   max-width: @mega-indentation;
 
   height: min-content;
   overflow-y: auto;
 
-  gap: @table-edge-offset;
+  gap: @even-more-indentation;
   display: grid;
 }
 
+/* Login form title */
 .login-form-title {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: @Normal-indentation-2;
   font-weight: 700;
 }
-
+/* Login link */
 .login-bottom-link {
   color: @light-color-for-text;
   font-weight: 600;
@@ -343,6 +357,7 @@ body {
 
 }
 
+/* Message in login that something is wrong */
 .login-form-invalid-field {
   border: @alert-color solid @thick-border-width;
   border-radius: @small-border-radius;
@@ -351,4 +366,4 @@ body {
 .registration-login-taken-message {
   color: @alert-color
 }
-/* Registration page end here */
+/* Login page end here */

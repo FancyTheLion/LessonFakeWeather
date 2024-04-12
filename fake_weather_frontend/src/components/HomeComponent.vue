@@ -202,13 +202,13 @@
       <div>
         <div> <!--Вопросительная ссылка-->
 
-          <a class="registration-bottom-link" href="/login" title="Вход на сайт">Войти?</a>
+          <a class="link-on-home-page" href="/login" title="Вход на сайт">Войти?</a>
 
         </div>
 
         <div> <!--Вопросительная ссылка-->
 
-          <a class="registration-bottom-link" href="/register" title="Вход на сайт">Зарегистрироваться?</a>
+          <a class="link-on-home-page" href="/register" title="Вход на сайт">Зарегистрироваться?</a>
 
         </div>
       </div>

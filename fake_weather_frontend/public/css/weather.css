@@ -10,6 +10,7 @@ body {
 .text-centered {
   text-align: center;
 }
+/* Offset text left */
 .left {
   text-align: left;
 }
@@ -133,6 +134,10 @@ body {
   border: solid 0.2rem hsl(240, 100%, 83%);
   border-radius: 1rem;
 }
+.link-on-home-page {
+  color: hsl(233, 100%, 93%);
+  font-weight: 600;
+}
 /* Popups begin here */
 /* Popup lower layer */
 .popup-lower-layer {
@@ -183,7 +188,7 @@ body {
   display: flex;
   justify-content: center;
 }
-/* Add weather area*/
+/* Registration form */
 .register-form {
   background: hsl(99, 90%, 35%);
   border: 0.3rem double hsl(117, 100%, 60%);
@@ -199,26 +204,30 @@ body {
   gap: 0.5rem;
   display: grid;
 }
+/* Registration Header */
 .register-form-title {
   text-align: center;
   font-size: 1.5rem;
   font-weight: 700;
 }
+/* Registration link */
 .registration-bottom-link {
   color: hsl(233, 100%, 93%);
   font-weight: 600;
 }
+/* Message in registration that something is wrong */
 .registration-form-invalid-field {
   border: hsl(0, 100%, 40%) solid 0.3rem;
   border-radius: 0.3rem;
 }
 /* Registration page end here */
-/* Registration pages */
+/* Login pages */
+/* Container where login occurs */
 .login-form-container {
   display: flex;
   justify-content: center;
 }
-/* Add weather area*/
+/* Login form */
 .login-form {
   background: hsl(99, 90%, 35%);
   border: 0.3rem double hsl(117, 100%, 60%);
@@ -234,15 +243,18 @@ body {
   gap: 0.5rem;
   display: grid;
 }
+/* Login form title */
 .login-form-title {
   text-align: center;
   font-size: 1.5rem;
   font-weight: 700;
 }
+/* Login link */
 .login-bottom-link {
   color: hsl(233, 100%, 93%);
   font-weight: 600;
 }
+/* Message in login that something is wrong */
 .login-form-invalid-field {
   border: hsl(0, 100%, 40%) solid 0.3rem;
   border-radius: 0.3rem;
@@ -250,5 +262,5 @@ body {
 .registration-login-taken-message {
   color: hsl(0, 100%, 40%);
 }
-/* Registration page end here */
+/* Login page end here */
 /*# sourceMappingURL=weather.css.map */
