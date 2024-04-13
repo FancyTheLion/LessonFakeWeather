@@ -139,7 +139,7 @@ import useVuelidate from "@vuelidate/core";
 
             <div
                 v-if="registerFormValidator.login.isLoginFree.$invalid"
-                class="registration-login-taken-message">
+                class="register-form-login-taken-message">
               Этот логин занят
             </div>
 
@@ -198,7 +198,7 @@ import useVuelidate from "@vuelidate/core";
 
           <div> <!--Я - хлебушек (вопросительная батонка)-->
 
-              <a class="registration-bottom-link" href="/login" title="Вход на сайт">Вы уже зарегистрированы?</a>
+              <a class="register-form-login-link" href="/login" title="Вход на сайт">Вы уже зарегистрированы?</a>
 
           </div>
 

@@ -126,18 +126,18 @@
         <div
             v-if="!isShowDetailedWeather"
             @click="async () => await ShowDetailedWeather()"
-            class="details-summary">
+            class="latest-weather-summary">
           Показать свежую погоду
         </div>
 
         <div v-if="isShowDetailedWeather">
           <div
               @click="async () => await HideDetailedWeather()"
-              class="details-summary">
+              class="latest-weather-summary">
             Скрыть свежую погоду
           </div>
 
-          <div class="details-window">
+          <div class="latest-weather-details">
 
             <div v-if="isNoWeathers">
               Нет последней погоды!
