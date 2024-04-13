@@ -94,7 +94,6 @@ import useVuelidate from "@vuelidate/core";
     }
   }
 
-// eslint-disable-next-line no-unused-vars
   async function IsLoginFree(login)
   {
     const response = await fetch(apiBaseUrl + "/api/Users/IsLoginTaken", {

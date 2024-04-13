@@ -9,6 +9,7 @@
 /* Fonts */
 /* Cloudiness icon */
 /* Latest weather */
+/* Register form */
 /* Login form */
 /* Images */
 /* Body */
@@ -199,7 +200,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 0.4rem;
-  max-width: 0.4rem;
+  max-width: 30rem;
   height: min-content;
   overflow-y: auto;
   gap: 0.5rem;
@@ -260,7 +261,8 @@ body {
   font-weight: 600;
   /* Move this values to constants */
 }
-/* Message in login that something is wrong */
+/* Marks valid (with correct data) fields in login form */
+/* Marks invalid (with incorrect data) fields in login form */
 .login-form-invalid-field {
   border: hsl(0, 100%, 40%) solid 0.3rem;
   border-radius: 0.3rem;

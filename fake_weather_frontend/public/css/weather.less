@@ -55,6 +55,9 @@
 @latest-weather-button-width: 10rem;
 @latest-weather-details-width: 14rem;
 
+/* Register form */
+@register-form-max-width: 30rem;
+
 /* Login form */
 @login-form-max-width: 30rem;
 
@@ -292,7 +295,7 @@ body {
   transform: translate(-50%,-50%);
 
   padding: @padding-smaller1;
-  max-width: @padding-smaller1;
+  max-width: @register-form-max-width;
 
   height: min-content;
   overflow-y: auto;
@@ -372,11 +375,12 @@ body {
   font-weight: 600; /* Move this values to constants */
 }
 
+/* Marks valid (with correct data) fields in login form */
 .login-from-valid-field {
 
 }
 
-/* Message in login that something is wrong */
+/* Marks invalid (with incorrect data) fields in login form */
 .login-form-invalid-field {
   border: @alert-color solid @border-width-thick;
   border-radius: @border-radius-small;

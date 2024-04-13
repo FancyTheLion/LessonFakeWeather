@@ -1,4 +1,41 @@
 <script setup>
+import {onMounted, reactive} from "vue";
+  import {required} from "@vuelidate/validators";
+  import useVuelidate from "@vuelidate/core";
+  import {AuthLogCreatureIn} from "@/js/Auth";
+
+  const logInFormData = reactive({
+    login: "",
+    password: "",
+    isRememberMe: false
+  })
+
+  const logInFormRules = {
+    login: {
+      $autoDirty: true,
+      required
+    },
+    password: {
+      $autoDirty: true,
+      required
+    }
+  }
+
+  const logInFormValidator = useVuelidate(logInFormRules, logInFormData)
+
+  onMounted(async () =>
+  {
+    await OnLoad();
+  })
+
+  async function OnLoad()
+  {
+    await logInFormValidator.value.$validate()
+  }
+
+  async function DoLogInAsync() {
+    await AuthLogCreatureIn(logInFormData.login, logInFormData.password)
+  }
 
 </script>
 
@@ -20,6 +57,10 @@
           </div>
 
           <input
+              :class="(logInFormValidator.login.$error) ? 'login-form-invalid-field' : 'login-from-valid-field'"
+              type="text"
+              placeholder="Имя пользователя"
+              v-model="logInFormData.login"
           />
 
         </div>
@@ -31,6 +72,10 @@
           </div>
 
           <input
+              :class="(logInFormValidator.password.$error) ? 'login-form-invalid-field' : 'login-from-valid-field'"
+              type="password"
+              placeholder="Пароль"
+              v-model="logInFormData.password"
           />
 
         </div>
@@ -39,14 +84,20 @@
 
           Запомни меня..
 
-          <input type="checkbox">
+          <input
+              type="checkbox"
+              v-model="logInFormData.isRememberMe"
+          />
 
         </div>
 
         <div> <!--Я - хлебушек (батонка для входа)-->
 
-          <button>
-            Я батон?
+          <button
+            type="button"
+            :disabled="logInFormValidator.$errors.length > 0"
+            @click="async () => await DoLogInAsync()">
+            Войти
           </button>
 
         </div>
