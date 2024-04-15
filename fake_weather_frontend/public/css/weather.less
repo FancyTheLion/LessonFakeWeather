@@ -44,6 +44,9 @@
 /* Popups */
 @popup-close-button-shift-x: 0.5rem;
 @popup-close-button-shift-y: 0.5rem;
+@popup-close-button-image: 2rem;
+@popup-layer-1: 1000;
+@popup-layer-2: 2000;
 
 /* Fonts */
 @font-size-bigger1: 1.5rem;
@@ -63,6 +66,14 @@
 
 /* Images */
 @weather-photo-max-width: 10rem;
+@centering-the-image-horizontally-1: 100vw;
+@centering-the-image-horizontally-2: 90vw;
+@centering-the-image-vertically-1: 100vh;
+@centering-the-image-vertically-2: 90vh;
+
+/* Text */
+@text-thickness-1: 600;
+@text-thickness-2: 700;
 
 /* Body */
 body {
@@ -218,7 +229,7 @@ body {
 
 .link-on-home-page {
   color: @light-color-for-text;
-  font-weight: 600;
+  font-weight: @text-thickness-1;
 }
 
 /* Popups begin here */
@@ -228,9 +239,9 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1000;
+  width: @centering-the-image-horizontally-1;
+  height: @centering-the-image-vertically-1;
+  z-index: @popup-layer-1;
   background: @popup-lower-background-color;
 }
 
@@ -239,9 +250,9 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 2000;
+  width: @centering-the-image-horizontally-1;
+  height: @centering-the-image-vertically-1;
+  z-index: @popup-layer-2;
 }
 
 /* Popup image section */
@@ -256,14 +267,14 @@ body {
 /* Popup image */
 .popup-image {
   border-radius: @border-radius-big;
-  max-width: 90vw;
-  max-height: 90vh;
+  max-width: @centering-the-image-horizontally-2;
+  max-height: @centering-the-image-vertically-2;
 }
 
 /* Popup close button image */
 .popup-close-button {
-  width: 2rem;
-  height: 2rem;
+  width: @popup-close-button-image;
+  height: @popup-close-button-image;
   border-radius: @border-radius-big;
 
   position: absolute;
@@ -308,13 +319,13 @@ body {
 .register-form-title {
   text-align: center;
   font-size: @font-size-bigger1;
-  font-weight: 700;
+  font-weight: @text-thickness-2;
 }
 
 /* Registration form login link */
 .register-form-login-link {
   color: @light-color-for-text;
-  font-weight: 600;
+  font-weight: @text-thickness-1;
 }
 
 .register-from-valid-field {
@@ -367,12 +378,12 @@ body {
 .login-form-title {
   text-align: center;
   font-size: @font-size-bigger1;
-  font-weight: 700; /* Move this values to constants */
+  font-weight: @text-thickness-2;
 }
 /* Login link */
 .login-bottom-link {
   color: @light-color-for-text;
-  font-weight: 600; /* Move this values to constants */
+  font-weight: @text-thickness-1;
 }
 
 /* Marks valid (with correct data) fields in login form */

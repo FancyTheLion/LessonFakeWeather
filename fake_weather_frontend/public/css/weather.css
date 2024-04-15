@@ -12,6 +12,7 @@
 /* Register form */
 /* Login form */
 /* Images */
+/* Text */
 /* Body */
 body {
   background-color: hsl(217, 100%, 62%);
@@ -253,13 +254,11 @@ body {
   text-align: center;
   font-size: 1.5rem;
   font-weight: 700;
-  /* Move this values to constants */
 }
 /* Login link */
 .login-bottom-link {
   color: hsl(233, 100%, 93%);
   font-weight: 600;
-  /* Move this values to constants */
 }
 /* Marks valid (with correct data) fields in login form */
 /* Marks invalid (with incorrect data) fields in login form */
