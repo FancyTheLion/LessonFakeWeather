@@ -117,7 +117,26 @@
 
   <div v-if="!isLoading">
 
-    <h1 class="left underline-text" >Погода от Тигона</h1>
+    <div class="flex-container-header"><!-- Контейнер с заголовком и ссылками перехода -->
+
+      <div class="full-width-flex-element-header"> <!-- Только заголовое -->
+        <h1 class="text-left underline-text text-size-home-header"> Погода от Тигона</h1>
+      </div>
+
+      <div class="full-width-flex-element-link text-right text-size-home-link">
+
+        <h1 >
+
+          <a class="link-on-home-page" href="/login" title="Вход на сайт">Войти</a>
+          /
+          <a class="link-on-home-page" href="/register" title="Регистрация на сайте">Зарегистрироваться</a>
+
+        </h1>
+
+      </div>
+
+
+    </div>
 
     <div class="flex-container">
 
@@ -199,19 +218,19 @@
 
       </div>
 
-      <div>
-        <div> <!--Вопросительная ссылка-->
+<!--      <div>
+        <div> &lt;!&ndash;Вопросительная ссылка&ndash;&gt;
 
           <a class="link-on-home-page" href="/login" title="Вход на сайт">Войти?</a>
 
         </div>
 
-        <div> <!--Вопросительная ссылка-->
+        <div> &lt;!&ndash;Вопросительная ссылка&ndash;&gt;
 
           <a class="link-on-home-page" href="/register" title="Вход на сайт">Зарегистрироваться?</a>
 
         </div>
-      </div>
+      </div>-->
 
     </div>
 

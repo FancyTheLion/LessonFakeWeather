@@ -222,7 +222,7 @@ async function IsPressureValid(pressure)
   <LoadingSymbol v-if="isLoading" />
 
   <div v-if="!isLoading">
-    <div class="add-weather left">
+    <div class="add-weather text-left">
 
       <!-- Date and time -->
       <div>
