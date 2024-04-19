@@ -4,8 +4,7 @@ import {onMounted, reactive } from "vue";
 import {helpers, required} from "@vuelidate/validators";
 import router from "@/router";
 import useVuelidate from "@vuelidate/core";
-
-  const apiBaseUrl = process.env.VUE_APP_API_URL
+import {WebClientSendPostRequest} from "@/js/LibWebClient";
 
   const registerFormData = reactive({
     login: "",
@@ -51,15 +50,13 @@ import useVuelidate from "@vuelidate/core";
 
   async function DoRegisterAsync()
   {
-    const response = await fetch(apiBaseUrl + "/api/Users/Register", {
-      method: "POST",
-      body: JSON.stringify({
+    const response = await WebClientSendPostRequest(
+        "/api/Users/Register",
+        {
         "request": {
           "login": registerFormData.login,
           "password": registerFormData.password
         }
-      }),
-      headers: { "Content-Type": "application/json" }
     })
 
     if (response.status !== 200)
@@ -96,14 +93,12 @@ import useVuelidate from "@vuelidate/core";
 
   async function IsLoginFree(login)
   {
-    const response = await fetch(apiBaseUrl + "/api/Users/IsLoginTaken", {
-      method: "POST",
-      body: JSON.stringify({
+    const response = await WebClientSendPostRequest(
+        "/api/Users/IsLoginTaken",
+        {
         "checkData": {
           "login": login,
         }
-      }),
-      headers: { "Content-Type": "application/json" }
     })
 
     if (response.status !== 200)

@@ -6,8 +6,7 @@
   import AddWeatherComponent from "@/components/AddWeatherComponent.vue";
   import CloudinessComponent from "@/components/CloudinessComponent.vue";
   import WeatherPhotoComponent from "@/components/WeatherPhotoComponent.vue";
-
-  const apiBaseUrl = process.env.VUE_APP_API_URL
+  import {WebClientSendGetRequest} from "@/js/LibWebClient";
 
   const isLoading = ref(true)
 
@@ -34,9 +33,9 @@
   // Called when page is loaded
   async function OnLoad()
   {
-    const lastWeatherReferenceResponse = await (await fetch(apiBaseUrl + "/api/WeatherReference/Last", {
-      method: 'GET'
-    })).json()
+    const lastWeatherReferenceResponse = await (await WebClientSendGetRequest(
+        "/api/WeatherReference/Last"))
+        .json()
 
     if (lastWeatherReferenceResponse.isNoReference === true)
     {
@@ -48,9 +47,9 @@
 
     const lastWeatherReference = lastWeatherReferenceResponse.weatherReference.weatherId
 
-    const lastWeatherResponse = await (await fetch(apiBaseUrl + "/api/Weather/" + lastWeatherReference, {
-      method: 'GET'
-    })).json()
+    const lastWeatherResponse = await (await WebClientSendGetRequest(
+        "/api/Weather/" + lastWeatherReference,
+        )).json()
 
     lastWeatherTime.value = moment(lastWeatherResponse
         .weather
@@ -102,9 +101,9 @@
 
   async function LoadLastWeatherReferences()
   {
-    const lastWeathersReferencesResponse = await (await fetch(apiBaseUrl + "/api/WeatherReferences", {
-      method: "GET"
-    })).json()
+    const lastWeathersReferencesResponse = await (await WebClientSendGetRequest(
+        "/api/WeatherReferences"))
+        .json()
 
     lastWeathersReferences.value = lastWeathersReferencesResponse.weatherReferences
   }

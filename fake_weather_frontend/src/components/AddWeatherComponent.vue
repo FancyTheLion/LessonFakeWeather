@@ -4,8 +4,7 @@
   import {helpers, required} from "@vuelidate/validators";
   import useVuelidate from "@vuelidate/core";
   import LoadingSymbol from "@/components/LoadingSymbol.vue";
-
-  const apiBaseUrl = process.env.VUE_APP_API_URL
+  import {WebClientPostForm, WebClientSendGetRequest, WebClientSendPostRequest} from "@/js/LibWebClient";
 
   const isLoading = ref(true)
 
@@ -76,9 +75,10 @@
     addWeatherData.dateTime = null
 
     // Loading weather validation settings
-    weatherValidationSettings.value = (await (await fetch(apiBaseUrl + "/api/Weather/ValidationSettings", {
-      method: 'GET'
-    })).json()).weatherValidationSettings
+    weatherValidationSettings.value = (await (await WebClientSendGetRequest(
+        "/api/Weather/ValidationSettings"))
+        .json())
+        .weatherValidationSettings
 
     await addWeatherFormValidator.value.$validate()
 
@@ -163,11 +163,7 @@ async function IsPressureValid(pressure)
     let uploadFormData = new FormData();
     uploadFormData.append("file", fileToUpload);
 
-    const fileUploadResponse = await fetch(apiBaseUrl + "/api/Files/Upload", {
-      method: 'POST',
-      body: uploadFormData,
-      headers: {}
-    })
+    const fileUploadResponse = await WebClientPostForm("/api/Files/Upload", uploadFormData)
 
     if (fileUploadResponse.status !== 200)
     {
@@ -178,9 +174,9 @@ async function IsPressureValid(pressure)
     const uploadedFileId = (await fileUploadResponse.json()).fileInfo.id
 
     // Sending the weather
-    const response = await fetch(apiBaseUrl + "/api/Weather/Add", {
-      method: "POST",
-      body: JSON.stringify({
+    const response = await WebClientSendPostRequest(
+        "/api/Weather/Add",
+        {
         "weatherToAdd": {
           "timestamp": new Date(addWeatherData.dateTime).toISOString(),
           "temperature": addWeatherData.temperature,
@@ -189,9 +185,7 @@ async function IsPressureValid(pressure)
           "pressure": addWeatherData.pressure,
           "photoId": uploadedFileId
         }
-      }),
-      headers: { "Content-Type": "application/json" }
-    })
+      })
 
     if (response.status === 200)
     {
