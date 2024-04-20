@@ -124,10 +124,10 @@ async function AuthRefreshToken()
 
     const token = await AuthGetToken()
 
-    /* Проверка на _наличие_ токена */
+    /* Checking for token validity */
     if (token === null || (Date.parse(token.expiration) - Date.now() < remainingTokenLifetimeToRefresh))
     {
-        /* Если токена нет, мы должны его получить */
+        /* If there is no token, we must get it */
         const tokenFromBackend = await GetTokenByCredentials(credentials.login, credentials.password)
 
         if (tokenFromBackend === null)
