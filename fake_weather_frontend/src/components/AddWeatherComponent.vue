@@ -5,6 +5,7 @@
   import useVuelidate from "@vuelidate/core";
   import LoadingSymbol from "@/components/LoadingSymbol.vue";
   import {WebClientPostForm, WebClientSendGetRequest, WebClientSendPostRequest} from "@/js/LibWebClient";
+  import {AuthIsCreatureLoggedIn} from "@/js/Auth";
 
   const isLoading = ref(true)
 
@@ -63,6 +64,8 @@
 
   const emit = defineEmits(["weatherAdded"])
 
+  const isLoggedIn = ref(false)
+
   // OnMounted hook
   onMounted(async () =>
   {
@@ -81,6 +84,8 @@
         .weatherValidationSettings
 
     await addWeatherFormValidator.value.$validate()
+
+    isLoggedIn.value = await AuthIsCreatureLoggedIn()
 
     isLoading.value = false
   }
@@ -215,7 +220,7 @@ async function IsPressureValid(pressure)
 <template>
   <LoadingSymbol v-if="isLoading" />
 
-  <div v-if="!isLoading">
+  <div v-if="!isLoading && isLoggedIn">
     <div class="add-weather text-left">
 
       <!-- Date and time -->

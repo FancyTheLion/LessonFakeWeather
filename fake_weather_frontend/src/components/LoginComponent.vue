@@ -34,7 +34,7 @@ import {onMounted, reactive} from "vue";
   }
 
   async function DoLogInAsync() {
-    await AuthLogCreatureIn(logInFormData.login, logInFormData.password)
+    await AuthLogCreatureIn(logInFormData.login, logInFormData.password, logInFormData.isRememberMe)
   }
 
 </script>

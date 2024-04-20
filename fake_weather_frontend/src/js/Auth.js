@@ -2,7 +2,7 @@ import {defineStore} from "pinia";
 import router from "@/router";
 
 // If token remaining lifetime is less than this value we need to refresh token
-const remainingTokenLifetimeToRefresh = 300
+const remainingTokenLifetimeToRefresh = 3600
 
 const apiBaseUrl = process.env.VUE_APP_API_URL
 
@@ -52,6 +52,36 @@ const useAuthNonPersistentStore = defineStore("authNonPersistent", {
     },
 });
 
+// Persistent storage (for Remember Me mode enabled)
+const useAuthPersistentStore = defineStore("authPersistent", {
+    state: () =>
+        ({
+            credentials: null,
+        }),
+
+    getters:
+        {
+            getCredentials: (state) => state.credentials
+        },
+
+    actions:
+        {
+            // Save credentials
+            storeCredentials(credentials)
+            {
+                this.credentials = credentials
+            },
+
+            // Clear credentials
+            clearCredentials()
+            {
+                this.credentials = null
+            }
+        },
+
+    persist: true
+});
+
 // Save token to storage
 async function AuthStoreToken(token, expiration)
 {
@@ -59,12 +89,14 @@ async function AuthStoreToken(token, expiration)
 }
 
 // Save credentials
-async function AuthStoreCredentials(login, password)
+async function AuthStoreCredentials(login, password, isSaveToPersistentStorage)
 {
-    useAuthNonPersistentStore().storeCredentials({ login: login, password: password })
+    const store = isSaveToPersistentStorage ? useAuthPersistentStore() : useAuthNonPersistentStore()
+    store.storeCredentials({ login: login, password: password })
 }
 
-async function AuthLogCreatureIn(login, password) {
+async function AuthLogCreatureIn(login, password, isRememberMe)
+{
     const token = await GetTokenByCredentials(login, password)
 
     if (token === null)
@@ -75,7 +107,7 @@ async function AuthLogCreatureIn(login, password) {
     }
 
     await AuthStoreToken(token.token, token.expiration)
-    await AuthStoreCredentials(login, password)
+    await AuthStoreCredentials(login, password, isRememberMe)
 
     await router.push("/")
 }
@@ -124,7 +156,7 @@ async function AuthRefreshToken()
 
     const token = await AuthGetToken()
 
-    /* Checking for token validity */
+    /* Checking if token exists and not going to expire */
     if (token === null || (Date.parse(token.expiration) - Date.now() < remainingTokenLifetimeToRefresh))
     {
         /* If there is no token, we must get it */
@@ -136,19 +168,62 @@ async function AuthRefreshToken()
         }
 
         await AuthStoreToken(tokenFromBackend.token, tokenFromBackend.expiration)
-        return
     }
 }
 
 // Get credentials
 async function AuthGetCredentials()
 {
+    const persistentCredentials = useAuthPersistentStore().getCredentials
+
+    if (persistentCredentials !== null)
+    {
+        return persistentCredentials
+    }
+
     return useAuthNonPersistentStore().getCredentials
+}
+
+// Get creature's login
+async function AuthGetCreatureLogin()
+{
+    return (await AuthGetCredentials()).login
+}
+
+// Checks if creature logged in
+async function AuthIsCreatureLoggedIn()
+{
+    await AuthRefreshToken()
+
+    const token = await AuthGetToken()
+
+    return token !== null // If we have token, then believe that creature is logged in
+}
+
+// Clear stored credentials
+async function AuthClearCredentials()
+{
+    useAuthPersistentStore().clearCredentials()
+    useAuthNonPersistentStore().clearCredentials()
+}
+
+async function AuthLogCreatureOut()
+{
+    await AuthClearCredentials()
+
+    useAuthNonPersistentStore().clearToken()
+
+    await router.push("/")
+    router.go(0)
+
 }
 
 export
 {
     AuthLogCreatureIn,
     AuthGetToken,
-    AuthRefreshToken
+    AuthRefreshToken,
+    AuthIsCreatureLoggedIn,
+    AuthGetCreatureLogin,
+    AuthLogCreatureOut
 }

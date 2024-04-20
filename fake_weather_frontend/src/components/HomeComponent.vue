@@ -7,6 +7,7 @@
   import CloudinessComponent from "@/components/CloudinessComponent.vue";
   import WeatherPhotoComponent from "@/components/WeatherPhotoComponent.vue";
   import {WebClientSendGetRequest} from "@/js/LibWebClient";
+  import CreatureWelcomerComponent from "@/components/CreatureWelcomerComponent.vue";
 
   const isLoading = ref(true)
 
@@ -119,18 +120,12 @@
     <div class="flex-container-header"><!-- Контейнер с заголовком и ссылками перехода -->
 
       <div class="full-width-flex-element-header"> <!-- Только заголовое -->
-        <h1 class="text-left underline-text text-size-home-header"> Погода от Тигона</h1>
+        <h1 class="text-left page-title text-size-home-header"> Погода от Тигона</h1>
       </div>
 
-      <div class="full-width-flex-element-link text-right text-size-home-link">
+      <div class="full-width-flex-element-link text-right">
 
-        <h1 >
-
-          <a class="link-on-home-page" href="/login" title="Вход на сайт">Войти</a>
-          /
-          <a class="link-on-home-page" href="/register" title="Регистрация на сайте">Зарегистрироваться</a>
-
-        </h1>
+        <CreatureWelcomerComponent />
 
       </div>
 
