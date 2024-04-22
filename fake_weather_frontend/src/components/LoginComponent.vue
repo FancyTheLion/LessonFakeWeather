@@ -40,17 +40,17 @@ import {onMounted, reactive} from "vue";
 </script>
 
 <template>
-  <div class="login-form-container"> <!--Я отвечаю за весь элемент залогинивания-->
+  <div class="login-form-container"> <!--I am responsible for the entire login element-->
 
-    <div class="text-centered"><!--Я центрирую текст внутри себя-->
+    <div class="text-centered"><!--I center the text within myself -->
 
-      <div class="login-form"><!--Я рисую таблицу-->
+      <div class="login-form"><!--I'm drawing a table-->
 
-        <div class="login-form-title"> <!--Я говорю о залогинивании-->
+        <div class="login-form-title"> <!--I'm talking about logging in-->
           Вход
         </div>
 
-        <div> <!--Я отсек для ввода инфы о логине-->
+        <div> <!--I am the section for entering login information-->
 
           <div>
             Введите логин:
@@ -65,7 +65,7 @@ import {onMounted, reactive} from "vue";
 
         </div>
 
-        <div> <!--Я отсек для ввода инфы о пароле-->
+        <div> <!--I have a compartment for entering information or password-->
 
           <div>
             Введите пароль:
@@ -80,7 +80,7 @@ import {onMounted, reactive} from "vue";
 
         </div>
 
-        <div> <!--Я отсек для запоминания логина-->
+        <div> <!--I have a compartment for remembering login-->
 
           Запомни меня..
 
@@ -91,7 +91,7 @@ import {onMounted, reactive} from "vue";
 
         </div>
 
-        <div> <!--Я - хлебушек (батонка для входа)-->
+        <div>
 
           <button
             type="button"
@@ -102,15 +102,15 @@ import {onMounted, reactive} from "vue";
 
         </div>
 
-        <div> <!--Я отсек для показа вопроса о том, зареганы ли вы-->
+        <div> <!--I have a section where it asks if you are registered.-->
 
-          <div> <!--Я - вопросительная ссылка-->
+          <div>
 
             <a class="login-bottom-link" href="" title="Что то случилось с паролем?">Что то с паролем?</a>
 
           </div>
 
-          <div> <!--Я - вопросительная ссылка-->
+          <div>
 
             <a class="login-bottom-link" href="/register" title="Хотите зарегистрироваться?">Зарегистрироваться?</a>
 
@@ -122,7 +122,7 @@ import {onMounted, reactive} from "vue";
 
       <div>
 
-        <div> <!--Я - ссылка-->
+        <div>
 
           <a class="login-bottom-link" href="//localhost:8080" title="Переход на главную странцу">Вернуться на главную? </a>
 
