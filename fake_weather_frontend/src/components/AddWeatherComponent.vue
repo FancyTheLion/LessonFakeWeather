@@ -4,8 +4,8 @@
   import {helpers, required} from "@vuelidate/validators";
   import useVuelidate from "@vuelidate/core";
   import LoadingSymbol from "@/components/LoadingSymbol.vue";
-
-  const apiBaseUrl = process.env.VUE_APP_API_URL
+  import {WebClientPostForm, WebClientSendGetRequest, WebClientSendPostRequest} from "@/js/LibWebClient";
+  import {AuthIsCreatureLoggedIn} from "@/js/Auth";
 
   const isLoading = ref(true)
 
@@ -64,6 +64,8 @@
 
   const emit = defineEmits(["weatherAdded"])
 
+  const isLoggedIn = ref(false)
+
   // OnMounted hook
   onMounted(async () =>
   {
@@ -76,11 +78,14 @@
     addWeatherData.dateTime = null
 
     // Loading weather validation settings
-    weatherValidationSettings.value = (await (await fetch(apiBaseUrl + "/api/Weather/ValidationSettings", {
-      method: 'GET'
-    })).json()).weatherValidationSettings
+    weatherValidationSettings.value = (await (await WebClientSendGetRequest(
+        "/api/Weather/ValidationSettings"))
+        .json())
+        .weatherValidationSettings
 
     await addWeatherFormValidator.value.$validate()
+
+    isLoggedIn.value = await AuthIsCreatureLoggedIn()
 
     isLoading.value = false
   }
@@ -163,11 +168,7 @@ async function IsPressureValid(pressure)
     let uploadFormData = new FormData();
     uploadFormData.append("file", fileToUpload);
 
-    const fileUploadResponse = await fetch(apiBaseUrl + "/api/Files/Upload", {
-      method: 'POST',
-      body: uploadFormData,
-      headers: {}
-    })
+    const fileUploadResponse = await WebClientPostForm("/api/Files/Upload", uploadFormData)
 
     if (fileUploadResponse.status !== 200)
     {
@@ -178,9 +179,9 @@ async function IsPressureValid(pressure)
     const uploadedFileId = (await fileUploadResponse.json()).fileInfo.id
 
     // Sending the weather
-    const response = await fetch(apiBaseUrl + "/api/Weather/Add", {
-      method: "POST",
-      body: JSON.stringify({
+    const response = await WebClientSendPostRequest(
+        "/api/Weather/Add",
+        {
         "weatherToAdd": {
           "timestamp": new Date(addWeatherData.dateTime).toISOString(),
           "temperature": addWeatherData.temperature,
@@ -189,9 +190,7 @@ async function IsPressureValid(pressure)
           "pressure": addWeatherData.pressure,
           "photoId": uploadedFileId
         }
-      }),
-      headers: { "Content-Type": "application/json" }
-    })
+      })
 
     if (response.status === 200)
     {
@@ -221,12 +220,12 @@ async function IsPressureValid(pressure)
 <template>
   <LoadingSymbol v-if="isLoading" />
 
-  <div v-if="!isLoading">
-    <div class="add-weather left">
+  <div v-if="!isLoading && isLoggedIn">
+    <div class="add-weather text-left">
 
       <!-- Date and time -->
       <div>
-        <div class="centered form-input-caption">
+        <div class="text-centered form-input-caption">
           Введите дату и время измерения погоды:
         </div>
 
@@ -240,7 +239,7 @@ async function IsPressureValid(pressure)
 
       <!-- Temperature -->
       <div>
-        <div class="centered form-input-caption">
+        <div class="text-centered form-input-caption">
           Введите температуру:
         </div>
 
@@ -255,7 +254,7 @@ async function IsPressureValid(pressure)
 
       <!-- Cloudiness -->
       <div>
-        <div class="centered form-input-caption">
+        <div class="text-centered form-input-caption">
           Введите облачность:
         </div>
 
@@ -269,7 +268,7 @@ async function IsPressureValid(pressure)
       </div>
 
       <div>
-        <div class="centered form-input-caption">
+        <div class="text-centered form-input-caption">
           Введите влажность:
         </div>
 
@@ -283,7 +282,7 @@ async function IsPressureValid(pressure)
       </div>
 
       <div>
-        <div class="centered form-input-caption">
+        <div class="text-centered form-input-caption">
           Введите атмосферное давление:
         </div>
 
@@ -297,7 +296,7 @@ async function IsPressureValid(pressure)
       </div>
 
       <div>
-        <div class="centered form-input-caption">
+        <div class="text-centered form-input-caption">
           Загрузите фото погоды:
         </div>
 

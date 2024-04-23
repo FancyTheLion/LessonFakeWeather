@@ -1,4 +1,7 @@
 using FakeWeatherBackend.DAO.Models;
+using FakeWeatherBackend.DAO.Models.Authentification;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace FakeWeatherBackend.DAO;
@@ -6,7 +9,7 @@ namespace FakeWeatherBackend.DAO;
 /// <summary>
 /// Database context (list of stored objects)
 /// </summary>
-public class MainDbContext : DbContext
+public class MainDbContext : IdentityDbContext<UserDbo, IdentityRole<Guid>, Guid>
 {
     /// <summary>
     /// Weather measurements

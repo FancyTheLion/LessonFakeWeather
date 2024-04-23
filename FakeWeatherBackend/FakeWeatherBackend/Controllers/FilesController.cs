@@ -1,6 +1,7 @@
 using System.Net.Http.Headers;
 using FakeWeatherBackend.Models.API.Responses.Files;
 using FakeWeatherBackend.Services.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using EntityTagHeaderValue = Microsoft.Net.Http.Headers.EntityTagHeaderValue;
 
@@ -9,6 +10,7 @@ namespace FakeWeatherBackend.Controllers;
 /// <summary>
 /// Controller to work with files
 /// </summary>
+[Authorize]
 [ApiController]
 public class FilesController : ControllerBase
 {
@@ -59,6 +61,7 @@ public class FilesController : ControllerBase
     /// <summary>
     /// Download the file
     /// </summary>
+    [AllowAnonymous]
     [Route("api/Files/Download/{fileId}")]
     [HttpGet]
     public async Task<ActionResult> DownloadAsync(Guid fileId)

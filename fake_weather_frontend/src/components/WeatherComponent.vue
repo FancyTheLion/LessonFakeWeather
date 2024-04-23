@@ -4,8 +4,7 @@ import moment from "moment/moment";
 import LoadingSymbol from "@/components/LoadingSymbol.vue";
 import CloudinessComponent from "@/components/CloudinessComponent.vue";
 import WeatherPhotoComponent from "@/components/WeatherPhotoComponent.vue";
-
-  const apiBaseUrl = process.env.VUE_APP_API_URL
+import {WebClientSendGetRequest} from "@/js/LibWebClient";
 
   const props = defineProps({
     weatherId: String
@@ -28,7 +27,7 @@ import WeatherPhotoComponent from "@/components/WeatherPhotoComponent.vue";
 
   async function OnLoad()
   {
-    const weatherResponse = await (await fetch(apiBaseUrl + "/api/Weather/" + props.weatherId, {
+    const weatherResponse = await (await WebClientSendGetRequest("/api/Weather/" + props.weatherId, {
       method: 'GET'
     })).json()
 

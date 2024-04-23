@@ -32,7 +32,7 @@ import {defineProps, ref} from "vue";
 </script>
 
 <template>
-  <div class="centered">
+  <div class="text-centered">
     <img class="cloudiness-icon" :src="iconAddress" alt="Cloudiness icon" />
   </div>
 

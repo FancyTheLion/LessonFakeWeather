@@ -12,6 +12,8 @@
     "@vuelidate/validators": "^2.0.4",
     "core-js": "^3.8.3",
     "moment": "^2.29.4",
+    "pinia": "^2.1.7",
+    "pinia-plugin-persistedstate": "^3.2.1",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3"
   },

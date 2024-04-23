@@ -6,8 +6,8 @@
   import AddWeatherComponent from "@/components/AddWeatherComponent.vue";
   import CloudinessComponent from "@/components/CloudinessComponent.vue";
   import WeatherPhotoComponent from "@/components/WeatherPhotoComponent.vue";
-
-  const apiBaseUrl = process.env.VUE_APP_API_URL
+  import {WebClientSendGetRequest} from "@/js/LibWebClient";
+  import CreatureWelcomerComponent from "@/components/CreatureWelcomerComponent.vue";
 
   const isLoading = ref(true)
 
@@ -34,9 +34,9 @@
   // Called when page is loaded
   async function OnLoad()
   {
-    const lastWeatherReferenceResponse = await (await fetch(apiBaseUrl + "/api/WeatherReference/Last", {
-      method: 'GET'
-    })).json()
+    const lastWeatherReferenceResponse = await (await WebClientSendGetRequest(
+        "/api/WeatherReference/Last"))
+        .json()
 
     if (lastWeatherReferenceResponse.isNoReference === true)
     {
@@ -48,9 +48,9 @@
 
     const lastWeatherReference = lastWeatherReferenceResponse.weatherReference.weatherId
 
-    const lastWeatherResponse = await (await fetch(apiBaseUrl + "/api/Weather/" + lastWeatherReference, {
-      method: 'GET'
-    })).json()
+    const lastWeatherResponse = await (await WebClientSendGetRequest(
+        "/api/Weather/" + lastWeatherReference,
+        )).json()
 
     lastWeatherTime.value = moment(lastWeatherResponse
         .weather
@@ -102,9 +102,9 @@
 
   async function LoadLastWeatherReferences()
   {
-    const lastWeathersReferencesResponse = await (await fetch(apiBaseUrl + "/api/WeatherReferences", {
-      method: "GET"
-    })).json()
+    const lastWeathersReferencesResponse = await (await WebClientSendGetRequest(
+        "/api/WeatherReferences"))
+        .json()
 
     lastWeathersReferences.value = lastWeathersReferencesResponse.weatherReferences
   }
@@ -116,7 +116,21 @@
   <LoadingSymbol v-if="isLoading"/>
 
   <div v-if="!isLoading">
-    <h1 class="left underline-text" >Погода от Тигона</h1>
+
+    <div class="flex-container-header"><!-- Контейнер с заголовком и ссылками перехода -->
+
+      <div class="full-width-flex-element-header"> <!-- Только заголовое -->
+        <h1 class="text-left page-title text-size-home-header"> Погода от Тигона</h1>
+      </div>
+
+      <div class="full-width-flex-element-link text-right">
+
+        <CreatureWelcomerComponent />
+
+      </div>
+
+
+    </div>
 
     <div class="flex-container">
 
@@ -125,18 +139,18 @@
         <div
             v-if="!isShowDetailedWeather"
             @click="async () => await ShowDetailedWeather()"
-            class="details-summary">
+            class="latest-weather-summary">
           Показать свежую погоду
         </div>
 
         <div v-if="isShowDetailedWeather">
           <div
               @click="async () => await HideDetailedWeather()"
-              class="details-summary">
+              class="latest-weather-summary">
             Скрыть свежую погоду
           </div>
 
-          <div class="details-window">
+          <div class="latest-weather-details">
 
             <div v-if="isNoWeathers">
               Нет последней погоды!
@@ -164,7 +178,7 @@
       <!-- Weathers list -->
       <div class="full-width-flex-element">
 
-        <h2 class="centered">Список погод:</h2>
+        <h2 class="text-centered">Список погод:</h2>
 
         <div class="flex-container">
 
@@ -188,7 +202,7 @@
       </div>
 
       <!-- Right part -->
-      <div class="full-width-flex-element centered">
+      <div class="full-width-flex-element text-centered">
 
         <div class="add-weather-container">
           <AddWeatherComponent
@@ -197,6 +211,20 @@
         </div>
 
       </div>
+
+<!--      <div>
+        <div> &lt;!&ndash;Вопросительная ссылка&ndash;&gt;
+
+          <a class="link-on-home-page" href="/login" title="Вход на сайт">Войти?</a>
+
+        </div>
+
+        <div> &lt;!&ndash;Вопросительная ссылка&ndash;&gt;
+
+          <a class="link-on-home-page" href="/register" title="Вход на сайт">Зарегистрироваться?</a>
+
+        </div>
+      </div>-->
 
     </div>
 

@@ -1,31 +1,81 @@
 /*Colors*/
-@page-background-color-1: hsl(217, 100%, 62%);
 @light-color-for-text: hsl(233, 100%, 93%);
 @weather-photo-border-color: hsl(240, 100%, 83%);
 @light-green-frame: hsl(117, 100%, 60%);
+
+@page-background-color-1: hsl(217, 100%, 62%);
 @dark-blue-background: hsl(240, 100%, 25%);
 @light-blue-background: hsl(240, 100%, 40%);
 @light-red-background: hsl(0, 100%, 41%);
 @light-orange-background: hsl(25, 100%, 45%);
+@green-background: hsl(99, 90%, 35%);
+
 @popup-lower-background-color: hsla(0, 0%, 10%, 0.8);
 
-/*Dimensions*/
-@lack-of-something: 0;
-@smallest-indentation: 0.1rem;
-@almost-minimal-indentation: 0.2rem;
-@reduced-indentation: 0.3rem;
-@normal-indentation: 0.4rem;
-@table-edge-offset: 0.5rem;
-@increased-indentation: 3rem;
-@Fresh-weather-button-width: 10rem;
-@window-opened-width: 14rem;
+@alert-color: hsl(0, 100%, 40%);
 
+/* Paddings */
+@padding-smaller3: 0.2rem;
+@padding-smaller2: 0.3rem;
+@padding-smaller1: 0.4rem;
+@padding-normal: 0.5rem;
+
+/* Margins */
+@margin-smaller1: 0.4rem;
+
+/* Dimensions */
+@loading-symbol-size: 1.0rem;
+
+/* Shadows */
+@box-shadow-smallest: 0.1rem;
+
+/* Borders*/
+@border-radius-smallest: 0.2rem;
+@border-radius-small: 0.3rem;
+@border-radius-normal: 0.5rem;
+@border-radius-big: 1rem;
+
+@border-width-thin: 0.2rem;
+@border-width-thick: 0.3rem;
+
+/* Gaps */
+@gap-normal: 0.5rem;
+
+/* Popups */
+@popup-close-button-shift-x: 0.5rem;
+@popup-close-button-shift-y: 0.5rem;
+@popup-close-button-image: 2rem;
+@popup-layer-1: 1000;
+@popup-layer-2: 2000;
+
+/* Fonts */
+@font-size-bigger1: 1.5rem;
+
+/* Cloudiness icon */
+@cloudiness-icon-sizes: 3rem;
+
+/* Latest weather */
+@latest-weather-button-width: 10rem;
+@latest-weather-details-width: 14rem;
+
+/* Register form */
+@register-form-max-width: 30rem;
+
+/* Login form */
+@login-form-max-width: 30rem;
 
 /* Images */
 @weather-photo-max-width: 10rem;
-@weather-photo-border-radiuses: 1rem;
-@weather-photo-border-width: 0.2rem;
+@centering-the-image-horizontally-1: 100vw;
+@centering-the-image-horizontally-2: 90vw;
+@centering-the-image-vertically-1: 100vh;
+@centering-the-image-vertically-2: 90vh;
 
+/* Text */
+@text-thickness-1: 600;
+@text-thickness-2: 700;
+@text-size-home-link-log-in: 0.55rem;
+@text-size-weather-headline: 2rem;
 
 /* Body */
 body {
@@ -35,76 +85,90 @@ body {
 }
 
 /* Centered text */
-.centered {
+.text-centered {
   text-align: center;
 }
 
-.left {
+/* Offset text left */
+.text-left {
   text-align: left;
 }
 
+/* Offset text right */
+.text-right {
+  text-align: right;
+}
+
+.text-size-home-link {
+font-size: @text-size-home-link-log-in;
+}
+
+.text-size-home-header {
+  font-size: @text-size-weather-headline;
+}
+
+
 /* Loading symbol image */
 .loading-symbol-image {
-  width: @normal-indentation;
-  height: @normal-indentation;
+  width: @loading-symbol-size;
+  height: @loading-symbol-size;
 }
 
 /* List with weather*/
 .weather-list {
-  border: @reduced-indentation solid @light-green-frame;
-  border-radius: @almost-minimal-indentation;
+  border: @border-width-thick solid @light-green-frame;
+  border-radius: @border-radius-smallest;
   width: max-content;
 }
 
 /* Add weather area*/
 .add-weather {
-  border: @reduced-indentation double @light-green-frame;
-  border-radius: @reduced-indentation;
+  border: @border-width-thick double @light-green-frame;
+  border-radius: @border-width-thick;
   width: max-content;
 
-  padding: @table-edge-offset;
+  padding: @padding-normal;
 
   display: flex;
   flex-direction: column;
-  gap: @table-edge-offset;
+  gap: @gap-normal;
 }
 
 /* Weather list element */
 .weather-list-element {
-  padding-top: @lack-of-something;
-  padding-bottom: @lack-of-something;
-  padding-left: @normal-indentation;
-  padding-right: @normal-indentation;
+  padding-left: @padding-smaller1;
+  padding-right: @padding-smaller1;
 }
 
 /*Even numbered weather list items */
 .weather-list-element-even:nth-child(even) {
   background: @dark-blue-background;
-  padding-top: @table-edge-offset;
-  padding-right: @table-edge-offset;
-  padding-bottom: @table-edge-offset;
-  padding-left: @table-edge-offset;
+  padding: @padding-normal;
 }
 
 /* Odd weather list items */
 .weather-list-element-odd:nth-child(odd) {
   background: @light-blue-background;
-  padding-top: @table-edge-offset;
-  padding-right: @table-edge-offset;
-  padding-bottom: @table-edge-offset;
-  padding-left: @table-edge-offset;
+  padding: @padding-normal;
 }
 
 /* Cloudiness icon */
 .cloudiness-icon {
-  width: @increased-indentation;
-  height: @increased-indentation;
+  width: @cloudiness-icon-sizes;
+  height: @cloudiness-icon-sizes;
 }
 
 /* Page title\brand */
-.underline-text{
+.page-title {
   text-decoration-line: underline;
   text-decoration-color: orange;
+}
+
+/* Pseudolink */
+.pseudolink {
+  text-decoration-line: underline;
+
+  cursor: pointer;
 }
 
 /* Flex container, entire page except header */
@@ -129,27 +193,44 @@ body {
   align-items: center;
 }
 
+.flex-container-header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.full-width-flex-element-header {
+  flex: 100%;
+}
+
+.full-width-flex-element-link {
+  flex: 100%;
+}
+
+
 /* Fresh weather button header */
-.details-summary {
-  padding: @reduced-indentation;
-  width: @Fresh-weather-button-width;
+.latest-weather-summary {
+  padding: @padding-smaller2;
+  width: @latest-weather-button-width;
   background-color: @light-red-background;
+
   border: none;
-  box-shadow: @smallest-indentation @smallest-indentation @smallest-indentation @light-color-for-text;
-  border-radius: @almost-minimal-indentation;
+  border-radius: @border-radius-smallest;
+
+  box-shadow: @box-shadow-smallest @box-shadow-smallest @box-shadow-smallest @light-color-for-text;
   cursor: pointer;
   text-align: left;
 }
 
 /* The window opened */
-.details-window {
-  width: @window-opened-width;
+.latest-weather-details {
+  width: @latest-weather-details-width;
   background-color: @light-orange-background;
-  padding: @reduced-indentation;
-  margin: @lack-of-something;
-  box-shadow: @smallest-indentation @smallest-indentation @smallest-indentation @light-color-for-text;
+  padding: @padding-smaller2;
+  box-shadow: @box-shadow-smallest @box-shadow-smallest @box-shadow-smallest @light-color-for-text;
   text-align: left;
-  border-radius: @almost-minimal-indentation
+  border-radius: @border-radius-smallest;
 }
 
 /* Customizing each element in a common flex container */
@@ -159,30 +240,35 @@ body {
 
 /* Form field with error */
 .form-field-with-error {
-  border: red @almost-minimal-indentation solid;
+  border: red @border-width-thin solid;
 }
 
 /* Form field without error */
 .form-field-without-error {
-  border: transparent @almost-minimal-indentation solid;
+  border: transparent @border-width-thin solid;
 }
 
 /* Caption for input field */
 .form-input-caption {
-  padding-bottom: @almost-minimal-indentation;
+  padding-bottom: @padding-smaller3;
 }
 
 /* Add weather component resides here*/
 .add-weather-container {
-  margin-left: @normal-indentation;
+  margin-left: @margin-smaller1;
 }
 
 /* Weather photo preview */
 .weather-photo-preview {
   width: @weather-photo-max-width;
 
-  border: solid @weather-photo-border-width @weather-photo-border-color;
-  border-radius: @weather-photo-border-radiuses;
+  border: solid @border-width-thin @weather-photo-border-color;
+  border-radius: @border-radius-big;
+}
+
+.link-on-home-page {
+  color: @light-color-for-text;
+  font-weight: @text-thickness-1;
 }
 
 /* Popups begin here */
@@ -192,9 +278,9 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1000;
+  width: @centering-the-image-horizontally-1;
+  height: @centering-the-image-vertically-1;
+  z-index: @popup-layer-1;
   background: @popup-lower-background-color;
 }
 
@@ -203,9 +289,9 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 2000;
+  width: @centering-the-image-horizontally-1;
+  height: @centering-the-image-vertically-1;
+  z-index: @popup-layer-2;
 }
 
 /* Popup image section */
@@ -219,23 +305,135 @@ body {
 
 /* Popup image */
 .popup-image {
-  border-radius: @weather-photo-border-radiuses;
-  max-width: 90vw;
-  max-height: 90vh;
+  border-radius: @border-radius-big;
+  max-width: @centering-the-image-horizontally-2;
+  max-height: @centering-the-image-vertically-2;
 }
 
 /* Popup close button image */
 .popup-close-button {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 1rem;
+  width: @popup-close-button-image;
+  height: @popup-close-button-image;
+  border-radius: @border-radius-big;
 
   position: absolute;
 
-  right: 0.5rem;
-  top: 0.5rem;
+  right: @popup-close-button-shift-x;
+  top: @popup-close-button-shift-y;
 
   cursor: pointer;
 }
 
 /* Popups end here */
+
+/* Registration page */
+.register-form-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* Registration form */
+.register-form {
+  background: @green-background;
+
+  border: @border-width-thick double @light-green-frame;
+  border-radius: @border-radius-normal;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
+  padding: @padding-smaller1;
+  max-width: @register-form-max-width;
+
+  height: min-content;
+  overflow-y: auto;
+
+  gap: @gap-normal;
+  display: grid;
+}
+
+/* Registration Header */
+.register-form-title {
+  text-align: center;
+  font-size: @font-size-bigger1;
+  font-weight: @text-thickness-2;
+}
+
+/* Registration form login link */
+.register-form-login-link {
+  color: @light-color-for-text;
+  font-weight: @text-thickness-1;
+}
+
+.register-from-valid-field {
+
+}
+
+/* Message in registration that something is wrong */
+.register-form-invalid-field {
+  border: @alert-color solid @border-width-thick;
+  border-radius: @border-radius-small;
+}
+
+.register-form-login-taken-message {
+  color: @alert-color
+}
+
+/* Registration page end here */
+
+/* Login page */
+
+/* Container where login occurs */
+.login-form-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* Login form */
+.login-form {
+  background: @green-background;
+
+  border: @border-width-thick double @light-green-frame;
+  border-radius: @border-radius-normal;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
+  padding: @padding-smaller1;
+  max-width: @login-form-max-width;
+
+  height: min-content;
+  overflow-y: auto;
+
+  gap: @gap-normal;
+  display: grid;
+}
+
+/* Login form title */
+.login-form-title {
+  text-align: center;
+  font-size: @font-size-bigger1;
+  font-weight: @text-thickness-2;
+}
+/* Login link */
+.login-bottom-link {
+  color: @light-color-for-text;
+  font-weight: @text-thickness-1;
+}
+
+/* Marks valid (with correct data) fields in login form */
+.login-from-valid-field {
+
+}
+
+/* Marks invalid (with incorrect data) fields in login form */
+.login-form-invalid-field {
+  border: @alert-color solid @border-width-thick;
+  border-radius: @border-radius-small;
+}
+
+/* Login page end here */
