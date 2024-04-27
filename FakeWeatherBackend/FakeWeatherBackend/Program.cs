@@ -32,8 +32,10 @@ public class Program
 
                 builder.Services.AddScoped<IWeatherDao, WeatherDao>();
                 builder.Services.AddScoped<IFilesDao, FilesDao>();
+                builder.Services.AddScoped<ICommentsDao, CommentsDao>();
 
                 builder.Services.AddScoped<IAccountsService, AccountsService>();
+                builder.Services.AddScoped<ICommentsService, CommentsService>();
                 
             #endregion
             
@@ -41,6 +43,8 @@ public class Program
             
                 builder.Services.AddSingleton<IWeatherMapper, WeatherMapper>();
                 builder.Services.AddSingleton<IFilesMapper, FilesMapper>();
+                builder.Services.AddSingleton<ICommentsMapper, CommentsMapper>();
+                builder.Services.AddSingleton<IUsersMapper, UsersMapper>();
                 
             #endregion
             

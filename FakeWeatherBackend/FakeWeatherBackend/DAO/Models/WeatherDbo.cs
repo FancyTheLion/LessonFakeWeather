@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using FakeWeatherBackend.DAO.Models.Comments;
 
 namespace FakeWeatherBackend.DAO.Models;
 
@@ -47,4 +48,9 @@ public class WeatherDbo
     /// Weather photo preview
     /// </summary>
     public FileDbo PhotoPreview { get; set; }
+
+    /// <summary>
+    /// Weather comment
+    /// </summary>
+    public IList<CommentDbo> Comments { get; set; }
 }

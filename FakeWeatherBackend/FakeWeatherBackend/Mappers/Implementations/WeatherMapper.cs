@@ -1,4 +1,5 @@
 using FakeWeatherBackend.DAO.Models;
+using FakeWeatherBackend.DAO.Models.Comments;
 using FakeWeatherBackend.Mappers.Abstract;
 using FakeWeatherBackend.Models;
 using File = FakeWeatherBackend.Models.Files.File;
@@ -8,13 +9,16 @@ namespace FakeWeatherBackend.Mappers.Implementations;
 public class WeatherMapper : IWeatherMapper
 {
     private readonly IFilesMapper _filesMapper;
+    private readonly ICommentsMapper _commentsMapper;
 
     public WeatherMapper
     (
-        IFilesMapper filesMapper
+        IFilesMapper filesMapper,
+        ICommentsMapper commentsMapper
     )
     {
         _filesMapper = filesMapper;
+        _commentsMapper = commentsMapper;
     }
     
     public Weather Map(WeatherDbo weather)
@@ -33,7 +37,8 @@ public class WeatherMapper : IWeatherMapper
             weather.Humidity,
             weather.Pressure,
             _filesMapper.Map(weather.Photo),
-            _filesMapper.Map(weather.PhotoPreview)
+            _filesMapper.Map(weather.PhotoPreview),
+            _commentsMapper.Map(weather.Comments)
         );
     }
 
@@ -65,7 +70,8 @@ public class WeatherMapper : IWeatherMapper
             Humidity = weather.Humidity,
             Pressure = weather.Pressure,
             Photo = _filesMapper.Map(weather.Photo),
-            PhotoPreview = _filesMapper.Map(weather.PhotoPreview)
+            PhotoPreview = _filesMapper.Map(weather.PhotoPreview),
+            Comments = new List<CommentDbo>() // Load it in DAO
         };
     }
 

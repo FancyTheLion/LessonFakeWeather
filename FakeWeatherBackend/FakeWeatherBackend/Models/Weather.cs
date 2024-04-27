@@ -1,5 +1,6 @@
 using FakeWeatherBackend.Mappers.Abstract;
 using FakeWeatherBackend.Models.API.DTOs;
+using FakeWeatherBackend.Models.Comments;
 
 // We assume that File is FakeWeatherBackend.Models.Files.File 
 using File = FakeWeatherBackend.Models.Files.File;
@@ -47,7 +48,28 @@ public class Weather
     /// Weather photo preview
     /// </summary>
     public File PhotoPreview { get; private set; }
+
+    /// <summary>
+    /// Comments to weather
+    /// </summary>
+    public IList<Comment> Comments { get; private set; }
+
+    /// <summary>
+    /// Primitive constructor - ID only
+    /// </summary>
+    public Weather
+    (
+        Guid id
+    )
+    {
+        Id = id;
+        Photo = new File();
+        PhotoPreview = new File();
+    }
     
+    /// <summary>
+    /// Normal constructor - all data
+    /// </summary>
     public Weather
     (
         Guid id,
@@ -57,8 +79,8 @@ public class Weather
         double humidity,
         double pressure,
         File photo,
-        File photoPreview
-    )
+        File photoPreview,
+        IReadOnlyCollection<Comment> comments)
     {
         Id = id;
         Timestamp = timestamp;
@@ -68,6 +90,7 @@ public class Weather
         Pressure = pressure;
         Photo = photo ?? throw new ArgumentNullException(nameof(photo), "Photo mustn't be null!");
         PhotoPreview = photoPreview ?? throw new ArgumentNullException(nameof(photoPreview), "Photo preview mustn't be null!");
+        Comments = (comments ?? throw new ArgumentNullException(nameof(comments), "Comments must not be null!")).ToList();
     }
 
     public WeatherDto ToDto()

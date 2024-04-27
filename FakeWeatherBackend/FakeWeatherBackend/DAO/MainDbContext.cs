@@ -1,5 +1,6 @@
 using FakeWeatherBackend.DAO.Models;
 using FakeWeatherBackend.DAO.Models.Authentification;
+using FakeWeatherBackend.DAO.Models.Comments;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,11 @@ public class MainDbContext : IdentityDbContext<UserDbo, IdentityRole<Guid>, Guid
     /// </summary>
     public DbSet<FileDbo> Files { get; set; }
     
+    /// <summary>
+    /// Comments
+    /// </summary>
+    public DbSet<CommentDbo> Comments { get; set; }
+    
     public MainDbContext(DbContextOptions<MainDbContext> options) : base(options)
     {
 
@@ -41,5 +47,12 @@ public class MainDbContext : IdentityDbContext<UserDbo, IdentityRole<Guid>, Guid
             .Entity<WeatherDbo>()
             .HasOne(weather => weather.PhotoPreview)
             .WithMany(file => file.PhotosPreviewsForWeathers);
+        
+        // Weather have many comments
+        modelBuilder
+            .Entity<WeatherDbo>()
+            .HasMany(w => w.Comments)
+            .WithOne(c => c.Weather)
+            .HasForeignKey(c => c.WeatherId);
     }
 }

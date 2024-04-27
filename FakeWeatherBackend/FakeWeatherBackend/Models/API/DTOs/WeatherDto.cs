@@ -1,4 +1,6 @@
 using System.Text.Json.Serialization;
+using FakeWeatherBackend.Models.API.DTOs.Comments;
+using FakeWeatherBackend.Models.Comments;
 using File = FakeWeatherBackend.Models.Files.File;
 
 namespace FakeWeatherBackend.Models.API.DTOs;
@@ -90,7 +92,8 @@ public class WeatherDto
             Humidity,
             Pressure,
             new File() { Id = PhotoId },
-            new File() { Id = Guid.Empty } // Nonexistent preview
+            new File() { Id = Guid.Empty }, // Nonexistent preview
+            new List<Comment>() // We can't get comments from WeatherDTO
         );
     }
 }

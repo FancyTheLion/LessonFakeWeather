@@ -87,6 +87,34 @@ namespace FakeWeatherBackend.DAO.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("FakeWeatherBackend.DAO.Models.Comments.CommentDbo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AuthorId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("WeatherId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("WeatherId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("FakeWeatherBackend.DAO.Models.FileDbo", b =>
                 {
                     b.Property<Guid>("Id")
@@ -283,6 +311,25 @@ namespace FakeWeatherBackend.DAO.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("FakeWeatherBackend.DAO.Models.Comments.CommentDbo", b =>
+                {
+                    b.HasOne("FakeWeatherBackend.DAO.Models.Authentification.UserDbo", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FakeWeatherBackend.DAO.Models.WeatherDbo", "Weather")
+                        .WithMany("Comments")
+                        .HasForeignKey("WeatherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Weather");
+                });
+
             modelBuilder.Entity("FakeWeatherBackend.DAO.Models.WeatherDbo", b =>
                 {
                     b.HasOne("FakeWeatherBackend.DAO.Models.FileDbo", "Photo")
@@ -358,6 +405,11 @@ namespace FakeWeatherBackend.DAO.Migrations
                     b.Navigation("PhotosForWeathers");
 
                     b.Navigation("PhotosPreviewsForWeathers");
+                });
+
+            modelBuilder.Entity("FakeWeatherBackend.DAO.Models.WeatherDbo", b =>
+                {
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,7 +3,6 @@ using FakeWeatherBackend.DAO.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace FakeWeatherBackend.DAO.Implementations;
-
 public class FilesDao : IFilesDao
 {
     private readonly MainDbContext _dbContext;
