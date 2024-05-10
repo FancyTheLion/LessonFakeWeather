@@ -31,7 +31,7 @@ public class CommentsMapper : ICommentsMapper
             _usersMapper.Map(comment.Author),
             comment.Timestamp,
             comment.Content,
-            new Weather(comment.Id)
+            new Weather(comment.WeatherId)
         );
     }
 

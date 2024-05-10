@@ -15,7 +15,7 @@ public class WeatherService : IWeatherService
     private readonly IWeatherMapper _weatherMapper;
     private readonly IFilesService _filesService;
     private readonly IResizeService _resizeService;
-
+    
     private readonly WeatherValidationSettings _weatherValidationSettings;
 
     public WeatherService
