@@ -31,8 +31,6 @@ public class CommentsDao : ICommentsDao
             .Include(c => c.Weather)
                 
             .Where(c => c.WeatherId == weatherId)
-                
-            .OrderByDescending(c => c.Timestamp)
             
             .ToListAsync();
     }

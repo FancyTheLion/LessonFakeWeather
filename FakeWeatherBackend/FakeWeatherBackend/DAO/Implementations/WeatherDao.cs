@@ -1,5 +1,6 @@
 using FakeWeatherBackend.DAO.Abstract;
 using FakeWeatherBackend.DAO.Models;
+using FakeWeatherBackend.DAO.Models.Comments;
 using Microsoft.EntityFrameworkCore;
 
 namespace FakeWeatherBackend.DAO.Implementations;
@@ -29,13 +30,17 @@ public class WeatherDao : IWeatherDao
 
     public async Task<WeatherDbo> GetWeatherByIdAsync(Guid id)
     {
-        return await _dbContext
+        var weather = await _dbContext
             .Weathers
                 
             .Include(w => w.Photo)
             .Include(w => w.PhotoPreview)
-                
+            
             .SingleAsync(w => w.Id == id);
+
+        weather.Comments = new List<CommentDbo>(); // We don't load comments here, use CommentsDao to load comments
+
+        return weather;
     }
 
     public async Task<IReadOnlyCollection<WeatherDbo>> GetWeathersOrderedByTimestampAsync()

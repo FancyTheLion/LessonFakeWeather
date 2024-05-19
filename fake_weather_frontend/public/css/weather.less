@@ -50,6 +50,7 @@
 
 /* Fonts */
 @font-size-bigger1: 1.5rem;
+@font-size-smaller1: 0.8rem;
 
 /* Cloudiness icon */
 @cloudiness-icon-sizes: 3rem;
@@ -150,6 +151,37 @@ font-size: @text-size-home-link-log-in;
 .weather-list-element-odd:nth-child(odd) {
   background: @light-blue-background;
   padding: @padding-normal;
+}
+
+/* Container with comments */
+.weather-comments-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: @gap-normal;
+
+  padding: @padding-normal;
+}
+
+/* Container for ONE comment */
+.weather-comment-container {
+  border: @border-width-thin solid @light-green-frame;
+  border-radius: @border-radius-smallest;
+
+  padding: @padding-normal;
+
+  width: 100%;
+}
+
+/* Comment top line (author and time) */
+.weather-comment-top-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+
+  font-size: @font-size-smaller1;
 }
 
 /* Cloudiness icon */

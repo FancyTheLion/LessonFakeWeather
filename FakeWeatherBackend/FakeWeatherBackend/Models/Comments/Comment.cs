@@ -25,11 +25,11 @@ public class Comment
     /// Content of the comment
     /// </summary>
     public string Content { get; private set; }
-    
+
     /// <summary>
-    /// Parent weather
+    /// Parent weather ID
     /// </summary>
-    public Weather Weather { get; private set; }
+    public Guid WeatherId { get; private set; }
 
     public Comment
     (
@@ -37,7 +37,7 @@ public class Comment
         User author,
         DateTime timestamp,
         string content,
-        Weather weather
+        Guid weatherId
     )
     {
         Id = id;
@@ -50,11 +50,11 @@ public class Comment
         }
         Content = content;
         
-        Weather = weather ?? throw new ArgumentNullException(nameof(weather), "Weather mustn't be null!");
+        WeatherId = weatherId;
     }
 
     public CommentDto ToDto()
     {
-        return new CommentDto(Id, Author.ToDto(), Timestamp, Content, Weather.ToDto());
+        return new CommentDto(Id, Author.ToDto(), Timestamp, Content, WeatherId);
     }
 }

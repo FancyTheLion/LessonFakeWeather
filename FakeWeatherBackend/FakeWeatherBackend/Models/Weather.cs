@@ -53,19 +53,6 @@ public class Weather
     /// Comments to weather
     /// </summary>
     public IList<Comment> Comments { get; private set; }
-
-    /// <summary>
-    /// Primitive constructor - ID only
-    /// </summary>
-    public Weather
-    (
-        Guid id
-    )
-    {
-        Id = id;
-        Photo = new File();
-        PhotoPreview = new File();
-    }
     
     /// <summary>
     /// Normal constructor - all data

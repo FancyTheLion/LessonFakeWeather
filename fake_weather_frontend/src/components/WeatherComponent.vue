@@ -5,6 +5,7 @@ import LoadingSymbol from "@/components/LoadingSymbol.vue";
 import CloudinessComponent from "@/components/CloudinessComponent.vue";
 import WeatherPhotoComponent from "@/components/WeatherPhotoComponent.vue";
 import {WebClientSendGetRequest} from "@/js/LibWebClient";
+import CommentsListComponent from "@/components/CommentsListComponent.vue";
 
   const props = defineProps({
     weatherId: String
@@ -19,6 +20,8 @@ import {WebClientSendGetRequest} from "@/js/LibWebClient";
   const weatherPressure = ref(0)
   const weatherPhotoPreviewId = ref("")
   const weatherPhotoId = ref("")
+
+  const isCommentsShown = ref(false)
 
   onMounted(async () =>
   {
@@ -62,6 +65,11 @@ import {WebClientSendGetRequest} from "@/js/LibWebClient";
     isLoading.value = false
   }
 
+  async function ShowComments()
+  {
+    isCommentsShown.value = true
+  }
+
 </script>
 
 <template>
@@ -78,6 +86,21 @@ import {WebClientSendGetRequest} from "@/js/LibWebClient";
     <WeatherPhotoComponent
         :photoPreviewId="weatherPhotoPreviewId"
         :fullSizePhotoId = "weatherPhotoId" />
+
+    <div>
+
+      <div
+          v-if="!isCommentsShown"
+          class="pseudolink"
+          @click="async () => await ShowComments()">
+        [Загрузить комментарии]
+      </div>
+
+      <CommentsListComponent
+        v-if="isCommentsShown"
+        :weatherId="props.weatherId" />
+
+    </div>
   </div>
 </template>
 

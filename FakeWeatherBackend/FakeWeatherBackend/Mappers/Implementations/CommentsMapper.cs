@@ -31,7 +31,7 @@ public class CommentsMapper : ICommentsMapper
             _usersMapper.Map(comment.Author),
             comment.Timestamp,
             comment.Content,
-            new Weather(comment.WeatherId)
+            comment.WeatherId
         );
     }
 
@@ -60,8 +60,8 @@ public class CommentsMapper : ICommentsMapper
             Author = _usersMapper.Map(comment.Author),
             Timestamp = comment.Timestamp,
             Content = comment.Content,
-            WeatherId = comment.Weather.Id,
-            Weather = new WeatherDbo() { Id = comment.Weather.Id }
+            WeatherId = comment.WeatherId,
+            Weather = new WeatherDbo() { Id = comment.WeatherId }
         };
     }
 

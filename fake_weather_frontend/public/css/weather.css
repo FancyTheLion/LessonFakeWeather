@@ -72,6 +72,30 @@ body {
   background: hsl(240, 100%, 40%);
   padding: 0.5rem;
 }
+/* Container with comments */
+.weather-comments-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+/* Container for ONE comment */
+.weather-comment-container {
+  border: 0.2rem solid hsl(117, 100%, 60%);
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+  width: 100%;
+}
+/* Comment top line (author and time) */
+.weather-comment-top-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  font-size: 0.8rem;
+}
 /* Cloudiness icon */
 .cloudiness-icon {
   width: 3rem;

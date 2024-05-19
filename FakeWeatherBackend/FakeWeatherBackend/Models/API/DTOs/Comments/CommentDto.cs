@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using FakeWeatherBackend.Models.API.DTOs.Users;
 using FakeWeatherBackend.Models.Comments;
 
@@ -11,27 +12,32 @@ public class CommentDto
     /// <summary>
     /// Comment ID
     /// </summary>
+    [JsonPropertyName("id")]
     public Guid Id { get; set; }
     
     /// <summary>
     /// Message author
     /// </summary>
+    [JsonPropertyName("author")]
     public UserDto Author { get; set; }
     
     /// <summary>
     /// Weather time
     /// </summary>
+    [JsonPropertyName("timestamp")]
     public DateTime Timestamp { get; set; }
     
     /// <summary>
     /// Content of the comment
     /// </summary>
+    [JsonPropertyName("content")]
     public string Content { get; set; }
-    
+
     /// <summary>
     /// Parent weather
     /// </summary>
-    public WeatherDto Weather { get; set; }
+    [JsonPropertyName("parentWeatherId")]
+    public Guid WeatherId { get; set; }
 
     public CommentDto
     (
@@ -39,18 +45,13 @@ public class CommentDto
         UserDto author,
         DateTime timestamp,
         string content,
-        WeatherDto weather
+        Guid weatherId
     )
     {
         Id = id;
         Author = author ?? throw new ArgumentNullException(nameof(author), "Author mustn't be null!");
         Timestamp = timestamp;
         Content = content;
-        Weather = weather ?? throw new ArgumentNullException(nameof(weather), "Weather mustn't be null!");
-    }
-    
-    public Comment ToModel()
-    {
-        return new Comment(Id, Author.ToModel(), Timestamp, Content, Weather.ToModel());
+        WeatherId = weatherId;
     }
 }
