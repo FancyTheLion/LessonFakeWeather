@@ -1,5 +1,5 @@
 <script setup>
-  import {defineProps, onMounted, ref} from "vue";
+  import {defineExpose, defineProps, onMounted, ref} from "vue";
   import LoadingSymbol from "@/components/LoadingSymbol.vue";
   import {WebClientSendGetRequest} from "@/js/LibWebClient";
   import moment from "moment";
@@ -11,6 +11,10 @@
   const isLoading = ref(true)
   const comments = ref([])
 
+  defineExpose({
+    ReloadComments
+  })
+
   onMounted(async () =>
   {
     await OnLoad();
@@ -18,13 +22,20 @@
 
   async function OnLoad()
   {
+    await ReloadComments()
+
+    isLoading.value = false
+  }
+
+  async function ReloadComments()
+  {
+    isLoading.value = true
+
     comments.value = (await (await WebClientSendGetRequest("/api/Comments/ByWeatherId/" + props.weatherId, {
       method: 'GET'
     })).json())
         .comments
         .sort(function(a, b) { return a.timestamp.localeCompare(b.timestamp) })
-
-    console.log(comments.value)
 
     isLoading.value = false
   }

@@ -3,9 +3,12 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using FakeWeatherBackend.DAO.Models.Authentification;
+using FakeWeatherBackend.Mappers.Abstract;
+using FakeWeatherBackend.Mappers.Implementations;
 using FakeWeatherBackend.Models.API.DTOs.Users;
 using FakeWeatherBackend.Models.API.Enums;
 using FakeWeatherBackend.Models.Settings;
+using FakeWeatherBackend.Models.Users;
 using FakeWeatherBackend.Services.Abstract;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
@@ -17,15 +20,18 @@ public class AccountsService : IAccountsService
 {
     private readonly UserManager<UserDbo> _userManager;
     private readonly JwtSettings _jwtSettings;
+    private readonly IUsersMapper _usersMapper;
 
     public AccountsService
     (
         UserManager<UserDbo> userManager,
-        IOptions<JwtSettings> jwtSettings
+        IOptions<JwtSettings> jwtSettings,
+        IUsersMapper usersMapper
     )
     {
         _userManager = userManager;
         _jwtSettings = jwtSettings.Value;
+        _usersMapper = usersMapper;
     }
     
     public async Task<RegistrationResultDto> RegisterUserAsync(RegistrationRequestDto request)
@@ -99,5 +105,10 @@ public class AccountsService : IAccountsService
     public async Task<bool> IsUserExistByLoginAsync(string login)
     {
         return await _userManager.FindByNameAsync(login) != null;
+    }
+
+    public async Task<User> GetUserByLoginAsync(string login)
+    {
+        return _usersMapper.Map(await _userManager.FindByNameAsync(login));
     }
 }

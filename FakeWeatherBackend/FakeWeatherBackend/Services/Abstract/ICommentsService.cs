@@ -11,4 +11,9 @@ public interface ICommentsService
     /// Get comments by weather ID
     /// </summary>
     Task<IReadOnlyCollection<Comment>> GetCommentsByWeatherIdAsync(Guid weatherId);
+
+    /// <summary>
+    /// Add comment
+    /// </summary>
+    Task<Comment> AddCommentAsync(CommentToAdd commentToAdd);
 }

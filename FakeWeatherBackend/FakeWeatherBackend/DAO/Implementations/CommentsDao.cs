@@ -19,7 +19,18 @@ public class CommentsDao : ICommentsDao
 
     public async Task<CommentDbo> AddCommentAsync(CommentDbo commentToAdd)
     {
-        throw new NotImplementedException();
+        _ = commentToAdd ?? throw new ArgumentNullException(nameof(commentToAdd), "Comment can't be null!");
+
+        commentToAdd.Author = await _dbContext.Users.SingleAsync(a => a.Id == commentToAdd.Author.Id);
+        commentToAdd.Weather = await _dbContext.Weathers.SingleAsync(w => w.Id == commentToAdd.Weather.Id);
+        
+        await _dbContext
+            .Comments
+            .AddAsync(commentToAdd);
+            
+        await _dbContext.SaveChangesAsync();
+
+        return commentToAdd;
     }
 
     public async Task<IReadOnlyCollection<CommentDbo>> GetCommentsByWeatherIdAsync(Guid weatherId)
@@ -34,4 +45,5 @@ public class CommentsDao : ICommentsDao
             
             .ToListAsync();
     }
+    
 }

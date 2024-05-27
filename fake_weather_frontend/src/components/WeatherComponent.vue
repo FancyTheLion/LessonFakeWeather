@@ -1,11 +1,13 @@
 <script setup>
-import {defineProps, onMounted, ref} from "vue";
+import {defineProps, onMounted, reactive, ref} from "vue";
 import moment from "moment/moment";
 import LoadingSymbol from "@/components/LoadingSymbol.vue";
 import CloudinessComponent from "@/components/CloudinessComponent.vue";
 import WeatherPhotoComponent from "@/components/WeatherPhotoComponent.vue";
-import {WebClientSendGetRequest} from "@/js/LibWebClient";
+import {WebClientSendGetRequest, WebClientSendPostRequest} from "@/js/LibWebClient";
 import CommentsListComponent from "@/components/CommentsListComponent.vue";
+import {required} from "@vuelidate/validators";
+import useVuelidate from "@vuelidate/core";
 
   const props = defineProps({
     weatherId: String
@@ -23,6 +25,25 @@ import CommentsListComponent from "@/components/CommentsListComponent.vue";
 
   const isCommentsShown = ref(false)
 
+  // Add comment form data
+  const addCommentData = reactive({
+    content: ""
+  })
+
+  // Validation rules
+  const addCommentFormRules = {
+
+    // Content
+    content: {
+      $autoDirty: true,
+      required
+    }
+  }
+
+  const addCommentFormValidator = useVuelidate(addCommentFormRules, addCommentData)
+
+  const commentsList = ref(null);
+
   onMounted(async () =>
   {
     await OnLoad();
@@ -30,6 +51,8 @@ import CommentsListComponent from "@/components/CommentsListComponent.vue";
 
   async function OnLoad()
   {
+    await addCommentFormValidator.value.$validate()
+
     const weatherResponse = await (await WebClientSendGetRequest("/api/Weather/" + props.weatherId, {
       method: 'GET'
     })).json()
@@ -70,6 +93,29 @@ import CommentsListComponent from "@/components/CommentsListComponent.vue";
     isCommentsShown.value = true
   }
 
+  async function AddComment(content)
+  {
+    const response = await WebClientSendPostRequest(
+        "/api/Comments/Add",
+        {
+          "commentToAdd": {
+            "content": content,
+            "weatherId": props.weatherId
+          }
+        })
+
+    if (response.status === 200)
+    {
+      addCommentData.content = ""
+
+      await commentsList.value.ReloadComments()
+    }
+    else
+    {
+      alert("Ошибка добавления комментария!")
+    }
+  }
+
 </script>
 
 <template>
@@ -96,9 +142,36 @@ import CommentsListComponent from "@/components/CommentsListComponent.vue";
         [Загрузить комментарии]
       </div>
 
-      <CommentsListComponent
-        v-if="isCommentsShown"
-        :weatherId="props.weatherId" />
+      <div
+          v-if="isCommentsShown">
+
+        <CommentsListComponent
+            ref="commentsList"
+            :weatherId="props.weatherId" />
+
+        <div>
+          <div>
+            <textarea
+                class="add-comment-textarea"
+                placeholder="Введите комментарий тут..."
+                v-model="addCommentData.content"
+            />
+          </div>
+
+          <div>
+
+            <button
+                type="button"
+                :disabled="addCommentFormValidator.$errors.length > 0"
+                @click="async () => await AddComment(addCommentData.content)">
+              Добавить
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
   </div>

@@ -192,6 +192,11 @@ body {
   color: hsl(233, 100%, 93%);
   font-weight: 600;
 }
+/* Type comment here */
+.add-comment-textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
 /* Popups begin here */
 /* Popup lower layer */
 .popup-lower-layer {

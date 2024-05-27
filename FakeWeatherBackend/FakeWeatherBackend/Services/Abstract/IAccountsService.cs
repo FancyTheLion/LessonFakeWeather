@@ -1,4 +1,5 @@
 using FakeWeatherBackend.Models.API.DTOs.Users;
+using FakeWeatherBackend.Models.Users;
 
 namespace FakeWeatherBackend.Services.Abstract;
 
@@ -21,4 +22,9 @@ public interface IAccountsService
     /// Is user with given login exists?
     /// </summary>
     Task<bool> IsUserExistByLoginAsync(string login);
+
+    /// <summary>
+    /// Get user by login. Returns null if user doesn't exist
+    /// </summary>
+    Task<User> GetUserByLoginAsync(string login);
 }
